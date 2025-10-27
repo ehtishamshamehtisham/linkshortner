@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blogs — Smart Link Shortener</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blogs.css">  
+   <!-- Favicon -->
+  <link rel="icon" href="smartlink-logo.svg" />  
+</head>
+<body>
+        <!-- START: shared header -->
+  <header class="header">
+    <div class="nav-container nav-wrap">
+      <a class="logo brand" href="index.html" aria-label="Smart Link home">
+        <svg width="35" height="35" viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad" x1="0" x2="1">
+              <stop offset="0" stop-color="#007bff"/>
+              <stop offset="1" stop-color="#00c6ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#grad)" />
+          <path d="M7.8 13.5a3.8 3.8 0 0 1 0-5.4l1.2-1.2" stroke="#fff" stroke-width="1.2" fill="none" />
+          <path d="M16.2 10.5a3.8 3.8 0 0 1 0 5.4l-1.2 1.2" stroke="#fff" stroke-width="1.2" fill="none" />
+        </svg>
+        <span class="brand-text">Smart Link</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="blogs.html">Blogs</a>
+      </nav>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span class="hamburger" aria-hidden="true">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+  <!-- END: shared header -->   
+
+   <!-- Spacer for fixed header -->
+  <div class="page-spacer" aria-hidden="true"></div>
+  <main class="page content-grid" role="main">
+    <!-- BLOG LIST: left column -->
+    <section class="blog-list">
+      <h1 class="page-title">Latest Blog Posts</h1>
+      <p class="lead">Actionable guides and tutorials about link-shortening, QR codes, and growth tips.</p>
+
+      <article class="post-card">
+        <a class="post-link" href="10-Best-URL-Shorteners-for-instagram-Bio-Links-(2024 Guide).html">
+          <div class="post-thumb" aria-hidden="true">
+            <img src="images/image1.jpg" alt="Instagram bio link example" />
+          </div>
+          <div class="post-body">
+            <h2 class="post-title">10 Best URL Shorteners for Instagram Bio Links (2024 Guide)</h2>
+            <p class="post-excerpt">
+              Instagram gives you one clickable link — make the most of it. Compare top shorteners, get QR tips,
+              and learn which tools work best for creators and small businesses in the US, UK, CA & AU.
+            </p>
+            <div class="post-meta">Published: Jan 15, 2024 · Read time: 6 min</div>
+          </div>
+        </a>
+      </article>
+ <article class="post-card">
+        <a class="post-link" href="TikTok-URL-Shortener-That-Doesn't-Get-Blocked-2024-Solution.html">
+          <div class="post-thumb" aria-hidden="true">
+            <img src="images/image2.png" alt="Branded short link" />
+          </div>
+          <div class="post-body">
+            <h2 class="post-title">TikTok URL Shortener That Doesn't Get Blocked - 2024 Solution</h2>
+            <p class="post-excerpt">
+              If your TikTok links are getting blocked or showing "Link not safe" warnings, you're not alone. TikTok's algorithm aggressively blocks URLs that appear suspicious or come from certain domains.
+            </p>
+            <div class="post-meta">Published: Feb 10, 2024 · Read time: 5 min</div>
+          </div>
+        </a>
+      </article>
+ <!--<article class="post-card">
+        <a class="post-link" href="qr-design-best-practices.html">
+          <div class="post-thumb" aria-hidden="true">
+            <img src="/images/image3.png" alt="QR design" />
+          </div>
+          <div class="post-body">
+            <h2 class="post-title">QR Design Best Practices: Colors, Logos & Captions</h2>
+            <p class="post-excerpt">
+              Make QR codes that scan reliably and look great. Learn about contrast, logo placement, caption usage,
+              and when to use gradients vs solid colors.
+            </p>
+            <div class="post-meta">Published: Mar 2, 2024 · Read time: 4 min</div>
+          </div>
+        </a>
+      </article>
+       <article class="post-card">
+        <a class="post-link" href="qr-design-best-practices.html">
+          <div class="post-thumb" aria-hidden="true">
+            <img src="/images/image3.png" alt="QR design" />
+          </div>
+          <div class="post-body">
+            <h2 class="post-title">QR Design Best Practices: Colors, Logos & Captions</h2>
+            <p class="post-excerpt">
+              Make QR codes that scan reliably and look great. Learn about contrast, logo placement, caption usage,
+              and when to use gradients vs solid colors.
+            </p>
+            <div class="post-meta">Published: Mar 2, 2024 · Read time: 4 min</div>
+          </div>
+        </a>
+      </article>-->
+        <!-- add more post-card blocks the same way -->
+    </section>
+   </main>     
+     <footer class="site-footer">
+    <div class="footer-inner">
+      <div>© <span id="year-contact"></span> SmartLink</div>
+      <div class="small"><a href="privacy.html">Privacy</a></div>
+    </div>
+  </footer>
+  <!-- Mobile panel (one per page) -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <div class="mobile-panel-head" style="display:flex;align-items:center;gap:12px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <defs><linearGradient id="gM" x1="0" x2="1"><stop offset="0" stop-color="#007bff"/><stop offset="1" stop-color="#00c6ff"/></linearGradient></defs>
+          <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#gM)"/>
+        </svg>
+        <strong style="font-size:18px;color:#07293f;">Smart Link</strong>
+      </div>
+
+      <nav class="mobile-menu-nav" aria-label="mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="blogs.html">Blogs</a>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <button id="mobileClose" class="btn-ghost" aria-label="Close menu">Close</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu-backdrop" id="mobileBackdrop" tabindex="-1" aria-hidden="true"></div>
+  </div>
+   <!-- your app logic (unchanged) -->
+  <script src="script.js"></script>
+  <script src="site.js"></script>
+  <!-- ADD THIS SCRIPT (before closing body): -->
+<script>document.getElementById('year-contact').textContent = new Date().getFullYear();</script>
+</body>
+</html>

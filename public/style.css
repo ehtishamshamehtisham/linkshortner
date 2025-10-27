@@ -1,0 +1,1079 @@
+:root {
+  --blue1: #007bff;
+  --blue2: #00c6ff;
+  --bg: #f7f9fc;
+  --text: #222;
+  --white: #fff;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #f8fbff 0%, #eaf4ff 100%);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, var(--blue1), var(--blue2));
+  color: white;
+  box-shadow: var(--shadow);
+  padding: 12px 0px;
+  z-index: 9999; /* sit above everything */
+  backdrop-filter: blur(6px); /* subtle glass effect */
+}
+
+.nav-container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  
+}
+/* make sure main content sits below the fixed header:
+   adjust the value if your header height differs */
+:root { --header-height: 72px; } /* header height used for spacing */
+main.main { margin-top: calc(var(--header-height) + 18px); }
+
+/* For small screens where header height may shrink, keep responsive spacing */
+@media (max-width: 600px) {
+  :root { --header-height: 64px; }
+  main.main { margin-top: calc(var(--header-height) + 12px); }
+}
+
+/* optional: slightly reduce hero's top margin if present */
+.hero {
+  
+  /* if you had margin-top before, ensure it's not too large */
+  margin-top: 0; /* main.main margin pushes it down */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Make inline SVG logos a consistent size and slightly smaller */
+.logo svg, .mobile-menu-panel svg {
+  width: 26px;
+  height: 26px;
+}
+
+@media (max-width: 686px) {
+  .logo svg, .mobile-menu-panel svg { width: 22px; height: 22px; }
+}
+
+/* Main navigation: use flex with gap to ensure even spacing between items */
+.main-nav {
+  display: flex;
+  
+  align-items: center;
+  margin-left: auto; /* push nav to right side */
+  gap: 27px; /* tighter spacing between nav items as requested */
+}
+
+/* Individual nav links: spacing handled by container gap to ensure consistency */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 6px; /* small clickable padding, spacing provided by .main-nav gap */
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Hero Section */
+.hero {
+  max-width: 700px;
+  margin: 90px auto;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(15px);
+  padding: 60px 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: fadeIn 1s ease-in-out;
+  
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: var(--blue1);
+}
+
+.subtitle {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+/* Input Fields */
+.form input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #d8e3f0;
+  border-radius: var(--radius);
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: var(--blue1);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+/* Placeholder color: use primary blue by default */
+input::placeholder, textarea::placeholder {
+  color: var(--blue1);
+  transition: color 180ms ease-in-out, opacity 180ms ease-in-out;
+  opacity: 1;
+}
+
+/* keep same color on focus for consistency */
+input:focus::placeholder, textarea:focus::placeholder {
+  color: var(--blue1);
+  opacity: 1;
+}
+
+/* Buttons */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+button {
+   background: linear-gradient(90deg, var(--blue1), var(--blue2));
+  color: white;
+  border: none;
+  padding: 13px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 123, 255, 1.25);
+}
+
+button.secondary {
+  background: #eef4ff;
+  color: var(--blue1);
+}
+
+.copy {
+  background: #eaf3ff;
+  color: var(--blue1);
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 1px solid #d0e3ff;
+}
+
+/* Result Section */
+.result {
+  margin-top: 35px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.short-url-box {
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.short-url-box:hover {
+  transform: scale(1.02);
+}
+
+.short-url-box a {
+  color: var(--blue1);
+  font-weight: 600;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.qr-area img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+  margin: 15px auto;
+  display: block;
+  border: 4px solid #eaf4ff;
+  border-radius: 12px;
+}
+
+.noteDisplay {
+  color: #666;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+/* Premium styles for gradient preset buttons */
+.gradient-presets { display:flex; gap:10px; align-items:center; }
+.preset-btn, .preset { /* shared visual base */
+  display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:12px;
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+  border: 1px solid rgba(11,27,56,0.06);
+  box-shadow: 0 6px 18px rgba(11,27,56,0.06);
+  cursor: pointer; font-size:14px; color: #0b1220; font-weight:600;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+.preset-btn .swatch, .preset .swatch { width:34px; height:26px; border-radius:8px; display:inline-block; box-shadow: inset 0 -6px 12px rgba(0,0,0,0.04); border:1px solid rgba(255,255,255,0.4); }
+.preset-btn small, .preset small { display:block; color:#24303a; font-weight:600; margin-left:4px; }
+.preset-btn:hover, .preset:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(11,27,56,0.08); border-color: rgba(11,27,56,0.12); color: #0b1220; }
+.preset-btn:focus, .preset:focus { outline: 3px solid rgba(0,123,255,0.12); }
+.preset-btn.active { box-shadow: 0 18px 36px rgba(3,102,214,0.12); transform: translateY(-6px); border-color: rgba(3,102,214,0.18); }
+
+/* stronger hover tint: colorize background & swatch slightly */
+.preset-btn:hover { background: linear-gradient(180deg, rgba(0,123,255,0.06), rgba(0,198,255,0.03)); }
+.preset-btn:hover .swatch { transform: scale(1.06); box-shadow: 0 6px 18px rgba(0,0,0,0.10); }
+.preset-btn .swatch { transition: transform 160ms ease, box-shadow 160ms ease; }
+
+/* active / clicked state: bold blue gradient + pressed inset */
+.preset-btn:active,
+.preset-btn.active {
+  background: linear-gradient(90deg, var(--blue1), var(--blue2));
+  color: white;
+  transform: translateY(-2px) scale(0.995);
+  box-shadow: inset 0 6px 18px rgba(0,0,0,0.06), 0 10px 24px rgba(3,102,214,0.12);
+  border-color: rgba(3,102,214,0.22);
+}
+.preset-btn:active .swatch, .preset-btn.active .swatch { box-shadow: inset 0 -6px 12px rgba(0,0,0,0.06); transform: scale(1); }
+
+/* reset button press feedback */
+.preset:active { background: linear-gradient(90deg, rgba(0,123,255,0.08), rgba(0,198,255,0.04)); transform: translateY(-1px) scale(0.996); box-shadow: inset 0 4px 10px rgba(0,0,0,0.03); }
+
+/* reset button: subtle ghost style */
+.preset { background: transparent; border: 1px dashed rgba(11,27,56,0.06); color: var(--blue1); font-weight:700; padding:6px 10px; border-radius:10px; box-shadow:none }
+.preset:hover { background: rgba(0,123,255,0.04); transform: translateY(-2px); }
+
+/* responsive: tighten preset layout on small screens */
+@media (max-width: 560px) {
+  .gradient-presets { gap:8px; }
+  .preset-btn, .preset { padding:8px; font-size:13px; }
+  .preset-btn .swatch { width:30px; height:22px; }
+}
+
+/* Share Buttons */
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.share button {
+  background: linear-gradient(90deg, var(--blue1), var(--blue2));
+  color: white;
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 8px 18px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 30px 10px;
+  color: #666;
+  font-size: 14px;
+  background: #fafcff;
+  margin-top: 60px;
+  border-top: 1px solid #e4e9f0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero {
+    margin: 40px 15px;
+    padding: 30px 20px;
+  }
+  .hero h1 {
+    font-size: 24px;
+  }
+  nav a {
+    font-size: 14px;
+    margin: 0 6px;
+  }
+}
+/* =============================
+   Additional Styling for New Sections
+   ============================= */
+
+/* Common section layout */
+section {
+  padding: 80px 10%;
+  text-align: center;
+  background: var(--bg);
+}
+
+/* ===== 1️⃣ HERO ===== */
+/*.hero {
+  background: linear-gradient(135deg, var(--blue1), var(--blue2));
+  color: white;
+  padding: 120px 20px;
+  border-radius: 0 0 60px 60px;
+  box-shadow: inset 0 -10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 18px;
+  opacity: 0.95;
+  margin-bottom: 25px;
+}
+ */
+/* =========================
+   Features Summary Section
+   ========================= */
+
+#features-summary {
+  background: var(--white);
+  padding: 80px 10%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 70px auto;
+  max-width: 1000px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+#features-summary:hover {
+  transform: translateY(-4px);
+}
+
+#features-summary h2 {
+  color: var(--blue1);
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+#features-summary .lead {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 35px;
+}
+
+.features-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px 25px;
+  text-align: left;
+}
+
+.features-grid li {
+  background: #f9fbff;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+  font-size: 15px;
+  line-height: 1.6;
+  border-left: 5px solid transparent;
+}
+
+.features-grid li:hover {
+  transform: translateY(-5px);
+  border-left: 5px solid var(--blue1);
+  background: #eef6ff;
+}
+
+.features-grid strong {
+  color: var(--blue1);
+}
+
+.features-grid code {
+  background: #eaf3ff;
+  color: #0056b3;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #features-summary {
+    padding: 60px 6%;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tighter navbar styles for medium screens: improve layout when width <= 842px */
+@media (max-width: 842px) {
+  .main-nav {
+    gap: 6px; /* reduce spacing between links */
+    margin-left: auto; /* keep nav on right */
+    overflow-x: auto; /* allow horizontal scroll if needed */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav a {
+    font-size: 14px; /* slightly smaller text */
+    padding: 0 4px; /* smaller click padding to save space */
+    white-space: nowrap; /* prevent wrapping */
+  }
+
+  /* If you want the logo text to keep space, this keeps it; uncomment to hide brand text on small widths */
+  /* .logo .brand-text { display: none; } */
+}
+/* =========================
+   How It Works Section
+   ========================= */
+#how-it-works {
+  background: var(--white);
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 70px 10%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+#how-it-works h2 {
+  text-align: center;
+  font-size: 30px;
+  color: var(--blue1);
+  margin-bottom: 25px;
+}
+
+.how-steps {
+  list-style: decimal;
+  padding-left: 25px;
+  line-height: 1.8;
+  color: #444;
+  font-size: 16px;
+}
+
+.how-steps li {
+  margin-bottom: 10px;
+}
+
+.how-steps strong {
+  color: var(--blue1);
+}
+
+#how-it-works code {
+  background: #eaf3ff;
+  color: #0056b3;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+#how-it-works .small {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 25px;
+  font-style: italic;
+}
+
+/* =========================
+   How To Use Section
+   ========================= */
+#how-to-use {
+  max-width: 1000px;
+  margin: 80px auto;
+  background: var(--white);
+  padding: 70px 10%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+#how-to-use h2 {
+  text-align: center;
+  color: var(--blue1);
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.step {
+  background: #f9fbff;
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  background: #eef6ff;
+}
+
+.step h3 {
+  color: var(--blue1);
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.step p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.step code {
+  background: #eaf3ff;
+  color: #0056b3;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+/* =========================
+   Who Uses Section
+   ========================= */
+#who-uses {
+  background: var(--white);
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 70px 10%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+#who-uses h2 {
+  color: var(--blue1);
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.audience-grid {
+  display: grid;
+  /* increase min width so each card is wider and more readable */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.audience-grid article {
+  background: #f9fbff;
+  padding: 28px 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+}
+
+.audience-grid article:hover {
+  background: #eef6ff;
+  transform: translateY(-5px);
+}
+
+.audience-grid strong {
+  display: block;
+  color: var(--blue1);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.audience-grid p {
+  color: #555;
+  font-size: 15px;
+}
+
+/* =========================
+   Benefits Section
+   ========================= */
+#benefits {
+  background: var(--white);
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 70px 10%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+#benefits h2 {
+  color: var(--blue1);
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+#benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: left;
+}
+
+#benefits li {
+  background: #f9fbff;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: 15px;
+  line-height: 1.6;
+  transition: 0.3s;
+}
+
+#benefits li:hover {
+  background: #eef6ff;
+  transform: translateX(6px);
+}
+
+#benefits strong {
+  color: var(--blue1);
+}
+
+/* =========================
+   Responsive Adjustments
+   ========================= */
+@media (max-width: 768px) {
+  #how-it-works, #how-to-use, #who-uses, #benefits {
+    padding: 50px 6%;
+  }
+  #how-it-works h2,
+  #how-to-use h2,
+  #who-uses h2,
+  #benefits h2 {
+    font-size: 24px;
+  }
+}
+/* FAQ Section */
+#faq {
+  background: #f9f9fb;
+  padding: 80px 20px;
+  text-align: left;
+}
+
+#faq h2 {
+  font-size: 2rem;
+  color:var(--blue1);
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.faq-item {
+  max-width: 800px;
+  margin: 0 auto 25px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.faq-item h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.faq-item code {
+  background: #eef2f6;
+  padding: 3px 7px;
+  border-radius: 6px;
+  color: #d63384;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #faq {
+    padding: 60px 15px;
+  }
+
+  .faq-item {
+    padding: 20px;
+  }
+
+  .faq-item h4 {
+    font-size: 1.1rem;
+  }
+
+  .faq-item p {
+    font-size: 0.95rem;
+  }
+}
+
+
+
+
+
+/* ===== SCROLL EFFECTS ===== */
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-grid,
+  .help-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduce logo size for narrow viewports (<= 686px) */
+@media (max-width: 686px) {
+  .logo { font-size: 18px; gap: 6px; }
+  .logo .brand-text { font-size: 16px; }
+}
+/* Footer */
+.footer {
+  background-color: #0a76e8;
+  
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: 60px;
+  color: white;
+  font-weight: 600;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  color: white;
+  font-weight: 600;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  color: #38bdf8; /* Light blue hover */
+}
+
+.footer-copy {
+  font-size: 0.9rem;
+  color: #1c1d1e;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    margin: 0;
+  }
+}
+
+/* --------------------------
+   Mobile hamburger & panel (APPEND to style.css)
+   -------------------------- */
+
+/* variables expected earlier: --blue1, --blue2, --radius, --shadow, --white */
+/* Fix for hamburger menu click issue */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* above everything */
+  pointer-events: auto;
+}
+
+.mobile-nav a {
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin: 15px 0;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  color: #00bfff;
+}
+
+.mobile-toggle{
+  display: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease;
+}
+.mobile-toggle:focus{ outline: 3px solid rgba(0,123,255,0.18); }
+
+/* hamburger bars */
+.hamburger { display: inline-block; width: 26px; height: 18px; position: relative; }
+.bar {
+  display:block;
+  position:absolute;
+  left:0;
+  width:100%;
+  height:3px;
+  border-radius:3px;
+  background: #fff; /* white bars to show on gradient header */
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1), opacity 0.18s ease, top 0.18s ease;
+}
+.bar-1 { top: 0; }
+.bar-2 { top: 7.5px; }
+.bar-3 { top: 15px; }
+
+/* animated to X when open — controlled by body.nav-open */
+body.nav-open .bar-1 { transform: translateY(7.5px) rotate(45deg); top:7.5px; }
+body.nav-open .bar-2 { opacity: 0; transform: scaleX(0); }
+body.nav-open .bar-3 { transform: translateY(-7.5px) rotate(-45deg); top:7.5px; }
+
+/* mobile menu overlay and panel */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+/* backdrop */
+.mobile-menu-backdrop {
+  position:absolute;
+  inset: 0;
+  background: rgba(10, 14, 24, 0.45);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+/* slide panel */
+.mobile-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(92%, 360px);
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff, #f5fbff);
+  box-shadow: -20px 0 40px rgba(10,20,40,0.15);
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(.2,.9,.2,1);
+  padding: 28px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  pointer-events: auto;
+  border-radius: 8px 0 0 8px;
+}
+
+/* nav links inside mobile panel */
+.mobile-menu-nav {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:8px;
+}
+.mobile-menu-nav a {
+  color: #0b1722;
+  text-decoration:none;
+  font-weight:700;
+  padding:12px 10px;
+  border-radius:8px;
+  transition: background 0.18s ease, color 0.18s;
+}
+.mobile-menu-nav a:hover { background: rgba(0,123,255,0.06); color: var(--blue1); }
+
+/* footer area in panel */
+.mobile-menu-footer { margin-top:auto; display:flex; justify-content:center; }
+.btn-ghost {
+  background: transparent; border: 1px solid rgba(0,0,0,0.06); padding:10px 14px; border-radius:10px; cursor:pointer;
+}
+
+/* when open: show panel + backdrop */
+body.nav-open .mobile-menu { display:block; pointer-events:auto; }
+body.nav-open .mobile-menu-backdrop { opacity: 1; }
+body.nav-open .mobile-menu-panel { transform: translateX(0%); }
+
+/* hide desktop nav on small screens, show hamburger */
+@media (max-width: 499px) {
+  .main-nav { display:none !important; }      /* hide desktop nav */
+  .mobile-toggle { display:flex; }            /* show hamburger */
+  .nav-wrap { align-items:center; gap:12px; }
+}
+
+/* Also make navbar responsive for slightly larger small screens (<=611px) */
+@media (max-width: 611px) {
+  .main-nav { display: none !important; }
+  .mobile-toggle { display: flex; }
+  /* tighten header spacing on these widths */
+  .nav-container { gap: 8px; }
+  /* make the logo and brand text larger for better tap targets on small devices */
+  .logo { font-size: 20px; }
+  .logo svg { width: 40px; height: 40px; }
+  .logo .brand-text { font-size: 20px; font-weight:700; }
+  /* mobile panel header logo/title */
+  .mobile-panel-head svg { width: 40px; height: 40px; }
+  .mobile-panel-head strong { font-size: 20px; }
+}
+
+/* For very small screens, force the QR preview and canvas to 300x300 */
+@media (max-width: 490px) {
+  #qrImg { width: 300px !important; height: 300px !important; max-width: 100%; display:block; margin: 8px auto; }
+  #qrCanvas { width: 300px !important; height: 300px !important; }
+  /* ensure the qr-area container doesn't overflow */
+  .qr-area { display:flex; justify-content:center; }
+}
+
+/* For very small phones (<=375px), show QR at 250x250 */
+@media (max-width: 375px) {
+  #qrImg { width: 250px !important; height: 250px !important; max-width: 100%; display:block; margin: 6px auto; }
+  #qrCanvas { width: 250px !important; height: 250px !important; }
+  .qr-area { display:flex; justify-content:center; }
+}
+
+/* ensure no flash of hidden panel if JS toggling */
+.mobile-menu[aria-hidden="true"] .mobile-menu-panel { transform: translateX(100%); }
+/* ======= Mobile menu z-index & pointer fix =======
+   Appended only — does not replace your original styles.
+   Ensures panel sits above the backdrop so links are clickable.
+   ======= */
+.mobile-menu { /* keep backdrop + panel container below top UI but above page */
+  z-index: 9990; /* container base */
+  pointer-events: none; /* disabled until opened */
+}
+
+/* Make sure backdrop sits below the panel */
+.mobile-menu-backdrop {
+  z-index: 9991;              /* backdrop under panel */
+  pointer-events: auto;       /* allow clicking backdrop to close */
+}
+
+/* Panel must be above the backdrop */
+.mobile-menu-panel {
+  z-index: 9992;              /* panel above backdrop - clickable */
+  pointer-events: auto;       /* allow clicks on panel contents */
+}
+
+/* When menu is open we enable the whole container */
+body.nav-open .mobile-menu {
+  display: block !important;
+  pointer-events: auto !important;
+}
+
+/* small tweak: ensure the close button is above everything inside panel */
+.mobile-menu-panel #mobileClose {
+  z-index: 9993;
+  position: relative;
+}
+
+/* Remove any accidental ".mobile-nav" fullscreen style you might have
+   added earlier (that could block the panel). If you do intentionally
+   use ".mobile-nav" elsewhere, ignore this rule. */
+.mobile-nav { display: none !important; }
+
+/* Optional: make the panel slightly higher than header on very small weird setups */
+@media (max-width: 420px) {
+  .mobile-menu-panel { width: 92vw; } /* ensure full panel width on tiny phones */
+}
+/* Mobile menu z-index fixes (ensures panel clickable) */
+.mobile-menu { z-index: 9990; pointer-events: none; }
+.mobile-menu-backdrop { z-index: 9991; pointer-events: auto; }
+.mobile-menu-panel { z-index: 9992; pointer-events: auto; }
+body.nav-open .mobile-menu { display: block !important; pointer-events: auto !important; }
+.mobile-menu-panel #mobileClose { z-index: 9993; position: relative; }
+
+/* (If you already have identical rules in your file, these duplicates do no harm) */
+
+
+

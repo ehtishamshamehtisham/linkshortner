@@ -1,0 +1,173 @@
+/* contact.css - standalone, uses same header variables */
+:root{
+  --blue1:#007bff; --blue2:#00c6ff; --bg:#f8fbff; --card:#fff;
+  /* success / alerts color used in scripts */
+  --success: #0b8a4b;
+  --muted:#596572; --radius:14px; --shadow:0 10px 30px rgba(15,23,42,0.06);
+  --header-h:72px; --maxw:1100px;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #fbfdff, #f1f9ff);
+  color: #111;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  
+  background: linear-gradient(90deg, var(--blue1), var(--blue2));
+  box-shadow: var(--shadow);
+  z-index: 999;
+}
+
+.nav-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.main-nav {
+  display: flex;
+  gap: 14px;
+}
+
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.main-nav a.active,
+.main-nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-toggle {
+  display: none;
+}
+
+
+/* content spacing so header doesn't overlap */
+.page{padding-top:calc(var(--header-h) + 22px)}
+.content-grid{max-width:var(--maxw);margin:28px auto;display:grid;grid-template-columns:1fr 340px;gap:20px;padding:0 18px}
+@media(max-width:920px){.content-grid{grid-template-columns:1fr;gap:14px} .main-nav{display:none} .mobile-toggle{display:flex}}
+
+/* cards */
+.card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow)}
+.form-card h1{color:var(--blue1);margin-bottom:8px}
+.lead{color:var(--muted);margin-bottom:12px}
+/* ensure form labels and fields are left-aligned (section default is center) */
+.contact-form { text-align: left; }
+.contact-form label{display:block;font-weight:600;margin-top:12px;margin-bottom:6px;color:var(--blue1);text-align:left}
+.contact-form input, .contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #e7f0ff;background:#fbfeff;font-size:15px}
+
+/* Force placeholders in the contact form to use the primary blue color */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+.contact-form input::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder,
+.contact-form input::-moz-placeholder,
+.contact-form textarea::-moz-placeholder,
+.contact-form input:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+  color: var(--blue1) !important;
+  opacity: 1 !important;
+}
+
+.contact-form input:focus::placeholder,
+.contact-form textarea:focus::placeholder,
+.contact-form input:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder,
+.contact-form input:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder,
+.contact-form input:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+  color: var(--blue1) !important;
+  opacity: 1 !important;
+}
+.form-actions{display:flex;gap:10px;margin-top:14px}
+button{cursor:pointer;border:none;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--blue1),var(--blue2));color:#fff;font-weight:700}
+button.secondary{background:#f1f5ff;color:var(--blue1);border:1px solid rgba(0,123,255,0.06)}
+.note{margin-top:10px;color:var(--blue1);font-weight:600}
+
+/* aside */
+.info-card h3{color:var(--blue1);margin-top:0}
+.info-card .small{color:var(--muted)}
+
+/* footer */
+.site-footer{margin-top:32px;padding:18px 0;text-align:center;color:#6b7280}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 18px;display:flex;justify-content:space-between;align-items:center}
+
+/* responsive tweaks */
+@media(max-width:600px){.card{padding:16px} .contact-form input, .contact-form textarea{font-size:14px}}
+
+/* ========== Mobile menu & hamburger (consolidated) ========== */
+
+/* hamburger bars */
+.hamburger{display:inline-block;width:26px;height:18px;position:relative}
+.bar{ display:block; position:absolute; left:0; width:100%; height:3px; border-radius:3px; background:#fff; transform-origin:center; transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .18s ease, top .18s ease}
+.bar-1{ top:0 } .bar-2{ top:7.5px } .bar-3{ top:15px }
+
+/* animate to X when open */
+body.nav-open .bar-1{ transform: translateY(7.5px) rotate(45deg); top:7.5px }
+body.nav-open .bar-2{ opacity:0; transform: scaleX(0) }
+body.nav-open .bar-3{ transform: translateY(-7.5px) rotate(-45deg); top:7.5px }
+
+/* mobile menu container */
+.mobile-menu{ position:fixed; inset:0; display:none; z-index:9990; pointer-events:none }
+/* backdrop below panel */
+.mobile-menu-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,0.45); z-index:9991; opacity:0; transition:opacity .28s ease }
+/* panel slides in from right */
+.mobile-menu-panel{ position:absolute; top:0; right:0; width:min(92%,360px); height:100%; background:linear-gradient(180deg,#fff,#f5fbff); box-shadow:-20px 0 40px rgba(10,20,40,.15); transform:translateX(100%); transition:transform .32s cubic-bezier(.2,.9,.2,1); padding:28px 18px; display:flex; flex-direction:column; gap:18px; z-index:9992; pointer-events:auto; border-radius:8px 0 0 8px }
+
+/* nav list inside panel */
+.mobile-menu-nav{ display:flex; flex-direction:column; gap:12px; margin-top:8px }
+.mobile-menu-nav a{ color:#0b1722; text-decoration:none; font-weight:700; padding:12px 10px; border-radius:8px }
+.mobile-menu-nav a:hover{ background:rgba(0,123,255,0.06); color:var(--blue1) }
+
+/* show when open */
+body.nav-open .mobile-menu{ display:block; pointer-events:auto }
+body.nav-open .mobile-menu-backdrop{ opacity:1 }
+body.nav-open .mobile-menu-panel{ transform:translateX(0) }
+
+/* close button in panel */
+.btn-ghost{ background:transparent; border:1px solid rgba(0,0,0,0.06); padding:10px 14px; border-radius:10px; cursor:pointer; align-self:center }
+#mobileClose{ position:absolute; top:16px; right:18px; font-size:22px; background:none; border:none; color:var(--blue1); cursor:pointer; z-index:9994; }
+
+/* ensure no accidental full-screen .mobile-nav interfering */
+.mobile-nav{ display:none !important }
+
+/* small screens tweak */
+@media(max-width:420px){ .mobile-menu-panel{ width:92vw } }
+
+/* Navbar responsive at <=611px */
+@media (max-width: 611px) {
+  .main-nav { display: none !important; }
+  .mobile-toggle { display: flex; }
+  .nav-wrap { gap: 8px; }
+  .logo { font-size: 20px; }
+  .logo svg { width: 40px; height: 40px; }
+  .logo .brand-text { font-size: 20px; font-weight:700 }
+  .mobile-panel-head svg { width:40px;height:40px }
+  .mobile-panel-head strong { font-size:20px }
+}

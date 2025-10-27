@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ========== SEO OPTIMIZATION ========== -->
+  <title>Free URL Shortener & QR Code Generator - Shorten Links & Create Custom QR Codes</title>
+  <meta name="description" content="Free URL shortener with custom QR code generator. Shorten long links instantly, create branded QR codes with logos and colors, track analytics. No registration required.">
+  <meta name="keywords" content="free url shortener, qr code generator, shorten links, custom qr codes, url shortener with analytics, qr code with logo, short links, usa, uk, canada, australia">
+  <meta name="author" content="SmartLink">
+  
+  <!-- Geo Targeting -->
+  <meta name="geo.region" content="US-UK-CA-AU">
+  <meta name="geo.placename" content="United States, United Kingdom, Canada, Australia">
+  <meta name="geo.position" content="39.8;-98.5">
+  <meta name="ICBM" content="39.8, -98.5">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free URL Shortener & QR Code Generator - SmartLink">
+  <meta property="og:description" content="Shorten URLs and create custom QR codes with logos. Free analytics, no registration required. Works worldwide.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="en_CA">
+  <meta property="og:locale:alternate" content="en_AU">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://linkshortner.site">
+    <!-- Favicon -->
+  <link rel="icon" href="smartlink-logo.svg" />
+    <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SmartLink - URL Shortener & QR Code Generator",
+    "description": "Free tool to shorten URLs and generate custom QR codes with analytics",
+    "url": "https://linkshortner.site",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "URL shortening",
+      "QR code generation", 
+      "Custom branding",
+      "Click analytics",
+      "No registration required"
+    ],
+    "countryOfOrigin": ["US", "GB", "CA", "AU"]
+  }
+  </script>
+  <!-- ========== END SEO ========== -->
+
+  <!-- main stylesheet (keep your existing style.css) -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Load web fonts used by the canvas caption for consistent rendering -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+ <style>
+    .preset { cursor:pointer; border-radius:8px; padding:6px 8px; border:1px solid #edf2f7; background:#fff; display:flex; gap:8px; align-items:center; font-size:13px; }
+    .preset.active { box-shadow: 0 8px 22px rgba(3, 102, 214, 0.12); transform: translateY(-2px); }
+    .swatch { width:28px; height:20px; border-radius:6px; display:inline-block; border:1px solid rgba(0,0,0,0.06); }
+    #qrCanvas { display:block; margin: 12px auto; max-width:320px; width:100%; border-radius:12px; background:white; }
+    #qr-controls { display:none; gap:8px; justify-content:center; margin-top:10px; }
+    #qrCaptionPreview { display:none; margin-top:8px; font-weight:600; text-align:center; }
+    /* Minor safe defaults if your style.css hides .hidden by something else */
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+  <!-- ===========================
+       Header (desktop + mobile)
+       =========================== -->
+  <header class="header site-header">
+    <div class="nav-container nav-wrap">
+      <!-- Logo -->
+      <a class="logo brand" href="index.html" aria-label="Smart Link home">
+        <svg width="35" height="35" viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad" x1="0" x2="1">
+              <stop offset="0" stop-color="#007bff"/>
+              <stop offset="1" stop-color="#00c6ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#grad)" />
+          <path d="M7.8 13.5a3.8 3.8 0 0 1 0-5.4l1.2-1.2" stroke="#fff" stroke-width="1.2" fill="none" />
+          <path d="M16.2 10.5a3.8 3.8 0 0 1 0 5.4l-1.2 1.2" stroke="#fff" stroke-width="1.2" fill="none" />
+        </svg>
+        <span class="brand-text">Smart Link</span>
+      </a>
+
+      <!-- Desktop nav (hidden on small screens by CSS) -->
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="blogs.html">Blogs</a>
+      </nav>
+
+      <!-- Mobile hamburger toggle -->
+      <!-- Keep this button visible only on small screens via CSS media query -->
+      <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span class="hamburger" aria-hidden="true">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===========================
+       Mobile panel (place once per site, can be at end of <body>)
+       =========================== -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <div class="mobile-panel-head" style="display:flex;align-items:center;gap:12px;">
+        <!-- small logo in panel -->
+        <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+          <defs><linearGradient id="gM" x1="0" x2="1"><stop offset="0" stop-color="#007bff"/><stop offset="1" stop-color="#00c6ff"/></linearGradient></defs>
+          <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#gM)"/>
+        </svg>
+        <strong style="font-size:18px;color:#07293f;">Smart Link</strong>
+      </div>
+
+      <nav class="mobile-menu-nav" aria-label="mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="blogs.html">Blogs</a>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <button id="mobileClose" class="btn-ghost" aria-label="Close menu">Close</button>
+      </div>
+    </div>
+
+    <!-- backdrop: click to close -->
+    <div class="mobile-menu-backdrop" id="mobileBackdrop" tabindex="-1" aria-hidden="true"></div>
+  </div>
+
+  <!-- ===========================
+       Main content (unchanged, your sections)
+       =========================== -->
+  <main class="main">
+    <section class="hero">
+      <h1>Free URL Shortener & QR Code Generator</h1>
+      <p class="subtitle">Shorten long links instantly and create custom QR codes with your logo and brand colors. Perfect for social media, marketing, and business use worldwide.</p>
+      <div class="form">
+        <input id="longUrl" type="url" placeholder="Paste your long URL here..." />
+        <input id="alias" type="text" placeholder="Custom alias (optional)" />
+        <input id="qrCaption" type="text" placeholder="Small caption under QR (optional)" />
+        <!--<input id="note" type="text" placeholder="Custom note (optional)" />-->
+
+      
+
+  <div id="logo-block" style="margin-top:12px;border-top:1px dashed #e6e9ef;padding-top:12px;">
+  <label for="logoFile">Logo (optional) — PNG/JPG/WebP, max 300 KB</label>
+  <input id="logoFile" type="file" accept="image/png,image/jpeg,image/webp">
+  <div class="small" style="margin-top:6px;color:#6b7280;">
+    Optional: logo will be embedded at center of QR. It is not uploaded anywhere — kept only in your browser and removed after generation.
+  </div>
+   <!-- Gradient / color presets -->
+          <div id="color-block" style="margin-top:12px;padding-top:12px;">
+            <label>QR color style (optional)</label>
+            <div id="gradientPresets" class="gradient-presets" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
+              <button type="button" class="preset-btn" data-id="g1" title="Ocean gradient">
+                <span class="swatch g1" style="background:linear-gradient(90deg,#007bff,#00c6ff);"></span>
+                <small>Ocean</small>
+              </button>
+              <button type="button" class="preset-btn" data-id="g2" title="Sunset">
+                <span class="swatch g2" style="background:linear-gradient(90deg,#ff7a18,#ff5b9d);"></span>
+                <small>Sunset</small>
+                 </button>
+              <button type="button" class="preset-btn" data-id="g3" title="Emerald">
+                <span class="swatch g3" style="background:linear-gradient(90deg,#00b894,#006a75);"></span>
+                <small>Emerald</small>
+              </button>
+              <button type="button" class="preset-btn" data-id="flat" title="Classic dark">
+                <span class="swatch flat" style="background:#0b1220;"></span>
+                <small>Dark</small>
+              </button>
+              <button type="button" id="presetClear" title="Reset style" class="preset"><small>Reset</small></button>
+            </div>
+            <small class="small" style="display:block;margin-top:6px;color:#6b7280;">
+              Choose a color or gradient for your QR. Optional — leave blank for default black.
+            </small>
+          </div>
+  </div>
+</div>
+        <div class="btn-group">
+          <button id="shortenBtn">Shorten</button>
+          <button id="clearBtn" class="secondary">Clear</button>
+        </div>
+      </div>
+
+      <div id="result" class="result hidden">
+        <div class="short-url-box">
+          <p><strong>Short URL:</strong>
+            <a id="shortLink" href="#" target="_blank"></a>
+            <button id="copyBtn" class="copy">Copy</button>
+          </p>
+        </div>
+
+        <div class="qr-area">
+          <img id="qrImg" alt="QR Code" />
+
+          <!-- Caption is embedded into the QR image now; no external caption element -->
+
+        </div>
+        <!-- QR download / share controls -->
+<div id="qr-controls" style="margin-top:12px;display:none;">
+  <button id="downloadQrBtn" class="btn">Download QR (PNG)</button>
+  <button id="shareQrBtn" class="btn">Share QR (image)</button>
+</div>
+       
+       <!-- Canvas used for QR generation (hidden) -->
+<canvas id="qrCanvas" width="600" height="600" style="display:none;"></canvas>
+
+
+        <p id="noteDisplay" class="noteDisplay"></p>
+
+        <div class="share">
+          <button id="shareWhatsApp">WhatsApp</button>
+          <button id="shareFacebook">Facebook</button>
+          <button id="shareTwitter">Twitter</button>
+          <button id="shareTelegram">Telegram</button>
+          <button id="nativeShare">Device Share</button>
+        </div>
+      </div>
+
+      <div id="msg" class="msg"></div>
+    </section>
+         <!-- ========== EMAIL LIST SECTION ========== -->
+    <section style="background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%); color: white; padding: 50px 20px; text-align: center; margin: 60px 0;">
+      <div style="max-width: 600px; margin: 0 auto;">
+        <h3 style="color: white; margin-bottom: 15px; font-size: 28px;">🚀 Get Premium Features Early!</h3>
+        <p style="margin-bottom: 25px; opacity: 0.9; font-size: 18px; line-height: 1.6;">
+          Be the first to know when we launch <strong>custom domains, advanced analytics, and team features.</strong> 
+          Join our exclusive waitlist for early access and special launch discounts.
+        </p>
+        
+        <form id="emailForm" style="max-width: 400px; margin: 0 auto;">
+          <input type="email" placeholder="Enter your email address" required 
+                 style="width: 100%; padding: 15px; border: none; border-radius: 10px; margin-bottom: 12px; font-size: 16px; box-sizing: border-box;">
+          <button type="submit" 
+                  style="background: white; color: #007bff; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; width: 100%;">
+            Get Early Access
+          </button>
+        </form>
+        <p style="font-size: 14px; margin-top: 15px; opacity: 0.7;">No spam. Unsubscribe anytime.</p>
+      </div>
+    </section>
+    <!-- ========== END EMAIL LIST ========== -->
+    <!-- features, how-it-works, how-to-use, who-uses, benefits, faq (your existing HTML) -->
+    <section id="features-summary" class="section card">
+      <h2>Features at a glance</h2>
+      <p class="lead">Everything you need to create, share and manage short links — fast and private.</p>
+      <ul class="features-grid">
+        <li><strong>Short links</strong> — Create tiny links from long URLs in one click.</li>
+        <li><strong>Custom aliases</strong> — Use brandable aliases like <code>your.site/my-offer</code>.</li>
+        <li><strong>QR codes</strong> — Instant QR generation for print or screens.</li>
+        <li><strong>Share</strong> — One-click share to WhatsApp, Twitter, Facebook and more.</li>
+        <li><strong>Downloads</strong> — Download your QR code as an image file.</li>
+        <li><strong>Custom Colors</strong> — Personalize your QR code with custom colors.</li>
+        <li><strong>Logo</strong> — Add your logo to the center of the QR code.</li>
+        <li><strong>Caption</strong> — Add a caption or small description to your QR code.</li>
+      </ul>
+      <!-- After your features list, add this -->
+<div style="text-align:center; margin-top:30px; padding:20px; background:#f8f9fa; border-radius:10px;">
+  <p><strong>Learn more:</strong> 
+    <a href="TikTok-URL-Shortener-That-Doesn't-Get-Blocked-2024-Solution.html" style="color:#007bff;">TikTok URL Shortener Guide</a> • 
+    <a href="10-Best-URL-Shorteners-for-instagram-Bio-Links-(2024 Guide).html" style="color:#007bff;">Instagram Bio Links Guide</a> • 
+    <a href="#" style="color:#007bff;">Custom QR Code Tutorial</a>
+  </p>
+</div>
+
+    </section>
+
+    <section id="how-it-works" class="section">
+      <h2>How it works</h2>
+      <ol class="how-steps">
+        <li><strong>Paste</strong> your long URL into the input.</li>
+        <li><strong>Choose</strong> an optional custom alias and add a note.</li>
+        <li><strong>Choose</strong> an optional custom caption and add at below of Qr Code.</li>
+        <li><strong>Choose</strong> an optional custom logo(PNG/JPG/WebP) with max 300KB which placed at the middle of the Qr Code.</li>
+        <li><strong>Choose</strong> an optional custom Color selection tells the system how to style the QR code.</li>
+        <li><strong>Generate</strong> — the system creates a short code and QR.</li>
+        <li><strong>Share</strong> — copy, open, or share to social apps instantly.</li>
+        <li><strong>Redirect</strong> — visitors open <code>https://linkshortner.site/s/abc123</code> and are redirected to the original URL.</li>
+      </ol>
+      <p class="small">Note: Duplicate Alias Cannot be created,If You use same Alias the msg appear that "Alias already exists",For More Information You can Contact Us.</p>
+    </section>
+
+    <section id="how-to-use" class="section card">
+      <h2>How to use Smart Link</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>Step 1 — Paste a long URL</h3>
+          <p>Example: <code>https://youtube.com/watch?v=LONG_ID</code></p>
+        </div>
+        <div class="step">
+          <h3>Step 2 — (Optional) Add an alias</h3>
+          <p>Pick something memorable like <code>sale2025</code> — if taken, choose another.</p>
+        </div>
+        <div class="step">
+          <h3>Step 3 — (Optional) Add a caption</h3>
+          <p><code>Summer Sale</code>The caption appear below the Qr Code</p>
+        </div>
+        <div class="step">
+          <h3>Step 4 — (Optional) Add a logo</h3>
+          <p><code>Choose a Logo of Your Channel,Product,Website</code>The logo appear middle of the Qr Code</p>
+        </div>
+         <div class="step">
+          <h3>Step 5 — (Optional) Add a Color</h3>
+          <p><code>Choose a Color for Your QR Code</code>The color will be applied to the QR Code</p>
+        </div>
+        <div class="step">
+          <h3>Step 6 — Generate & share</h3>
+          <p>Get your short link and QR. Use the Copy button or Share to send straight to WhatsApp or Twitter or any Social Platform.</p>
+        </div>
+        <div class="step">
+          <h3>Step 7 — Save or print QR</h3>
+          <p>Use the QR for posters, business cards or product packaging — scans open the short URL.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="who-uses" class="section">
+      <h2>Who this helps</h2>
+      <div class="audience-grid">
+        <article><strong>Creators & Influencers</strong><p>Shorten video, podcast, and post links for bios and social media. Use branded QR codes on merchandise, banners, or digital content.</p></article>
+        <article><strong>Small Businesses & Startups</strong><p>Print custom QR codes on flyers, receipts, packaging, and product labels to promote offers or gather customer feedback.</p></article>
+        <article><strong>Marketers & Agencies</strong><p>Share clean, trackable links for ad campaigns, social promotions, and affiliate programs. Analyze engagement using analytics.</p></article>
+        <article><strong>Teachers & Students</strong><p>Shorten links for forms, assignments, and learning materials. Generate QR codes for quick classroom access or digital boards.</p></article>
+        <article><strong>Developers & Tech Teams</strong><p>Use short links for API endpoints, internal dashboards, or quick testing links with analytics tracking.</p></article>
+        <article><strong>E-commerce Stores</strong><p>Add QR codes to packaging for product details, manuals, discounts, or return policies.</p></article>
+        <article><strong>Freelancers & Portfolio Owners</strong><p>Share portfolio links, resumes, and project demos with short, elegant URLs or scannable QR codes.</p></article>
+        <article><strong>Restaurants & Cafes</strong><p>Generate menu QR codes, order links, or feedback forms easily.</p></article>
+        <article><strong>Healthcare Professionals</strong><p>Share appointment booking forms, patient resources, or health campaigns via QR and short links.</p></article>
+
+
+
+
+      </div>
+    </section>
+
+    <section id="benefits" class="section card">
+      <h2>Benefits</h2>
+      <ul>
+        <li><strong>Fast</strong> — Generate short URLs and custom QR codes in seconds, no registration required.</li>
+        <li><strong>Smart </strong> —  Colorful QR styles, logo support, and captions to match your brand.</li>
+        <li><strong>Easy</strong> — Clean, simple interface built for everyone — no design or tech skills needed.</li>
+        <li><strong>Versatile</strong> — Use anywhere: social media, print, events, classrooms, and business materials.</li>
+        <li><strong>Free</strong> —  No hidden costs, no premium tiers — all features available to everyone.</li>
+        <li><strong>Branded</strong> — Custom colors, logos, and captions for professional QR codes.</li>
+        <li><strong>All-in-One</strong> — URL shortener and QR generator in a single platform.</li>
+      </ul>
+    </section>
+
+    <section id="faq" class="section">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h4>Q: How does your URL shortener work?</h4>
+      <p>A: Paste any long URL and instantly get a short, clean link. You can also generate custom QR codes with colors, logos, and captions in seconds.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q: Is this service completely free?</h4>
+        <p>A: Yes! All features including URL shortening, QR code generation, customization, and basic analytics are 100% free with no hidden costs.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q: Do I need to create an account to use it?</h4>
+        <p>A: No registration required. Start shortening links and creating QR codes immediately without signing up.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Q: Can I customize my QR codes?</h4>
+        <p>A: Absolutely! Add your logo, choose from color presets (gradients or solid colors), and include captions to match your brand.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Q: Will customized QR codes still scan properly?</h4>
+        <p>A: Yes! We use high-error correction to ensure QR codes scan perfectly even with logos and colors added.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Q: Where can I use these short links and QR codes?</h4>
+        <p>A: Perfect for social media bios, business cards, flyers, presentations, emails, websites - anywhere you share links!</p>
+      </div>
+      <div class="faq-item">
+        <h4>Q: Can I track how many people click my links?</h4>
+        <p>A: Yes, we provide basic click analytics to help you monitor engagement and performance.</p>
+      </div>
+    </section>
+  </main>
+ <!-- ========== ADDITIONAL SEO CONTENT ========== -->
+<section style="max-width:1000px; margin:60px auto; padding:0 20px;">
+  <h2 style="text-align:center; color:#072b62; margin-bottom:40px;">Why SmartLink is the Best URL Shortener</h2>
+  
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px; margin-bottom:50px;">
+    <div style="background:white; padding:25px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+      <h3 style="color:#007bff;">🚀 Fastest URL Shortening</h3>
+      <p>Generate short links in under 2 seconds. No delays, no waiting - perfect for live streams, social media, and time-sensitive campaigns.</p>
+    </div>
+    
+    <div style="background:white; padding:25px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+      <h3 style="color:#007bff;">🎨 Most Customizable QR Codes</h3>
+      <p>Add logos, choose gradient colors, and include captions. Create QR codes that match your brand perfectly for professional marketing.</p>
+    </div>
+    
+    <div style="background:white; padding:25px; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+      <h3 style="color:#007bff;">🌍 Global Performance</h3>
+      <p>Optimized for users in USA, UK, Canada, Australia with fast loading speeds worldwide. No geographic restrictions or limitations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases Section -->
+<section style="max-width:1000px; margin:60px auto; padding:0 20px;">
+  <h2 style="text-align:center; color:#072b62; margin-bottom:40px;">Perfect For All Your Digital Needs</h2>
+  
+  <div style="background:linear-gradient(135deg, #f8fbff, #e8f4ff); padding:40px; border-radius:15px;">
+    <h3 style="color:#072b62;">Social Media Marketing</h3>
+    <p>Create clean links for <strong>Instagram bios, TikTok descriptions, Twitter posts, and Facebook campaigns</strong>. Track which platforms drive the most engagement with built-in analytics.</p>
+    
+    <h3 style="color:#072b62; margin-top:30px;">Business & E-commerce</h3>
+    <p>Generate QR codes for <strong>product packaging, business cards, flyers, and receipts</strong>. Perfect for restaurants, retail stores, and service businesses looking to connect offline and online.</p>
+    
+    <h3 style="color:#072b62; margin-top:30px;">Content Creators & Influencers</h3>
+    <p>Share multiple links through single landing pages. Add custom QR codes to <strong>YouTube videos, podcast show notes, and digital content</strong> for better audience engagement.</p>
+  </div>
+</section>
+    </section>
+
+    <!-- ========== FEEDBACK SECTION ========== -->
+    <section style="max-width: 800px; margin: 80px auto; padding: 0 20px; text-align: center;">
+      <h2 style="color: #072b62; margin-bottom: 15px;">We'd Love Your Feedback! 💙</h2>
+      <p style="color: #666; margin-bottom: 30px; font-size: 18px;">
+        Help us improve SmartLink. What features would you like to see next?
+      </p>
+      
+      <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+        <form id="feedbackForm" style="max-width: 500px; margin: 0 auto;">
+          <div style="margin-bottom: 20px; text-align: left;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Your Feedback</label>
+            <textarea 
+              placeholder="What do you love? What can we improve? What features would you like to see?"
+              required
+              style="width: 100%; padding: 15px; border: 1px solid #e1e8ff; border-radius: 10px; font-family: inherit; font-size: 16px; resize: vertical; min-height: 120px; box-sizing: border-box;"
+            ></textarea>
+          </div>
+          
+          <div style="margin-bottom: 20px; text-align: left;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Email (optional - for follow-up)</label>
+            <input 
+              type="email" 
+              placeholder="your@email.com"
+              style="width: 100%; padding: 15px; border: 1px solid #e1e8ff; border-radius: 10px; font-size: 16px; box-sizing: border-box;"
+            >
+          </div>
+          
+          <button 
+            type="submit"
+            style="background: linear-gradient(90deg, #007bff, #00c6ff); color: white; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; width: 100%;"
+          >
+            Send Feedback
+          </button>
+        </form>
+        
+        <div id="feedbackSuccess" style="display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 10px; margin-top: 20px;">
+          <p style="margin: 0; font-weight: 600;">✅ Thank you for your feedback! We'll use it to make SmartLink even better.</p>
+        </div>
+      </div>
+    </section>
+    <!-- ========== END FEEDBACK SECTION ========== -->
+
+  <!-- Footer (unchanged) -->
+  <footer class="footer">
+<!-- ========== END ADDITIONAL CONTENT ========== -->
+  <!-- Footer (unchanged) -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="blogs.html">Blogs</a>
+      </div>
+      <p class="footer-copy">© 2024 SmartLink — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===========================
+       Scripts
+       =========================== -->
+<!-- QR generator library (cdn) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  <!-- Your existing app script (shortener logic) -->
+  <script src="script.js"></script>
+
+  <!-- site.js: add the mobile menu JS + section observer (see block below).
+       You can either paste the JS below into your existing site.js file,
+       or keep it inline by copying the <script> block contents into a new file named site.js -->
+  <script src="site.js"></script>
+
+  <!-- small: keep a fallback (optional) if you want to test without site.js file -->
+  <!-- If you choose to not create site.js, copy the JS from the 'site.js' block in the instructions and paste here -->
+   <!-- ========== ADDITIONAL SEO SCHEMA ========== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this URL shortener really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, completely free! Our URL shortener and QR code generator are 100% free with no hidden costs or premium tiers."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "Do I need to create an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No registration required! You can start shortening URLs and generating QR codes immediately without signing up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add my logo to QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely! Upload your logo and it will be perfectly centered in your QR code while maintaining scannability."
+      }
+    }
+  ]
+}
+</script>
+<!-- ========== END ADDITIONAL SEO ========== -->
+ <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SmartLink",
+  "url": "https://linkshortner.site",
+  "logo": "https://linkshortner.site/logo.png",
+  "description": "Free URL shortener and QR code generator tool",
+  "sameAs": []
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXX');
+</script>
+
+</body>
+</html>
