@@ -49,7 +49,7 @@ app.use(cors({
 }));
 
 app.use(bodyParser.json());
-app.use(express.static(PUBLIC_DIR));
+//app.use(express.static(PUBLIC_DIR));
 
 // REMOVE ALL FILE OPERATIONS - Delete these lines:
 // if (!fs.existsSync(CONTACTS_FILE)) fs.writeFileSync(CONTACTS_FILE, '[]', 'utf8');
@@ -172,7 +172,7 @@ app.post('/api/contact', async (req, res) => { // ADD async
 // ⬇️⬇️⬇️ ADD THESE STATIC ROUTES ⬇️⬇️⬇️
 
 // Serve main pages FIRST
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
@@ -194,7 +194,7 @@ app.get('/terms', (req, res) => {
 
 app.get('/blogs', (req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'blogs.html'));
-});
+});*/
 
 // ⬇️⬇️⬇️ NOW KEEP YOUR EXISTING :code ROUTE ⬇️⬇️⬇️
 /* Redirect route - MINIMAL CHANGES */
@@ -223,9 +223,9 @@ app.get('/:code', async (req, res) => { // ADD async
 
 
 /* KEEP EVERYTHING ELSE EXACTLY THE SAME */
-app.use((req, res) => {
+/*app.use((req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
-});
+});*/
 
 /* Waitlist API */
 app.post('/api/waitlist', async (req, res) => {
