@@ -13,14 +13,19 @@ const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
 // ADD MongoDB connection
-const client = new MongoClient(process.env.MONGODB_URI, {
-  tls: true,
-  tlsAllowInvalidCertificates: true
-});
+// FIXED MongoDB connection
+
 let db;
+let client;
 
 async function connectDB() {
   try {
+    client = new MongoClient(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+    });
+    
     await client.connect();
     db = client.db('urlshortener');
     console.log('✅ Connected to MongoDB');
@@ -29,7 +34,9 @@ async function connectDB() {
   }
 }
 
+// Connect immediately
 connectDB();
+
 
 // Enable CORS for your frontend
 app.use(cors({
@@ -54,6 +61,17 @@ app.use(express.static(PUBLIC_DIR));
 /* NEW MongoDB Helper Functions */
 async function loadUrls() {
   try {
+    // If db is not connected yet, try to connect
+    if (!db) {
+      console.log('Database not connected, attempting to connect...');
+      await connectDB();
+    }
+    
+    if (!db) {
+      console.log('Database still not available');
+      return [];
+    }
+    
     const urls = await db.collection('urls').find().toArray();
     return urls;
   } catch (e) {
