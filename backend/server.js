@@ -31,7 +31,16 @@ async function connectDB() {
 
 connectDB();
 
-app.use(cors());
+// Enable CORS for your frontend
+app.use(cors({
+    origin: [
+        'https://smart-link-shortner.netlify.app',
+        'https://linkshortner.site',
+        'http://localhost:3000'
+    ],
+    credentials: true
+}));
+
 app.use(bodyParser.json());
 app.use(express.static(PUBLIC_DIR));
 
@@ -199,6 +208,27 @@ app.get('/:code', async (req, res) => { // ADD async
 app.use((req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
+
+/* Waitlist API */
+app.post('/api/waitlist', async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ error: 'Email is required' });
+
+  try {
+    const item = { 
+      email, 
+      createdAt: new Date().toISOString(),
+      source: 'website_waitlist'
+    };
+
+    await db.collection('waitlist').insertOne(item);
+    return res.json({ ok: true, message: 'Added to waitlist' });
+  } catch (err) {
+    console.error('Error saving to waitlist', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 // REMOVE: if (!fs.existsSync(DATA_FILE)) saveUrls([]);
 
