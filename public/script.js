@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const note = (noteInput && (noteInput.value||'').trim()) || '';
           if (!long) return showMsg('Enter a long URL');
           const payload = { original: long }; if (alias) payload.alias = alias; if (note) payload.note = note;
-          const resp = await fetch('https://linkshortner.site/api/shorten', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const resp = await fetch('https://linkshortner-6ils.onrender.com/api/shorten', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           const data = await resp.json();
           if (!resp.ok) { showMsg(data && data.error ? data.error : 'Server error'); return; }
           if (data && data.shortUrl) {
@@ -361,7 +361,7 @@ document.getElementById('emailForm')?.addEventListener('submit', async function(
     localStorage.setItem('waitlistEmails', JSON.stringify(emails));
     
     // Send to your backend API
-    const response = await fetch('https://linkshortner.site/api/waitlist', {
+    const response = await fetch('https://linkshortner-6ils.onrender.com/api/waitlist', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
