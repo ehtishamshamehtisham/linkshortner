@@ -247,7 +247,34 @@ app.post('/api/waitlist', async (req, res) => {
   }
 });
 
+// DEBUG ROUTE - Check MongoDB data
+app.get('/api/debug/urls', async (req, res) => {
+  try {
+    const urls = await loadUrls();
+    res.json({
+      totalUrls: urls.length,
+      urls: urls.map(u => ({ code: u.code, original: u.original, createdAt: u.createdAt }))
+    });
+  } catch (error) {
+    res.json({ error: error.message, stack: error.stack });
+  }
+});
 
-// REMOVE: if (!fs.existsSync(DATA_FILE)) saveUrls([]);
+// DEBUG ROUTE - Check if specific code exists
+app.get('/api/debug/urls/:code', async (req, res) => {
+  try {
+    const code = req.params.code;
+    const urls = await loadUrls();
+    const item = urls.find(u => u.code === code);
+    
+    res.json({
+      code: code,
+      exists: !!item,
+      item: item
+    });
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
 
 app.listen(PORT, () => console.log(`✅ Server running at http://127.0.0.1:${PORT}`));
