@@ -203,8 +203,7 @@ app.get('/:code', async (req, res) => { // ADD async
   const urls = await loadUrls(); // ADD await
   const item = urls.find(u => u.code === code);
   if (!item) {
-    return res.status(404).sendFile(path.join(PUBLIC_DIR, 'notfound.html'));
-  }
+return res.status(404).json({ error: 'Short link not found' });  }
 
   // ADD Click tracking - Update click count in MongoDB
   try {
