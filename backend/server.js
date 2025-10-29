@@ -43,6 +43,7 @@ app.use(cors({
     origin: [
         'https://smart-link-shortner.netlify.app',
         'https://linkshortner.site',
+        'https://linkshortner-6ils.onrender.com', // ← ADD THIS
         'http://localhost:3000'
     ],
     credentials: true
