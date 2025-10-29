@@ -62,21 +62,26 @@ app.use(bodyParser.json());
 /* NEW MongoDB Helper Functions */
 async function loadUrls() {
   try {
+    console.log('🔍 DEBUG: loadUrls() called');
+    
     // If db is not connected yet, try to connect
     if (!db) {
-      console.log('Database not connected, attempting to connect...');
+      console.log('⚠️ DEBUG: Database not connected, attempting to connect...');
       await connectDB();
     }
     
     if (!db) {
-      console.log('Database still not available');
+      console.log('❌ DEBUG: Database still not available');
       return [];
     }
     
+    console.log('🔍 DEBUG: Querying MongoDB for URLs...');
     const urls = await db.collection('urls').find().toArray();
+    console.log('✅ DEBUG: loadUrls() found', urls.length, 'URLs');
+    
     return urls;
   } catch (e) {
-    console.error('Failed to load URLs from MongoDB', e);
+    console.error('❌ DEBUG: Failed to load URLs from MongoDB', e);
     return [];
   }
 }
@@ -199,26 +204,57 @@ app.get('/blogs', (req, res) => {
 
 // ⬇️⬇️⬇️ NOW KEEP YOUR EXISTING :code ROUTE ⬇️⬇️⬇️
 /* Redirect route - MINIMAL CHANGES */
-app.get('/:code', async (req, res) => { // ADD async
+/* Redirect route - DEBUG VERSION */
+app.get('/:code', async (req, res) => {
   const code = req.params.code;
-  const urls = await loadUrls(); // ADD await
-  const item = urls.find(u => u.code === code);
-  if (!item) {
-return res.status(404).json({ error: 'Short link not found' });  }
-
-  // ADD Click tracking - Update click count in MongoDB
+  console.log('🔄 DEBUG: Redirect attempt for code:', code);
+  
   try {
-    await db.collection('urls').updateOne(
-      { code: code },
-      { $inc: { clicks: 1 } }
-    );
+    console.log('🔍 DEBUG: Loading URLs from MongoDB...');
+    const urls = await loadUrls();
+    console.log('📊 DEBUG: Loaded', urls.length, 'URLs from MongoDB');
+    
+    console.log('🔍 DEBUG: Searching for code:', code);
+    const item = urls.find(u => u.code === code);
+    console.log('🎯 DEBUG: Found item:', item);
+    
+    if (!item) {
+      console.log('❌ DEBUG: Short link not found:', code);
+      console.log('📋 DEBUG: Available codes:', urls.map(u => u.code));
+      return res.status(404).json({ 
+        error: 'Short link not found',
+        debug: {
+          requestedCode: code,
+          availableCodes: urls.map(u => u.code),
+          totalUrls: urls.length
+        }
+      });
+    }
+
+    console.log('✅ DEBUG: Redirecting:', code, '→', item.original);
+    
+    // ADD Click tracking - Update click count in MongoDB
+    try {
+      await db.collection('urls').updateOne(
+        { code: code },
+        { $inc: { clicks: 1 } }
+      );
+      console.log('📊 DEBUG: Click tracked for:', code);
+    } catch (error) {
+      console.error('❌ DEBUG: Failed to update click count:', error);
+    }
+
+    console.log('🎉 DEBUG: SUCCESS - Redirecting to:', item.original);
+    return res.redirect(301, item.original);
+    
   } catch (error) {
-    console.error('Failed to update click count:', error);
+    console.error('❌ DEBUG: Redirect error:', error);
+    return res.status(500).json({ 
+      error: 'Server error',
+      debug: error.message 
+    });
   }
-
-  return res.redirect(301, item.original);
 });
-
 
 
 
