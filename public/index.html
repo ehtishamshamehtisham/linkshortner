@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ========== SEO OPTIMIZATION ========== -->
-  <title>Free URL Shortener & QR Code Generator - Shorten Links & Create Custom QR Codes</title>
-  <meta name="description" content="Free URL shortener with custom QR code generator. Shorten long links instantly, create branded QR codes with logos and colors, track analytics. No registration required.">
+<title>Free URL Shortener & Custom QR Code Generator - SmartLink</title> 
+ <meta name="description" content="Shorten links & create branded QR codes with logos, colors & analytics. 100% free, no registration required. Perfect for marketing."> 
   <meta name="keywords" content="free url shortener, qr code generator, shorten links, custom qr codes, url shortener with analytics, qr code with logo, short links, usa, uk, canada, australia">
   <meta name="author" content="SmartLink">
   
@@ -16,8 +16,12 @@
   <meta name="ICBM" content="39.8, -98.5">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Free URL Shortener & QR Code Generator - SmartLink">
-  <meta property="og:description" content="Shorten URLs and create custom QR codes with logos. Free analytics, no registration required. Works worldwide.">
+<meta property="og:title" content="Free URL Shortener & Custom QR Code Generator - SmartLink">
+<meta property="og:description" content="Shorten links & create branded QR codes with logos. 100% free, no sign-up required.">
+<meta property="og:image" content="https://linkshortner.site/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://linkshortner.site">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="en_GB">
@@ -25,11 +29,78 @@
   <meta property="og:locale:alternate" content="en_AU">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://linkshortner.site">
-    <!-- Favicon -->
-  <link rel="icon" href="smartlink-logo.svg" />
-    <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
+<link rel="canonical" href="https://linkshortner.site">
+  <!-- FAVICON FOR GOOGLE SEARCH -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Keep SVG for modern browsers -->
+<link rel="icon" href="smartlink-logo.svg" type="image/svg+xml">
+<!-- Sitemap -->
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<!-- Schema.org JSON-LD -->
+ <!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this URL shortener completely free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 100% free! All features including URL shortening, QR code generation, customization, and analytics are completely free with no hidden costs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to create an account to use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No registration required! You can start shortening URLs and generating QR codes immediately without signing up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add my logo to QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely! Upload your logo and it will be perfectly centered in your QR code while maintaining scannability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I use these short links and QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Perfect for social media bios, business cards, flyers, presentations, emails, websites - anywhere you share links!"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SmartLink",
+  "url": "https://linkshortner.site",
+  "logo": "https://linkshortner.site/favicon-32x32.png",
+  "description": "Free URL shortener and QR code generator tool",
+  "sameAs": [],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "contact@linkshortner.site",
+    "contactType": "customer service"
+  }
+}
+</script>
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -53,6 +124,53 @@
     "countryOfOrigin": ["US", "GB", "CA", "AU"]
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SmartLink URL Shortener",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free URL shortener with custom QR code generator",
+  "featureList": [
+    "URL shortening",
+    "QR code generation", 
+    "Custom branding",
+    "Click analytics",
+    "No registration required"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "SmartLink"
+  }
+}
+</script>
+<!-- Preload critical resources -->
+<link rel="preload" href="style.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" as="style" crossorigin>
+
+<!-- Defer non-critical scripts -->
+<script>
+    // Defer third-party share scripts
+    window.addEventListener('load', function() {
+        // Load share scripts only when needed
+        const shareButtons = document.querySelectorAll('[id*="share"]');
+        shareButtons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                // Load share SDKs on hover
+                if (!window.shareScriptsLoaded) {
+                    // Your share script loading logic here
+                    window.shareScriptsLoaded = true;
+                }
+            });
+        });
+    });
+</script>
   <!-- ========== END SEO ========== -->
 
   <!-- main stylesheet (keep your existing style.css) -->
@@ -95,6 +213,7 @@
       <!-- Desktop nav (hidden on small screens by CSS) -->
       <nav class="main-nav" id="mainNav" aria-label="Main navigation">
         <a href="index.html">Home</a>
+        <a href="premium-analytics.html">Analytics</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy</a>
@@ -113,7 +232,7 @@
       </button>
     </div>
   </header>
-
+    
   <!-- ===========================
        Mobile panel (place once per site, can be at end of <body>)
        =========================== -->
@@ -130,6 +249,7 @@
 
       <nav class="mobile-menu-nav" aria-label="mobile navigation">
         <a href="index.html">Home</a>
+         <a href="premium-analytics.html">Analytics</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy</a>
@@ -210,7 +330,7 @@
         </div>
 
         <div class="qr-area">
-          <img id="qrImg" alt="QR Code" />
+          <img id="qrImg" alt="Custom QR code for your shortened link - SmartLink URL Shortener" />
 
           <!-- Caption is embedded into the QR image now; no external caption element -->
 
@@ -235,6 +355,20 @@
           <button id="nativeShare">Device Share</button>
         </div>
       </div>
+
+      <!-- Secondary CTA Section -->
+<!--<section style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, #f8f9fa, #e8f4ff); border-radius: 15px;">
+    <h2 style="color: #072b62; margin-bottom: 15px;">Ready to Get Started?</h2>
+    <p style="color: #666; margin-bottom: 20px; font-size: 18px;">Create your first short link and QR code in seconds</p>
+    <button onclick="document.getElementById('longUrl').focus()" 
+            style="background: linear-gradient(90deg, #007bff, #00c6ff); color: white; border: none; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; margin: 5px;">
+        🚀 Create Short Link Now
+    </button>
+    <button onclick="document.getElementById('longUrl').focus()" 
+            style="background: white; color: #007bff; border: 2px solid #007bff; padding: 15px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; margin: 5px;">
+        🎨 Generate QR Code
+    </button>
+</section>-->
 
       <div id="msg" class="msg"></div>
     </section>
@@ -263,16 +397,16 @@
     <section id="features-summary" class="section card">
       <h2>Features at a glance</h2>
       <p class="lead">Everything you need to create, share and manage short links — fast and private.</p>
-      <ul class="features-grid">
-        <li><strong>Short links</strong> — Create tiny links from long URLs in one click.</li>
-        <li><strong>Custom aliases</strong> — Use brandable aliases like <code>your.site/my-offer</code>.</li>
-        <li><strong>QR codes</strong> — Instant QR generation for print or screens.</li>
-        <li><strong>Share</strong> — One-click share to WhatsApp, Twitter, Facebook and more.</li>
-        <li><strong>Downloads</strong> — Download your QR code as an image file.</li>
-        <li><strong>Custom Colors</strong> — Personalize your QR code with custom colors.</li>
-        <li><strong>Logo</strong> — Add your logo to the center of the QR code.</li>
-        <li><strong>Caption</strong> — Add a caption or small description to your QR code.</li>
-      </ul>
+<ul class="features-grid">
+    <li><strong>Short Links</strong> — Create tiny links from long URLs instantly</li>
+    <li><strong>Custom Aliases</strong> — Use brandable aliases like your.site/my-offer</li>
+    <li><strong>QR Codes</strong> — Generate professional QR codes for print or digital</li>
+    <li><strong>Easy Sharing</strong> — One-click share to WhatsApp, Twitter, Facebook</li>
+    <li><strong>Quick Downloads</strong> — Download QR codes as high-quality PNG files</li>
+    <li><strong>Custom Colors</strong> — Personalize QR codes with your brand colors</li>
+    <li><strong>Logo Integration</strong> — Add your logo to QR code center</li>
+    <li><strong>Smart Captions</strong> — Include text below QR codes for context</li>
+</ul>
       <!-- After your features list, add this -->
 <div style="text-align:center; margin-top:30px; padding:20px; background:#f8f9fa; border-radius:10px;">
   <p><strong>Learn more:</strong> 
@@ -353,17 +487,27 @@
     </section>
 
     <section id="benefits" class="section card">
-      <h2>Benefits</h2>
-      <ul>
-        <li><strong>Fast</strong> — Generate short URLs and custom QR codes in seconds, no registration required.</li>
-        <li><strong>Smart </strong> —  Colorful QR styles, logo support, and captions to match your brand.</li>
-        <li><strong>Easy</strong> — Clean, simple interface built for everyone — no design or tech skills needed.</li>
-        <li><strong>Versatile</strong> — Use anywhere: social media, print, events, classrooms, and business materials.</li>
-        <li><strong>Free</strong> —  No hidden costs, no premium tiers — all features available to everyone.</li>
-        <li><strong>Branded</strong> — Custom colors, logos, and captions for professional QR codes.</li>
-        <li><strong>All-in-One</strong> — URL shortener and QR generator in a single platform.</li>
-      </ul>
+      <h2>Key Benefits</h2>
+     <ul>
+    <li><strong>Fast & Efficient</strong> — Generate short URLs and QR codes in seconds</li>
+    <li><strong>Smart Branding</strong> — Colorful QR styles and logo support</li>
+    <li><strong>Easy to Use</strong> — Clean interface, no technical skills needed</li>
+    <li><strong>Highly Versatile</strong> — Perfect for social media, print, and events</li>
+    <li><strong>Completely Free</strong> — No hidden costs, all features available</li>
+    <li><strong>Professional Results</strong> — Custom colors, logos, and captions</li>
+    <li><strong>All-in-One Platform</strong> — URL shortener and QR generator combined</li>
+</ul>
     </section>
+    <!-- Benefits CTA -->
+<section style="text-align: center; margin: 40px 0; padding: 40px 20px; background: #072b62; color: white; border-radius: 15px;">
+    <h2 style="color: white; margin-bottom: 15px;">Start Creating Professional Links Today</h2>
+    <p style="margin-bottom: 25px; opacity: 0.9;">Join thousands of users who trust SmartLink for their URL shortening needs</p>
+    <button onclick="document.getElementById('longUrl').focus()" 
+            style="background: #00c6ff; color: white; border: none; padding: 15px 40px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 18px;">
+        🔗 Get Started - It's Free
+    </button>
+    <p style="margin-top: 15px; font-size: 14px; opacity: 0.7;">No credit card required • No registration needed</p>
+</section>
 
     <section id="faq" class="section">
       <h2>FAQ</h2>
@@ -489,6 +633,7 @@
     <div class="footer-container">
       <div class="footer-links">
         <a href="index.html">Home</a>
+        <a href="premium-analytics.html">Analytics</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
         <a href="terms.html">Terms</a>
@@ -498,7 +643,30 @@
       <p class="footer-copy">© 2024 SmartLink — All rights reserved.</p>
     </div>
   </footer>
-
+  <!-- Sticky CTA Button -->
+<div id="stickyCta" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <button onclick="document.getElementById('longUrl').focus()" 
+            style="background: linear-gradient(90deg, #007bff, #00c6ff); color: white; border: none; padding: 15px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,123,255,0.3); font-size: 16px;">
+        🔗 Shorten URL Now
+    </button>
+</div>
+<button onclick="testConnection()" style="margin: 10px; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px;">
+  Test Backend Connection
+</button>
+<script>
+async function testConnection() {
+  try {
+    console.log('🧪 Testing connection to:', 'http://localhost:3000');
+    const response = await fetch('http://localhost:3000/api/debug/urls');
+    const data = await response.json();
+    console.log('🧪 Connection test result:', data);
+    alert('Connection successful! Check console for details.');
+  } catch (error) {
+    console.error('🧪 Connection test failed:', error);
+    alert('Connection failed! Check console for error.');
+  }
+}
+</script>
   <!-- ===========================
        Scripts
        =========================== -->
