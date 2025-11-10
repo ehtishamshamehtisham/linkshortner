@@ -66,6 +66,42 @@ body {
   display: none;
 }
 
+/* START: ADDED BREADCRUMBS STYLES */
+.breadcrumbs {
+  max-width: var(--maxw);
+  margin: 0 auto 1rem auto;
+  padding: 0 18px;
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "›";
+  margin-left: 0.5rem;
+  color: var(--muted);
+}
+
+.breadcrumbs a {
+  color: var(--blue1);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs li:last-child {
+  color: var(--muted);
+}
+/* END: ADDED BREADCRUMBS STYLES */
 
 /* content spacing so header doesn't overlap */
 .page{padding-top:calc(var(--header-h) + 22px)}
@@ -110,6 +146,81 @@ button{cursor:pointer;border:none;padding:10px 14px;border-radius:10px;backgroun
 button.secondary{background:#f1f5ff;color:var(--blue1);border:1px solid rgba(0,123,255,0.06)}
 .note{margin-top:10px;color:var(--blue1);font-weight:600}
 
+/* START: ADDED FAQ SECTION STYLES */
+.faq-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e7f0ff;
+}
+
+.faq-section h2 {
+  color: var(--blue1);
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.faq-item {
+  margin-bottom: 1.8rem;
+  padding: 1rem;
+  background: #fbfeff;
+  border-radius: 10px;
+  border-left: 3px solid var(--blue1);
+}
+
+.faq-item h3 {
+  color: var(--blue1);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+/* END: ADDED FAQ SECTION STYLES */
+
+/* START: ADDED SUPPORT INFO STYLES */
+.support-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8fbff;
+  border-radius: 10px;
+  border: 1px solid #e7f0ff;
+}
+
+.support-info h4 {
+  color: var(--blue1);
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.support-info h4:first-child {
+  margin-top: 0;
+}
+
+.support-info p {
+  margin: 0.5rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.support-info ul {
+  margin: 0.5rem 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.support-info li {
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+/* END: ADDED SUPPORT INFO STYLES */
+
 /* aside */
 .info-card h3{color:var(--blue1);margin-top:0}
 .info-card .small{color:var(--muted)}
@@ -119,7 +230,34 @@ button.secondary{background:#f1f5ff;color:var(--blue1);border:1px solid rgba(0,1
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 18px;display:flex;justify-content:space-between;align-items:center}
 
 /* responsive tweaks */
-@media(max-width:600px){.card{padding:16px} .contact-form input, .contact-form textarea{font-size:14px}}
+@media(max-width:600px){
+  .card{padding:16px} 
+  .contact-form input, .contact-form textarea{font-size:14px}
+  /* START: MOBILE STYLES FOR NEW ELEMENTS */
+  .breadcrumbs ol {
+    font-size: 0.85rem;
+  }
+  
+  .faq-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  
+  .faq-item {
+    margin-bottom: 1.2rem;
+    padding: 0.8rem;
+  }
+  
+  .faq-item h3 {
+    font-size: 1rem;
+  }
+  
+  .support-info {
+    margin: 1rem 0;
+    padding: 0.8rem;
+  }
+  /* END: MOBILE STYLES FOR NEW ELEMENTS */
+}
 
 /* ========== Mobile menu & hamburger (consolidated) ========== */
 

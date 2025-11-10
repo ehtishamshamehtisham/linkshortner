@@ -1,16 +1,32 @@
 <!doctype html>
 <html lang="en">
 <head>
+  
   <meta charset="utf-8" />
   <title>Contact — Smart Link Shortener</title>
+  <link rel="canonical" href="https://linkshortner.site/contact.html">
+  <link rel="sitemap" type="application/xml" href="https://linkshortner.site/sitemap.xml" />
+
+  <meta name="description" content="Get help with custom QR colors, logo QR codes, notes, and custom aliases. 24/7 support with 2-3 hour response time.">
+  
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Smart Link Support",
+  "description": "Get help with custom QR colors, logo QR codes, QR notes, and custom aliases. 24/7 technical support.",
+  "url": "https://linkshortner.site/contact.html"
+}
+</script>
+  <meta property="og:title" content="Contact — Smart Link Shortener">
+<meta property="og:description" content="Get help with custom QR colors, logo QR codes, and custom aliases. 24/7 support with 2-3 hour response time.">
+<meta property="og:url" content="https://linkshortner.site/contact.html">
+<meta property="og:type" content="website">
   <link rel="stylesheet" href="contact.css" />
   <link rel="stylesheet" href="style.css" />
-   <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" href="smartlink-logo.svg" />
-   <!-- Canonical -->
-<link rel="canonical" href="https://linkshortner.site/contact.html">
-  
 </head>
 <body>
   <!-- START: shared header -->
@@ -53,10 +69,21 @@
   <!-- END: shared header -->
 
   <main class="page">
+    <!-- START: ADDED BREADCRUMBS -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Contact Support</li>
+      </ol>
+    </nav>
+    <!-- END: ADDED BREADCRUMBS -->
+
     <section class="content-grid card-grid">
       <article class="card form-card">
-        <h1>Contact Us</h1>
-        <p class="lead">Questions, feature requests or support — send us a message and we’ll reply as soon as possible.</p>
+        <h1>Contact Smart Link Support</h1>
+        <!-- START: ENHANCED INTRO -->
+        <p class="lead">Need help with <strong>custom QR colors, logo QR codes, QR notes, or custom aliases</strong>? Our technical support team is here to help you get the most from our advanced URL shortener features.</p>
+        <!-- END: ENHANCED INTRO -->
 
         <form id="contactForm" class="contact-form" autocomplete="off">
           <label for="name">Name *</label>
@@ -78,11 +105,55 @@
 
           <div id="contactResult" class="note"></div>
         </form>
+
+        <!-- START: ADDED FAQ SECTION -->
+        <div class="faq-section">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-item">
+            <h3>How do I add a logo to the middle of my QR code?</h3>
+            <p>After shortening your URL, click on the QR code generator and upload your logo image. Our system will automatically place it in the center while maintaining scanability.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I change the color of my QR codes?</h3>
+            <p>Yes! Use our custom QR color picker to choose any color for your QR codes. This helps with brand consistency and visual appeal.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How do custom aliases work?</h3>
+            <p>Instead of random characters, create memorable short links like yourbrand.com/special-offer. Custom aliases are available on all premium plans.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What are QR notes and how do I add them?</h3>
+            <p>QR notes appear below your QR code and can include instructions, promotions, or contact information. Add them in the QR customization panel.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How quickly will I get support response?</h3>
+            <p>We provide 24/7 technical support with an average response time of 2-3 hours for all inquiries.</p>
+          </div>
+        </div>
+        <!-- END: ADDED FAQ SECTION -->
       </article>
 
       <aside class="card info-card">
         <h3>Other ways to reach us</h3>
         <p class="small">Email: <a class="link" href="mailto:mdehtisham2019@gmail.com">mdehtisham2019@gmail.com</a></p>
+        
+        <!-- START: ADDED SUPPORT INFO -->
+        <div class="support-info">
+          <h4>🕒 Support Hours</h4>
+          <p><strong>24/7 Technical Support</strong><br>
+          Average response time: 2-3 hours</p>
+          
+          <h4>🔧 We Can Help With:</h4>
+          <ul>
+            <li>Custom QR Colors & Logos</li>
+            <li>QR Note Configuration</li>
+            <li>Custom Alias Setup</li>
+            <li>Technical Issues</li>
+            <li>Feature Questions</li>
+          </ul>
+        </div>
+        <!-- END: ADDED SUPPORT INFO -->
+        
         <p class="small">We generally reply within 1–2 business days.</p>
       </aside>
     </section>
