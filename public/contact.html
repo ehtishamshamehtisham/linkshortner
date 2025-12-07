@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  
   <meta charset="utf-8" />
   <title>Contact — Smart Link Shortener</title>
   <link rel="canonical" href="https://linkshortner.site/contact.html">
@@ -20,9 +19,9 @@
 }
 </script>
   <meta property="og:title" content="Contact — Smart Link Shortener">
-<meta property="og:description" content="Get help with custom QR colors, logo QR codes, and custom aliases. 24/7 support with 2-3 hour response time.">
-<meta property="og:url" content="https://linkshortner.site/contact.html">
-<meta property="og:type" content="website">
+  <meta property="og:description" content="Get help with custom QR colors, logo QR codes, and custom aliases. 24/7 support with 2-3 hour response time.">
+  <meta property="og:url" content="https://linkshortner.site/contact.html">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="contact.css" />
   <link rel="stylesheet" href="style.css" />
   <!-- Favicon -->
@@ -48,14 +47,24 @@
       </a>
 
       <nav class="main-nav" id="mainNav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="premium-analytics.html">Analytics</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="blogs.html">Blogs</a>
+        <a href="index.html" data-i18n="home">Home</a>
+        <a href="analytics.html" data-i18n="analytics">Analytics</a>
+        <a href="about.html" data-i18n="about">About</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="privacy.html" data-i18n="privacy">Privacy</a>
+        <a href="terms.html" data-i18n="terms">Terms</a>
+        <a href="blogs.html" data-i18n="blogs">Blogs</a>
       </nav>
+
+      <!-- 🌐 Language Switcher 
+      <select id="languageSwitcher" aria-label="Language selector" class="lang-switcher">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="ur">اردو</option>
+        <option value="hi">हिंदी</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>-->
 
       <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
         <span class="hamburger" aria-hidden="true">
@@ -69,102 +78,728 @@
   <!-- END: shared header -->
 
   <main class="page">
-    <!-- START: ADDED BREADCRUMBS -->
+    <!-- START: BREADCRUMBS -->
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <ol>
-        <li><a href="index.html">Home</a></li>
-        <li>Contact Support</li>
+        <li><a href="index.html" data-i18n="home">Home</a></li>
+        <li data-i18n="contactBreadcrumb">Contact Support</li>
       </ol>
     </nav>
-    <!-- END: ADDED BREADCRUMBS -->
+    <!-- END: BREADCRUMBS -->
 
     <section class="content-grid card-grid">
       <article class="card form-card">
-        <h1>Contact Smart Link Support</h1>
-        <!-- START: ENHANCED INTRO -->
-        <p class="lead">Need help with <strong>custom QR colors, logo QR codes, QR notes, or custom aliases</strong>? Our technical support team is here to help you get the most from our advanced URL shortener features.</p>
-        <!-- END: ENHANCED INTRO -->
+        <h1 data-i18n="contactTitle">Contact Smart Link Support</h1>
+
+        <p class="lead" data-i18n="contactIntro">
+          Need help with custom QR colors, logo QR codes, QR notes, or custom aliases? Our technical support team is here to help you get the most from Smart Link Shortener.
+        </p>
 
         <form id="contactForm" class="contact-form" autocomplete="off">
-          <label for="name">Name *</label>
+          <label for="name" data-i18n="nameLabel">Name *</label>
           <input id="name" name="name" type="text" required />
 
-          <label for="email">Email *</label>
+          <label for="email" data-i18n="emailLabel">Email *</label>
           <input id="email" name="email" type="email" required />
 
-          <label for="subject">Subject</label>
+          <label for="subject" data-i18n="subjectLabel">Subject</label>
           <input id="subject" name="subject" type="text" />
 
-          <label for="message">Message *</label>
+          <label for="message" data-i18n="messageLabel">Message *</label>
           <textarea id="message" name="message" rows="6" required></textarea>
 
           <div class="form-actions">
-            <button type="submit">Send Message</button>
-            <button type="button" id="emailSupportBtn" class="secondary">Email Support</button>
+            <button type="submit" data-i18n="sendMessageBtn">Send Message</button>
+            <button type="button" id="emailSupportBtn" class="secondary" data-i18n="emailSupportBtn">Email Support</button>
           </div>
 
           <div id="contactResult" class="note"></div>
         </form>
 
-        <!-- START: ADDED FAQ SECTION -->
+        <!-- FAQ SECTION -->
         <div class="faq-section">
-          <h2>Frequently Asked Questions</h2>
+          <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+
           <div class="faq-item">
-            <h3>How do I add a logo to the middle of my QR code?</h3>
-            <p>After shortening your URL, click on the QR code generator and upload your logo image. Our system will automatically place it in the center while maintaining scanability.</p>
+            <h3 data-i18n="faqQ1">How do I add a logo to the middle of my QR code?</h3>
+            <p data-i18n="faqA1">
+              After shortening your URL, open the QR generator, upload your logo image and we’ll place it in the center while keeping it fully scannable.
+            </p>
           </div>
           <div class="faq-item">
-            <h3>Can I change the color of my QR codes?</h3>
-            <p>Yes! Use our custom QR color picker to choose any color for your QR codes. This helps with brand consistency and visual appeal.</p>
+            <h3 data-i18n="faqQ2">Can I change the color of my QR codes?</h3>
+            <p data-i18n="faqA2">
+              Yes. Use the custom QR color picker to choose brand colors. Just make sure there is enough contrast so the code remains easy to scan.
+            </p>
           </div>
           <div class="faq-item">
-            <h3>How do custom aliases work?</h3>
-            <p>Instead of random characters, create memorable short links like yourbrand.com/special-offer. Custom aliases are available on all premium plans.</p>
+            <h3 data-i18n="faqQ3">How do custom aliases work?</h3>
+            <p data-i18n="faqA3">
+              Instead of a random code, you can create memorable short links like yourbrand.com/sale. Custom aliases are supported on our premium plans.
+            </p>
           </div>
           <div class="faq-item">
-            <h3>What are QR notes and how do I add them?</h3>
-            <p>QR notes appear below your QR code and can include instructions, promotions, or contact information. Add them in the QR customization panel.</p>
+            <h3 data-i18n="faqQ4">What are QR notes and how do I add them?</h3>
+            <p data-i18n="faqA4">
+              QR notes are small descriptions shown with your QR code. You can use them for instructions, promos or contact info from the QR customization panel.
+            </p>
           </div>
           <div class="faq-item">
-            <h3>How quickly will I get support response?</h3>
-            <p>We provide 24/7 technical support with an average response time of 2-3 hours for all inquiries.</p>
+            <h3 data-i18n="faqQ5">How quickly will I get a support response?</h3>
+            <p data-i18n="faqA5">
+              We provide 24/7 technical support. Most messages receive a reply within 2–3 hours, depending on request volume.
+            </p>
           </div>
         </div>
-        <!-- END: ADDED FAQ SECTION -->
       </article>
 
       <aside class="card info-card">
-        <h3>Other ways to reach us</h3>
-        <p class="small">Email: <a class="link" href="mailto:mdehtisham2019@gmail.com">mdehtisham2019@gmail.com</a></p>
+        <h3 data-i18n="otherWaysTitle">Other ways to reach us</h3>
+        <p class="small">
+          <span data-i18n="emailLabelShort">Email</span>:
+          <a class="link" href="mailto:mdehtisham2019@gmail.com">mdehtisham2019@gmail.com</a>
+        </p>
         
-        <!-- START: ADDED SUPPORT INFO -->
         <div class="support-info">
-          <h4>🕒 Support Hours</h4>
-          <p><strong>24/7 Technical Support</strong><br>
-          Average response time: 2-3 hours</p>
+          <h4 data-i18n="supportHoursTitle">Support Hours</h4>
+          <p class="small" data-i18n="supportHoursBody">
+            24/7 technical support with an average response time of 2–3 hours for most requests.
+          </p>
           
-          <h4>🔧 We Can Help With:</h4>
+          <h4 data-i18n="supportHelpTitle">We can help with</h4>
           <ul>
-            <li>Custom QR Colors & Logos</li>
-            <li>QR Note Configuration</li>
-            <li>Custom Alias Setup</li>
-            <li>Technical Issues</li>
-            <li>Feature Questions</li>
+            <li data-i18n="supportHelp1">Custom QR colors and logos</li>
+            <li data-i18n="supportHelp2">QR note configuration</li>
+            <li data-i18n="supportHelp3">Custom alias setup</li>
+            <li data-i18n="supportHelp4">Technical issues</li>
+            <li data-i18n="supportHelp5">Feature questions</li>
           </ul>
         </div>
-        <!-- END: ADDED SUPPORT INFO -->
         
-        <p class="small">We generally reply within 1–2 business days.</p>
+        <p class="small" data-i18n="supportReplyNote">We generally reply within 1–2 business days.</p>
       </aside>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>© <span id="year-contact"></span>SmartLink</div>
-      <div class="small"><a href="/privacy.html">Privacy</a></div>
+  <footer class="footer-section">
+  <div class="footer-container">
+    
+    <!-- Main Footer Content -->
+    <div class="footer-main">
+      
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <div class="footer-logo">🔗 SmartLink</div>
+        <p class="footer-tagline">Your <strong>free URL shortener</strong> and <strong>QR code generator</strong> for all digital needs.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Twitter">
+            <span class="social-icon">🐦</span>
+          </a>
+          <a href="#" class="social-link" aria-label="GitHub">
+            <span class="social-icon">💻</span>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <span class="social-icon">💼</span>
+          </a>
+          <a href="#" class="social-link" aria-label="Product Hunt">
+            <span class="social-icon">🚀</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="footer-links-section">
+        <h4 class="footer-heading">Quick Links</h4>
+        <div class="footer-links-grid">
+          <a href="index.html" class="footer-link">
+            <span class="link-icon">🏠</span> Home
+          </a>
+          <a href="analytics.html" class="footer-link">
+            <span class="link-icon">📊</span> Analytics
+          </a>
+          <a href="about.html" class="footer-link">
+            <span class="link-icon">ℹ️</span> About
+          </a>
+          <a href="contact.html" class="footer-link">
+            <span class="link-icon">📧</span> Contact
+          </a>
+          <a href="terms.html" class="footer-link">
+            <span class="link-icon">📜</span> Terms
+          </a>
+          <a href="privacy.html" class="footer-link">
+            <span class="link-icon">🔒</span> Privacy
+          </a>
+          <a href="blogs.html" class="footer-link">
+            <span class="link-icon">📝</span> Blogs
+          </a>
+        </div>
+      </div>
+      
+      <!-- Features Links -->
+      <div class="footer-links-section">
+        <h4 class="footer-heading">Features</h4>
+        <div class="footer-links-grid">
+          <a href="#features" class="footer-link">
+            <span class="link-icon">🔗</span> Free Link Shortener
+          </a>
+          <a href="#qr-generator" class="footer-link">
+            <span class="link-icon">📱</span> QR Code Generator
+          </a>
+          <a href="#analytics" class="footer-link">
+            <span class="link-icon">📈</span> Link Analytics
+          </a>
+          <a href="#custom" class="footer-link">
+            <span class="link-icon">🎨</span> Custom Branding
+          </a>
+          <a href="#premium" class="footer-link">
+            <span class="link-icon">⭐</span> Premium Features
+          </a>
+          <a href="#api" class="footer-link">
+            <span class="link-icon">⚡</span> API Access
+          </a>
+        </div>
+      </div>
+      
+      <!-- Resources Links -->
+      <div class="footer-links-section">
+        <h4 class="footer-heading">Resources</h4>
+        <div class="footer-links-grid">
+          <a href="help-center.html" class="footer-link">
+            <span class="link-icon">❓</span> Help Center
+          </a>
+          <a href="documentation.html" class="footer-link">
+            <span class="link-icon">📚</span> Documentation
+          </a>
+          <a href="blog.html" class="footer-link">
+            <span class="link-icon">✍️</span> Blog
+          </a>
+          <a href="changelog.html" class="footer-link">
+            <span class="link-icon">🔄</span> Changelog
+          </a>
+          <a href="status.html" class="footer-link">
+            <span class="link-icon">✅</span> Status
+          </a>
+          <a href="sitemap.html" class="footer-link">
+            <span class="link-icon">🗺️</span> Sitemap
+          </a>
+        </div>
+      </div>
+      
     </div>
-  </footer>
+    
+    <!-- Platform Specific Links -->
+    <div class="footer-platforms">
+      <h4 class="platforms-title">Platform Solutions</h4>
+      <div class="platforms-grid">
+        <span class="platform-tag">
+          <span class="platform-icon">📱</span> Instagram Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">🎵</span> TikTok URL Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">📹</span> YouTube Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">📘</span> Facebook Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">💼</span> LinkedIn Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">🛒</span> E-commerce Solutions
+        </span>
+      </div>
+    </div>
+    
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h4 class="newsletter-title">Stay Updated</h4>
+      <p>Get tips on <strong>link shortening</strong>, <strong>QR codes</strong>, and digital marketing.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Your email address" class="newsletter-input">
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    </div>
+    
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>© 2024 <strong>SmartLink</strong> — Advanced <strong>URL Shortener</strong> & <strong>QR Code Generator</strong>. All rights reserved.</p>
+        <p class="footer-meta">The <strong>best link shortener</strong> for <strong>social media</strong>, <strong>business</strong>, and <strong>marketing</strong> needs.</p>
+      </div>
+      
+      <div class="footer-legal">
+        <div class="legal-links">
+          <a href="terms.html" class="legal-link">Terms of Service</a>
+          <span class="separator">•</span>
+          <a href="privacy.html" class="legal-link">Privacy Policy</a>
+          <span class="separator">•</span>
+          <a href="cookies.html" class="legal-link">Cookie Policy</a>
+          <span class="separator">•</span>
+          <a href="gdpr.html" class="legal-link">GDPR</a>
+          <span class="separator">•</span>
+          <a href="dmca.html" class="legal-link">DMCA</a>
+        </div>
+        <div class="footer-stats">
+          <span class="stat-item">
+            <strong>2M+</strong> Links Shortened
+          </span>
+          <span class="stat-item">
+            <strong>99.9%</strong> Uptime
+          </span>
+          <span class="stat-item">
+            <strong>50K+</strong> Users
+          </span>
+        </div>
+      </div>
+      
+      <div class="footer-attribution">
+        <p>Made with <span class="heart">❤️</span> for the digital community. 
+          <a href="https://github.com/smartlink" class="attribution-link">Open Source Components</a> • 
+          <a href="https://twitter.com/smartlink" class="attribution-link">Follow Updates</a>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+</footer>
+
+<style>
+.footer-section {
+  background: #0056b3;
+  color: white;
+  padding: 80px 20px 30px;
+  margin-top: 100px;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  margin-bottom: 60px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Brand Section */
+.footer-brand {
+  max-width: 400px;
+}
+
+.footer-logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-tagline {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background: #667eea;
+  transform: translateY(-3px);
+}
+
+.social-icon {
+  font-size: 1.3rem;
+}
+
+/* Links Sections */
+.footer-links-section {
+  min-width: 200px;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: white;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #667eea;
+}
+
+.footer-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-link {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+}
+
+.footer-link:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+.link-icon {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  min-width: 24px;
+}
+
+/* Platforms Section */
+.footer-platforms {
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.platforms-title {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.platforms-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.platform-tag {
+  background: rgba(255,255,255,0.05);
+  padding: 12px 20px;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+.platform-tag:hover {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.platform-icon {
+  font-size: 1rem;
+}
+
+/* Newsletter */
+.footer-newsletter {
+  max-width: 500px;
+  margin: 0 auto 60px;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.newsletter-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-newsletter p {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255,255,255,0.15);
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.newsletter-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 16px 35px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.newsletter-note {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+/* Bottom Footer */
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-copyright {
+  margin-bottom: 30px;
+}
+
+.footer-copyright p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.footer-meta {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.footer-legal {
+  margin-bottom: 30px;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.legal-link {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.legal-link:hover {
+  color: white;
+}
+
+.separator {
+  color: rgba(255,255,255,0.3);
+}
+
+.footer-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-item strong {
+  font-size: 1.5rem;
+  color: #667eea;
+}
+
+.footer-attribution {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  margin-top: 30px;
+}
+
+.heart {
+  color: #ff6b6b;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.attribution-link {
+  color: #667eea;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.attribution-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-input,
+  .newsletter-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 60px 15px 25px;
+  }
+  
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .footer-links-section {
+    text-align: center;
+  }
+  
+  .footer-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-link {
+    justify-content: center;
+  }
+  
+  .platforms-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .platform-tag {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .legal-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .separator {
+    display: none;
+  }
+  
+  .footer-stats {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .footer-newsletter {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-logo {
+    font-size: 2rem;
+  }
+  
+  .footer-tagline {
+    font-size: 1rem;
+  }
+  
+  .footer-heading {
+    font-size: 1.1rem;
+  }
+  
+  .newsletter-title {
+    font-size: 1.3rem;
+  }
+  
+  .stat-item strong {
+    font-size: 1.3rem;
+  }
+}
+</style>
 
   <script>document.getElementById('year-contact').textContent=new Date().getFullYear();</script>
 
@@ -208,7 +843,6 @@
 
           result.style.color = '#0b8a4b';
           result.textContent = 'Message sent — thank you!';
-          // clear form
           form.reset();
         } catch (err) {
           console.error('Contact submit failed', err);
@@ -227,7 +861,6 @@
       function encodeForMail(text) { return encodeURIComponent(text || ''); }
 
       btn.addEventListener('click', function () {
-        // try to use values from form if available
         const name = (document.getElementById('name')||{}).value || '';
         const subject = (document.getElementById('subject')||{}).value || 'Support request from website';
         const message = (document.getElementById('message')||{}).value || '';
@@ -235,12 +868,10 @@
         const body = `${name ? name + '\n\n' : ''}${message}`;
         const mailto = `mailto:${supportEmail}?subject=${encodeForMail(subject)}&body=${encodeForMail(body)}`;
 
-        // Create a temporary anchor and click it to trigger the mail client
         try {
           const a = document.createElement('a');
           a.href = mailto;
           a.style.display = 'none';
-          // Use target=_self to avoid some browsers opening a search tab
           a.target = '_self';
           document.body.appendChild(a);
           a.click();
@@ -249,8 +880,6 @@
           console.warn('Failed to open mailto via anchor click:', err);
         }
 
-        // Show inline fallback message with a copy button so users who don't have
-        // a mail client configured can still contact support without a confusing alert.
         const note = document.getElementById('contactResult');
         if (note) {
           note.style.color = '#0b6bff';
@@ -263,19 +892,331 @@
               note.style.color = '#0b8a4b';
               setTimeout(() => { note.textContent = ''; }, 5000);
             } catch (e) {
-              // fallback: set plain text so user can copy manually
               note.textContent = 'Please contact us at ' + supportEmail;
               setTimeout(() => { note.textContent = ''; }, 7000);
             }
           });
-          // auto-clear fallback after some time
           setTimeout(() => { if (note) note.textContent = ''; }, 9000);
         } else {
-          // as a last resort, copy the address to clipboard
           if (navigator.clipboard) navigator.clipboard.writeText(supportEmail).catch(()=>{});
         }
       });
     })();
+  </script>
+
+  <!-- 🌐 SIMPLE FRONTEND I18N (same style as analytics/about) -->
+  <script>
+    const translations = {
+      en: {
+        home: "Home",
+        analytics: "Analytics",
+        about: "About",
+        contact: "Contact",
+        privacy: "Privacy",
+        terms: "Terms",
+        blogs: "Blogs",
+
+        contactBreadcrumb: "Contact Support",
+        contactTitle: "Contact Smart Link Support",
+        contactIntro: "Need help with custom QR colors, logo QR codes, QR notes, or custom aliases? Our technical support team is here to help you get the most from Smart Link Shortener.",
+
+        nameLabel: "Name *",
+        emailLabel: "Email *",
+        subjectLabel: "Subject",
+        messageLabel: "Message *",
+        sendMessageBtn: "Send Message",
+        emailSupportBtn: "Email Support",
+
+        faqTitle: "Frequently Asked Questions",
+        faqQ1: "How do I add a logo to the middle of my QR code?",
+        faqA1: "After shortening your URL, open the QR generator, upload your logo image and we’ll place it in the center while keeping it fully scannable.",
+        faqQ2: "Can I change the color of my QR codes?",
+        faqA2: "Yes. Use the custom QR color picker to choose brand colors. Just make sure there is enough contrast so the code remains easy to scan.",
+        faqQ3: "How do custom aliases work?",
+        faqA3: "Instead of a random code, you can create memorable short links like yourbrand.com/sale. Custom aliases are supported on our premium plans.",
+        faqQ4: "What are QR notes and how do I add them?",
+        faqA4: "QR notes are small descriptions shown with your QR code. You can use them for instructions, promos or contact info from the QR customization panel.",
+        faqQ5: "How quickly will I get a support response?",
+        faqA5: "We provide 24/7 technical support. Most messages receive a reply within 2–3 hours, depending on request volume.",
+
+        otherWaysTitle: "Other ways to reach us",
+        emailLabelShort: "Email",
+        supportHoursTitle: "Support Hours",
+        supportHoursBody: "24/7 technical support with an average response time of 2–3 hours for most requests.",
+        supportHelpTitle: "We can help with",
+        supportHelp1: "Custom QR colors and logos",
+        supportHelp2: "QR note configuration",
+        supportHelp3: "Custom alias setup",
+        supportHelp4: "Technical issues",
+        supportHelp5: "Feature questions",
+        supportReplyNote: "We generally reply within 1–2 business days."
+      },
+
+      ar: {
+        home: "الرئيسية",
+        analytics: "التحليلات",
+        about: "حول",
+        contact: "اتصال",
+        privacy: "الخصوصية",
+        terms: "الشروط",
+        blogs: "المدونات",
+
+        contactBreadcrumb: "دعم العملاء",
+        contactTitle: "تواصل مع دعم سمارت لينك",
+        contactIntro: "تحتاج مساعدة في ألوان رمز QR، شعار في رمز QR، ملاحظات QR أو الروابط المخصصة؟ فريق الدعم الفني هنا لمساعدتك على الاستفادة القصوى من سمارت لينك.",
+
+        nameLabel: "الاسم *",
+        emailLabel: "البريد الإلكتروني *",
+        subjectLabel: "الموضوع",
+        messageLabel: "الرسالة *",
+        sendMessageBtn: "إرسال الرسالة",
+        emailSupportBtn: "مراسلة الدعم",
+
+        faqTitle: "الأسئلة الشائعة",
+        faqQ1: "كيف أضيف شعار في منتصف رمز الـ QR؟",
+        faqA1: "بعد تقصير الرابط، افتح مولّد رمز QR وارفع صورة الشعار، وسنضعه في المنتصف مع الحفاظ على إمكانية المسح.",
+        faqQ2: "هل يمكنني تغيير لون رموز QR؟",
+        faqA2: "نعم، استخدم أداة اختيار الألوان لاختيار ألوان العلامة التجارية مع التأكد من وجود تباين جيد ليسهل مسح الرمز.",
+        faqQ3: "كيف تعمل الروابط المخصصة (Aliases)؟",
+        faqA3: "بدلاً من كود عشوائي يمكنك إنشاء روابط قصيرة سهلة التذكر مثل yourbrand.com/sale، وهي متاحة في الخطط المميزة.",
+        faqQ4: "ما هي ملاحظات QR وكيف أضيفها؟",
+        faqA4: "ملاحظات QR هي نصوص توضيحية تظهر مع رمز QR ويمكن استخدامها للتعليمات أو العروض أو بيانات التواصل.",
+        faqQ5: "كم يستغرق الرد على طلبي؟",
+        faqA5: "نقدّم دعماً فنياً على مدار الساعة، ومعظم الرسائل يُرد عليها خلال 2–3 ساعات حسب عدد الطلبات.",
+
+        otherWaysTitle: "طرق أخرى للتواصل معنا",
+        emailLabelShort: "البريد",
+        supportHoursTitle: "ساعات الدعم",
+        supportHoursBody: "دعم فني 24/7 مع متوسط وقت استجابة من 2 إلى 3 ساعات لمعظم الطلبات.",
+        supportHelpTitle: "يمكننا المساعدة في",
+        supportHelp1: "ألوان وشعارات رمز QR",
+        supportHelp2: "إعداد ملاحظات QR",
+        supportHelp3: "إعداد الروابط المخصصة",
+        supportHelp4: "المشاكل التقنية",
+        supportHelp5: "الاستفسار عن المزايا",
+        supportReplyNote: "عادةً نرد في غضون 1–2 يوم عمل."
+      },
+
+      ur: {
+        home: "ہوم",
+        analytics: "تجزیات",
+        about: "ہمارے بارے میں",
+        contact: "رابطہ",
+        privacy: "پرائیویسی",
+        terms: "شرائط",
+        blogs: "بلاگز",
+
+        contactBreadcrumb: "سپورٹ سے رابطہ",
+        contactTitle: "اسمارٹ لنک سپورٹ سے رابطہ کریں",
+        contactIntro: "کسی QR رنگ، لوگو QR کوڈ، QR نوٹس یا کسٹم الیاس کے بارے میں مدد چاہیے؟ ہماری سپورٹ ٹیم اسمارٹ لنک سے زیادہ فائدہ لینے میں آپ کی مدد کے لیے موجود ہے۔",
+
+        nameLabel: "نام *",
+        emailLabel: "ای میل *",
+        subjectLabel: "موضوع",
+        messageLabel: "پیغام *",
+        sendMessageBtn: "پیغام بھیجیں",
+        emailSupportBtn: "ای میل سپورٹ",
+
+        faqTitle: "اکثر پوچھے جانے والے سوالات",
+        faqQ1: "میں QR کوڈ کے درمیان میں لوگو کیسے لگاؤں؟",
+        faqA1: "لنک شارٹ کرنے کے بعد QR جنریٹر کھولیں، لوگو اپ لوڈ کریں، ہم اسے درمیان میں رکھتے ہوئے کوڈ کو سکین ایبل رکھیں گے۔",
+        faqQ2: "کیا میں QR کوڈ کا رنگ تبدیل کر سکتا ہوں؟",
+        faqA2: "جی ہاں، کلر پکَر سے اپنی برانڈ کے رنگ منتخب کریں، بس کنٹراسٹ اچھا رکھیں تاکہ سکین آسان رہے۔",
+        faqQ3: "کسٹم الیاس کیسے کام کرتا ہے؟",
+        faqA3: "رینڈم کوڈ کے بجائے آپ ایسا شارٹ لنک بنا سکتے ہیں جو یاد رہے، جیسے yourbrand.com/sale۔ یہ فیچر پریمیئم پلان میں دستیاب ہے۔",
+        faqQ4: "QR نوٹس کیا ہوتے ہیں اور انہیں کیسے شامل کروں؟",
+        faqA4: "QR نوٹس وہ مختصر ٹیکسٹ ہوتا ہے جو QR کے ساتھ دکھتا ہے، جہاں آپ ہدایات، آفر یا رابطہ معلومات لکھ سکتے ہیں۔",
+        faqQ5: "مجھے کتنی جلدی جواب ملے گا؟",
+        faqA5: "ہم 24/7 ٹیکنیکل سپورٹ دیتے ہیں، زیادہ تر پیغامات کا جواب 2–3 گھنٹوں میں دیا جاتا ہے۔",
+
+        otherWaysTitle: "ہم سے رابطے کے دوسرے طریقے",
+        emailLabelShort: "ای میل",
+        supportHoursTitle: "سپورٹ کے اوقات",
+        supportHoursBody: "چوبیس گھنٹے، ساتوں دن ٹیکنیکل سپورٹ، عموماً 2–3 گھنٹے کے اندر جواب دیا جاتا ہے۔",
+        supportHelpTitle: "ہم مدد کر سکتے ہیں",
+        supportHelp1: "کسٹم QR رنگ اور لوگو",
+        supportHelp2: "QR نوٹس سیٹنگ",
+        supportHelp3: "کسٹم الیاس سیٹ اپ",
+        supportHelp4: "ٹیکنیکل مسائل",
+        supportHelp5: "فیچر سے متعلق سوالات",
+        supportReplyNote: "عموماً 1–2 بزنس دن میں جواب دیتے ہیں۔"
+      },
+
+      hi: {
+        home: "होम",
+        analytics: "एनालिटिक्स",
+        about: "हमारे बारे में",
+        contact: "संपर्क",
+        privacy: "प्राइवेसी",
+        terms: "नियम",
+        blogs: "ब्लॉग्स",
+
+        contactBreadcrumb: "सपोर्ट से संपर्क",
+        contactTitle: "स्मार्ट लिंक सपोर्ट से संपर्क करें",
+        contactIntro: "कस्टम QR रंग, लोगो QR कोड, QR नोट्स या कस्टम एलियस से जुड़ी मदद चाहिए? हमारी तकनीकी टीम आपकी पूरी मदद के लिए तैयार है।",
+
+        nameLabel: "नाम *",
+        emailLabel: "ईमेल *",
+        subjectLabel: "विषय",
+        messageLabel: "संदेश *",
+        sendMessageBtn: "संदेश भेजें",
+        emailSupportBtn: "ईमेल सपोर्ट",
+
+        faqTitle: "अक्सर पूछे जाने वाले प्रश्न",
+        faqQ1: "मैं QR कोड के बीच में लोगो कैसे जोड़ूँ?",
+        faqA1: "URL को छोटा करने के बाद QR जेनरेटर खोलें, अपना लोगो अपलोड करें और हम उसे बीच में लगा देंगे, QR फिर भी स्कैन हो सकेगा।",
+        faqQ2: "क्या मैं QR कोड का रंग बदल सकता हूँ?",
+        faqA2: "हाँ, आप कस्टम कलर पिकर से अपनी ब्रांड का रंग चुन सकते हैं, बस इतना ध्यान रखें कि कंट्रास्ट अच्छा रहे।",
+        faqQ3: "कस्टम एलियस कैसे काम करता है?",
+        faqA3: "रैंडम कोड की जगह याद रहने वाला लिंक बना सकते हैं, जैसे yourbrand.com/sale। यह सुविधा प्रीमियम प्लान में उपलब्ध है।",
+        faqQ4: "QR नोट्स क्या होते हैं और उन्हें कैसे जोड़ें?",
+        faqA4: "QR नोट्स छोटा टेक्स्ट होता है जो QR के साथ दिखता है, इसमें आप निर्देश, ऑफर या संपर्क जानकारी लिख सकते हैं।",
+        faqQ5: "मुझे जवाब कितनी जल्दी मिलेगा?",
+        faqA5: "हम 24/7 तकनीकी सपोर्ट देते हैं, ज़्यादातर मैसेज का जवाब 2–3 घंटे में जाता है।",
+
+        otherWaysTitle: "हमसे जुड़ने के अन्य तरीके",
+        emailLabelShort: "ईमेल",
+        supportHoursTitle: "सपोर्ट समय",
+        supportHoursBody: "24/7 तकनीकी सपोर्ट, अधिकतर अनुरोधों का जवाब 2–3 घंटों में।",
+        supportHelpTitle: "हम इनमें मदद कर सकते हैं",
+        supportHelp1: "कस्टम QR रंग और लोगो",
+        supportHelp2: "QR नोट सेटअप",
+        supportHelp3: "कस्टम एलियस सेटअप",
+        supportHelp4: "तकनीकी समस्याएँ",
+        supportHelp5: "फीचर से जुड़े प्रश्न",
+        supportReplyNote: "आमतौर पर 1–2 कार्यदिवस में जवाब दिया जाता है।"
+      },
+
+      fr: {
+        home: "Accueil",
+        analytics: "Analytique",
+        about: "À propos",
+        contact: "Contact",
+        privacy: "Confidentialité",
+        terms: "Conditions",
+        blogs: "Blogs",
+
+        contactBreadcrumb: "Contacter le support",
+        contactTitle: "Contacter le support Smart Link",
+        contactIntro: "Besoin d’aide pour les couleurs de QR, les logos dans les QR, les notes QR ou les alias personnalisés ? Notre équipe technique est là pour vous aider à tirer le meilleur parti de Smart Link Shortener.",
+
+        nameLabel: "Nom *",
+        emailLabel: "E-mail *",
+        subjectLabel: "Objet",
+        messageLabel: "Message *",
+        sendMessageBtn: "Envoyer le message",
+        emailSupportBtn: "Contacter le support",
+
+        faqTitle: "Questions fréquentes",
+        faqQ1: "Comment ajouter un logo au centre de mon QR code ?",
+        faqA1: "Après avoir raccourci votre URL, ouvrez le générateur de QR, téléversez votre logo et nous l’ajouterons au centre tout en gardant le code scannable.",
+        faqQ2: "Puis-je changer la couleur de mes QR codes ?",
+        faqA2: "Oui, utilisez le sélecteur de couleur personnalisé pour appliquer les couleurs de votre marque en gardant un bon contraste.",
+        faqQ3: "Comment fonctionnent les alias personnalisés ?",
+        faqA3: "Au lieu d’un code aléatoire, créez des liens mémorisables comme yourbrand.com/sale. Cette fonctionnalité est disponible sur nos offres premium.",
+        faqQ4: "Que sont les notes QR et comment les ajouter ?",
+        faqA4: "Les notes QR sont de courts textes affichés avec votre QR code, utiles pour des instructions, promotions ou coordonnées.",
+        faqQ5: "Sous quel délai vais-je recevoir une réponse ?",
+        faqA5: "Nous offrons un support 24h/24 et 7j/7. La plupart des demandes reçoivent une réponse en 2 à 3 heures.",
+
+        otherWaysTitle: "Autres moyens de nous joindre",
+        emailLabelShort: "E-mail",
+        supportHoursTitle: "Horaires du support",
+        supportHoursBody: "Support technique 24h/24, 7j/7, avec un délai moyen de réponse de 2 à 3 heures.",
+        supportHelpTitle: "Nous pouvons vous aider pour",
+        supportHelp1: "Couleurs et logos QR personnalisés",
+        supportHelp2: "Configuration des notes QR",
+        supportHelp3: "Configuration des alias personnalisés",
+        supportHelp4: "Problèmes techniques",
+        supportHelp5: "Questions sur les fonctionnalités",
+        supportReplyNote: "Nous répondons généralement sous 1 à 2 jours ouvrés."
+      },
+
+      es: {
+        home: "Inicio",
+        analytics: "Analíticas",
+        about: "Acerca de",
+        contact: "Contacto",
+        privacy: "Privacidad",
+        terms: "Términos",
+        blogs: "Blogs",
+
+        contactBreadcrumb: "Contactar soporte",
+        contactTitle: "Contacta al soporte de Smart Link",
+        contactIntro: "¿Necesitas ayuda con colores de QR, logos en códigos QR, notas QR o alias personalizados? Nuestro equipo técnico está listo para ayudarte a sacar el máximo partido de Smart Link Shortener.",
+
+        nameLabel: "Nombre *",
+        emailLabel: "Correo electrónico *",
+        subjectLabel: "Asunto",
+        messageLabel: "Mensaje *",
+        sendMessageBtn: "Enviar mensaje",
+        emailSupportBtn: "Enviar correo al soporte",
+
+        faqTitle: "Preguntas frecuentes",
+        faqQ1: "¿Cómo agrego un logo en el centro de mi código QR?",
+        faqA1: "Después de acortar tu URL, abre el generador de QR, sube tu logo y lo colocaremos en el centro manteniendo el código totalmente escaneable.",
+        faqQ2: "¿Puedo cambiar el color de mis códigos QR?",
+        faqA2: "Sí, usa el selector de color personalizado para aplicar los colores de tu marca, siempre con buen contraste para facilitar el escaneo.",
+        faqQ3: "¿Cómo funcionan los alias personalizados?",
+        faqA3: "En lugar de un código aleatorio, puedes crear enlaces memorables como yourbrand.com/sale. Esta función está disponible en los planes premium.",
+        faqQ4: "¿Qué son las notas QR y cómo las agrego?",
+        faqA4: "Las notas QR son pequeños textos que se muestran con tu código QR y pueden incluir instrucciones, promociones o información de contacto.",
+        faqQ5: "¿En cuánto tiempo recibiré respuesta?",
+        faqA5: "Ofrecemos soporte técnico 24/7. La mayoría de los mensajes reciben respuesta en 2–3 horas, según el volumen de solicitudes.",
+
+        otherWaysTitle: "Otras formas de contactarnos",
+        emailLabelShort: "Correo",
+        supportHoursTitle: "Horario de soporte",
+        supportHoursBody: "Soporte técnico 24/7 con un tiempo medio de respuesta de 2–3 horas para la mayoría de las consultas.",
+        supportHelpTitle: "Podemos ayudarte con",
+        supportHelp1: "Colores y logos personalizados para QR",
+        supportHelp2: "Configuración de notas QR",
+        supportHelp3: "Configuración de alias personalizados",
+        supportHelp4: "Problemas técnicos",
+        supportHelp5: "Preguntas sobre funciones",
+        supportReplyNote: "Generalmente respondemos en 1–2 días hábiles."
+      }
+    };
+
+    function applyLanguage(lang) {
+      if (!translations[lang]) lang = "en";
+
+      // textContent
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const value = translations[lang][key];
+        if (value) el.textContent = value;
+      });
+
+      // placeholders (none on this page now but safe)
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        const value = translations[lang][key];
+        if (value) el.placeholder = value;
+      });
+
+      localStorage.setItem("lang", lang);
+
+      const rtl = (lang === "ar" || lang === "ur");
+      document.body.dir = rtl ? "rtl" : "ltr";
+      document.body.classList.toggle("rtl", rtl);
+      document.documentElement.lang = lang;
+
+      console.log("🌐 Language applied:", lang);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("lang") || "en";
+      const select = document.getElementById("languageSwitcher");
+      if (select) select.value = savedLang;
+      applyLanguage(savedLang);
+
+      if (select) {
+        select.addEventListener("change", (e) => {
+          applyLanguage(e.target.value);
+        });
+      }
+    });
   </script>
 
   <!-- Mobile panel (one per page) -->
@@ -290,14 +1231,13 @@
       </div>
 
       <nav class="mobile-menu-nav" aria-label="mobile navigation">
-        <a href="index.html">Home</a>
-         <a href="premium-analytics.html">Analytics</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="blogs.html">Blogs</a>
+        <a href="index.html" data-i18n="home">Home</a>
+        <a href="analytics.html" data-i18n="analytics">Analytics</a>
+        <a href="about.html" data-i18n="about">About</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="privacy.html" data-i18n="privacy">Privacy</a>
+        <a href="terms.html" data-i18n="terms">Terms</a>
+        <a href="blogs.html" data-i18n="blogs">Blogs</a>
       </nav>
 
       <div class="mobile-menu-footer">

@@ -2,15 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>About — Smart Link Shortener</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- SEO -->
+  <title>About SmartLink — Free URL Shortener & QR Code Generator with Analytics</title>
+  <meta name="description" content="SmartLink is a free URL shortener and QR code generator built for creators, businesses, marketers, and developers. No account required, free analytics, fast redirects and branding tools.">
+  <meta name="keywords" content="about SmartLink, URL shortener company, free link shortener, QR code platform, analytics platform, who created smartlink, smartlink mission">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://linkshortner.site/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About SmartLink — The Free URL Shortener with QR and Analytics">
+  <meta property="og:description" content="Learn about SmartLink—our mission, vision and why we built a completely free URL shortening platform with real-time analytics.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://linkshortner.site/about.html">
+  <meta property="og:image" content="https://linkshortner.site/assets/og-about.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About SmartLink — Free URL Shortener & Analytics">
+  <meta name="twitter:description" content="SmartLink helps users shorten URLs, generate QR codes and track real-time analytics. 100% free.">
+  <meta name="twitter:image" content="https://linkshortner.site/assets/og-about.png">
+
+  <!-- JSON-LD Schema (About Page + Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About SmartLink",
+    "description": "About SmartLink — a free URL shortening tool with QR generation and analytics.",
+    "mainEntityOfPage": "https://linkshortner.site/about.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SmartLink",
+      "url": "https://linkshortner.site",
+      "logo": "https://linkshortner.site/favicon-32x32.png"
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="about.css" />
   <link rel="stylesheet" href="style.css" />
-   <!-- Favicon -->
   <link rel="icon" href="smartlink-logo.svg" />
-   <!-- Canonical -->
-<link rel="canonical" href="https://linkshortner.site/about.html">
 </head>
+
 <body>
   <!-- START: shared header -->
   <header class="header site-header">
@@ -31,14 +68,24 @@
       </a>
 
       <nav class="main-nav" id="mainNav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="premium-analytics.html">Analytics</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="blogs.html">Blogs</a>
+        <a href="index.html" data-i18n="home">Home</a>
+        <a href="analytics.html" data-i18n="analytics">Analytics</a>
+        <a href="about.html" data-i18n="about">About</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="privacy.html" data-i18n="privacy">Privacy</a>
+        <a href="terms.html" data-i18n="terms">Terms</a>
+        <a href="blogs.html" data-i18n="blogs">Blogs</a>
       </nav>
+
+      <!-- 🌐 Language switcher 
+      <select id="languageSwitcher" aria-label="Change language">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="ur">اردو</option>
+        <option value="hi">हिन्दी</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>-->
 
       <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
         <span class="hamburger" aria-hidden="true">
@@ -51,58 +98,763 @@
   </header>
   <!-- END: shared header -->
 
-  <main class="page">
-    <section class="card page-card">
-      <h1>About Smart Link Shortener</h1>
-      <p class="lead">Smart Link Shortener is an easy-to-use tool that converts long URLs into compact short links and generates QR codes for sharing. We focus on simplicity, speed and privacy.</p>
 
-      <h2>What we offer</h2>
-      <ul>
-        <li>Quick short link creation with optional custom alias</li>
-        <li>Instant QR code generation for offline sharing</li>
-        <li>Privacy-first approach — no tracking by default</li>
-        <li>Generate QR Code with custom gradient color option </li>
-        <li>User can Upload custom logo for Qr Code</li>
-        <li>User can add custom alias to create short url</li>
-      </ul>
+<main class="page">
+  <section class="card page-card">
 
-      <h2>Why trust us</h2>
-      <p>We keep things minimal and transparent. Links and notes are stored on your host (or our server if you choose). We don't sell personal data. For data requests, contact us via the contact page.</p>
+    <span class="about-pill">Built for creators, businesses & developers</span>
+
+    <h1 data-i18n="aboutTitle">About SmartLink URL Shortener</h1>
+
+    <p class="lead" data-i18n="aboutLead">
+      SmartLink started as a simple <strong>free URL shortener</strong> with custom aliases and shareable QR codes.
+      Today, it has grown into a lightweight <strong>link management & analytics tool</strong> that helps you track
+      clicks, devices, countries, and QR scans — without forcing you to create an account.
+    </p>
+
+    <!-- What we offer NOW -->
+    <h2 data-i18n="aboutOfferTitle">What SmartLink offers today</h2>
+    <ul class="about-list">
+      <li data-i18n="aboutOffer1">
+        🔗 Create short links with optional <strong>custom alias</strong> for clean sharing.
+      </li>
+      <li data-i18n="aboutOffer2">
+        📱 Generate instant <strong>QR codes</strong> for offline and print campaigns.
+      </li>
+      <li data-i18n="aboutOffer3">
+        📊 View a simple <strong>analytics dashboard</strong> for clicks, devices, browsers, and countries.
+      </li>
+      <li data-i18n="aboutOffer4">
+        🎨 Design QR codes with <strong>gradient colors</strong> and smooth backgrounds.
+      </li>
+      <li data-i18n="aboutOffer5">
+        🪪 Upload your own <strong>logo inside the QR code</strong> for branding.
+      </li>
+      <li data-i18n="aboutOffer6">
+        🔒 Privacy-friendly — no forced login, no complex setup, just paste and shorten.
+      </li>
+    </ul>
+
+    <!-- Journey / timeline -->
+    <section class="about-timeline">
+      <h2>Our journey so far</h2>
+      <div class="timeline-grid">
+        <div class="timeline-item">
+          <span class="year-badge">2024</span>
+          <h3>Short Links & QR Codes</h3>
+          <p>
+            We launched SmartLink with fast URL shortening and QR generation so anyone could
+            share clean links in seconds.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="year-badge">2025</span>
+          <h3>Analytics Dashboard</h3>
+          <p>
+            Added a free analytics page to track <strong>clicks, devices, countries and QR scans</strong>
+            in real time — still with no premium paywall.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="year-badge future">Next</span>
+          <h3>Upcoming Features</h3>
+          <p>
+            We’re exploring <strong>saved link history, teams, campaigns and exportable reports</strong>
+            to make SmartLink even more powerful for marketers and businesses.
+          </p>
+        </div>
+      </div>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>© <span id="year-about"></span>SmartLink</div>
-      <div class="small">Made with ♥ • <a href="privacy.html">Privacy</a></div>
+    <!-- Who it's for -->
+    <section class="about-users">
+      <h2>Who SmartLink is built for</h2>
+      <div class="chip-row">
+        <span class="chip">📣 Social media creators</span>
+        <span class="chip">🏢 Small businesses & startups</span>
+        <span class="chip">🎓 Students & portfolios</span>
+        <span class="chip">💻 Developers & side projects</span>
+        <span class="chip">📊 Marketers & agencies</span>
+      </div>
+    </section>
+
+    <!-- Trust / privacy -->
+    <h2 data-i18n="aboutTrustTitle">Why you can trust SmartLink</h2>
+    <p class="trust-text" data-i18n="aboutTrustBody">
+      We keep things minimal and transparent. Links and QR codes are generated instantly without
+      asking for unnecessary data. We don’t sell personal information, and you stay in control of
+      the links you share. For any data-related questions, you can always reach us using the
+      <a href="contact.html">contact page</a>.
+    </p>
+
+    <!-- CTA -->
+    <section class="about-cta">
+      <h2>Start using SmartLink in seconds</h2>
+      <p>
+        Paste a long URL, create a short link, generate a QR code, and track clicks — all in one place.
+        No account, no credit card, just a simple tool that works.
+      </p>
+      <div class="cta-buttons">
+        <a href="index.html" class="btn-primary">Create a Short Link</a>
+        <a href="analytics.html" class="btn-ghost">View Analytics Dashboard</a>
+      </div>
+    </section>
+
+  </section>
+</main>
+
+
+  <footer class="footer-section">
+  <div class="footer-container">
+    
+    <!-- Main Footer Content -->
+    <div class="footer-main">
+      
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <div class="footer-logo">🔗 SmartLink</div>
+        <p class="footer-tagline">Your <strong>free URL shortener</strong> and <strong>QR code generator</strong> for all digital needs.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Twitter">
+            <span class="social-icon">🐦</span>
+          </a>
+          <a href="#" class="social-link" aria-label="GitHub">
+            <span class="social-icon">💻</span>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <span class="social-icon">💼</span>
+          </a>
+          <a href="#" class="social-link" aria-label="Product Hunt">
+            <span class="social-icon">🚀</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="footer-links-section">
+        <h4 class="footer-heading">Quick Links</h4>
+        <div class="footer-links-grid">
+          <a href="index.html" class="footer-link">
+            <span class="link-icon">🏠</span> Home
+          </a>
+          <a href="analytics.html" class="footer-link">
+            <span class="link-icon">📊</span> Analytics
+          </a>
+          <a href="about.html" class="footer-link">
+            <span class="link-icon">ℹ️</span> About
+          </a>
+          <a href="contact.html" class="footer-link">
+            <span class="link-icon">📧</span> Contact
+          </a>
+          <a href="terms.html" class="footer-link">
+            <span class="link-icon">📜</span> Terms
+          </a>
+          <a href="privacy.html" class="footer-link">
+            <span class="link-icon">🔒</span> Privacy
+          </a>
+          <a href="blogs.html" class="footer-link">
+            <span class="link-icon">📝</span> Blogs
+          </a>
+        </div>
+      </div>
+      
+      <!-- Features Links -->
+      <div class="footer-links-section">
+        <h4 class="footer-heading">Features</h4>
+        <div class="footer-links-grid">
+          <a href="#features" class="footer-link">
+            <span class="link-icon">🔗</span> Free Link Shortener
+          </a>
+          <a href="#qr-generator" class="footer-link">
+            <span class="link-icon">📱</span> QR Code Generator
+          </a>
+          <a href="#analytics" class="footer-link">
+            <span class="link-icon">📈</span> Link Analytics
+          </a>
+          <a href="#custom" class="footer-link">
+            <span class="link-icon">🎨</span> Custom Branding
+          </a>
+          <a href="#premium" class="footer-link">
+            <span class="link-icon">⭐</span> Premium Features
+          </a>
+          <a href="#api" class="footer-link">
+            <span class="link-icon">⚡</span> API Access
+          </a>
+        </div>
+      </div>
+      
+      <!-- Resources Links -->
+      <div class="footer-links-section">
+        <h4 class="footer-heading">Resources</h4>
+        <div class="footer-links-grid">
+          <a href="help-center.html" class="footer-link">
+            <span class="link-icon">❓</span> Help Center
+          </a>
+          <a href="documentation.html" class="footer-link">
+            <span class="link-icon">📚</span> Documentation
+          </a>
+          <a href="blog.html" class="footer-link">
+            <span class="link-icon">✍️</span> Blog
+          </a>
+          <a href="changelog.html" class="footer-link">
+            <span class="link-icon">🔄</span> Changelog
+          </a>
+          <a href="status.html" class="footer-link">
+            <span class="link-icon">✅</span> Status
+          </a>
+          <a href="sitemap.html" class="footer-link">
+            <span class="link-icon">🗺️</span> Sitemap
+          </a>
+        </div>
+      </div>
+      
     </div>
-  </footer>
+    
+    <!-- Platform Specific Links -->
+    <div class="footer-platforms">
+      <h4 class="platforms-title">Platform Solutions</h4>
+      <div class="platforms-grid">
+        <span class="platform-tag">
+          <span class="platform-icon">📱</span> Instagram Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">🎵</span> TikTok URL Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">📹</span> YouTube Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">📘</span> Facebook Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">💼</span> LinkedIn Link Shortener
+        </span>
+        <span class="platform-tag">
+          <span class="platform-icon">🛒</span> E-commerce Solutions
+        </span>
+      </div>
+    </div>
+    
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h4 class="newsletter-title">Stay Updated</h4>
+      <p>Get tips on <strong>link shortening</strong>, <strong>QR codes</strong>, and digital marketing.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Your email address" class="newsletter-input">
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    </div>
+    
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>© 2024 <strong>SmartLink</strong> — Advanced <strong>URL Shortener</strong> & <strong>QR Code Generator</strong>. All rights reserved.</p>
+        <p class="footer-meta">The <strong>best link shortener</strong> for <strong>social media</strong>, <strong>business</strong>, and <strong>marketing</strong> needs.</p>
+      </div>
+      
+      <div class="footer-legal">
+        <div class="legal-links">
+          <a href="terms.html" class="legal-link">Terms of Service</a>
+          <span class="separator">•</span>
+          <a href="privacy.html" class="legal-link">Privacy Policy</a>
+          <span class="separator">•</span>
+          <a href="cookies.html" class="legal-link">Cookie Policy</a>
+          <span class="separator">•</span>
+          <a href="gdpr.html" class="legal-link">GDPR</a>
+          <span class="separator">•</span>
+          <a href="dmca.html" class="legal-link">DMCA</a>
+        </div>
+        <div class="footer-stats">
+          <span class="stat-item">
+            <strong>2M+</strong> Links Shortened
+          </span>
+          <span class="stat-item">
+            <strong>99.9%</strong> Uptime
+          </span>
+          <span class="stat-item">
+            <strong>50K+</strong> Users
+          </span>
+        </div>
+      </div>
+      
+      <div class="footer-attribution">
+        <p>Made with <span class="heart">❤️</span> for the digital community. 
+          <a href="https://github.com/smartlink" class="attribution-link">Open Source Components</a> • 
+          <a href="https://twitter.com/smartlink" class="attribution-link">Follow Updates</a>
+        </p>
+      </div>
+    </div>
+    
+  </div>
+</footer>
 
-  <script>document.getElementById('year-about').textContent = new Date().getFullYear();</script>
+<style>
+.footer-section {
+  background: #0056b3;
+  color: white;
+  padding: 80px 20px 30px;
+  margin-top: 100px;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  margin-bottom: 60px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Brand Section */
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-tagline {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background: #667eea;
+  transform: translateY(-3px);
+}
+
+.social-icon {
+  font-size: 1.3rem;
+}
+
+/* Links Sections */
+.footer-links-section {
+  min-width: 200px;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: white;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #667eea;
+}
+
+.footer-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-link {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+}
+
+.footer-link:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+.link-icon {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  min-width: 24px;
+}
+
+/* Platforms Section */
+.footer-platforms {
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.platforms-title {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.platforms-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.platform-tag {
+  background: rgba(255,255,255,0.05);
+  padding: 12px 20px;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+.platform-tag:hover {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.platform-icon {
+  font-size: 1rem;
+}
+
+/* Newsletter */
+.footer-newsletter {
+  max-width: 500px;
+  margin: 0 auto 60px;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.newsletter-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.footer-newsletter p {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255,255,255,0.15);
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.newsletter-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 16px 35px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.newsletter-note {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+/* Bottom Footer */
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-copyright {
+  margin-bottom: 30px;
+}
+
+.footer-copyright p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.footer-meta {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.footer-legal {
+  margin-bottom: 30px;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.legal-link {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.legal-link:hover {
+  color: white;
+}
+
+.separator {
+  color: rgba(255,255,255,0.3);
+}
+
+.footer-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-item strong {
+  font-size: 1.5rem;
+  color: #667eea;
+}
+
+.footer-attribution {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  margin-top: 30px;
+}
+
+.heart {
+  color: #ff6b6b;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.attribution-link {
+  color: #667eea;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.attribution-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-input,
+  .newsletter-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 60px 15px 25px;
+  }
+  
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .footer-links-section {
+    text-align: center;
+  }
+  
+  .footer-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-link {
+    justify-content: center;
+  }
+  
+  .platforms-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .platform-tag {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .legal-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .separator {
+    display: none;
+  }
+  
+  .footer-stats {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .footer-newsletter {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-logo {
+    font-size: 2rem;
+  }
+  
+  .footer-tagline {
+    font-size: 1rem;
+  }
+  
+  .footer-heading {
+    font-size: 1.1rem;
+  }
+  
+  .newsletter-title {
+    font-size: 1.3rem;
+  }
+  
+  .stat-item strong {
+    font-size: 1.3rem;
+  }
+}
+</style>
+
+  <script>
+    document.getElementById('year-about').textContent = new Date().getFullYear();
+  </script>
 
   <!-- Mobile panel (one per page) -->
   <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
     <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
       <div class="mobile-panel-head" style="display:flex;align-items:center;gap:12px;">
         <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
-          <defs><linearGradient id="gM" x1="0" x2="1"><stop offset="0" stop-color="#007bff"/><stop offset="1" stop-color="#00c6ff"/></linearGradient></defs>
+          <defs>
+            <linearGradient id="gM" x1="0" x2="1">
+              <stop offset="0" stop-color="#007bff"/><stop offset="1" stop-color="#00c6ff"/>
+            </linearGradient>
+          </defs>
           <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#gM)"/>
         </svg>
         <strong style="font-size:18px;color:#07293f;">Smart Link</strong>
       </div>
 
       <nav class="mobile-menu-nav" aria-label="mobile navigation">
-        <a href="index.html">Home</a>
-        <a href="premium-analytics.html">Analytics</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="blogs.html">Blogs</a>
+        <a href="index.html" data-i18n="home">Home</a>
+        <a href="analytics.html" data-i18n="analytics">Analytics</a>
+        <a href="about.html" data-i18n="about">About</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="privacy.html" data-i18n="privacy">Privacy</a>
+        <a href="terms.html" data-i18n="terms">Terms</a>
+        <a href="blogs.html" data-i18n="blogs">Blogs</a>
       </nav>
 
       <div class="mobile-menu-footer">
-        <button id="mobileClose" class="btn-ghost" aria-label="Close menu">Close</button>
+        <button id="mobileClose" class="btn-ghost" aria-label="Close menu" data-i18n="mobileClose">Close</button>
       </div>
     </div>
 
@@ -113,5 +865,276 @@
   <script src="script.js"></script>
   <!-- global site UI helpers -->
   <script src="site.js"></script>
+
+  <!-- 🌐 i18n script (same logic you already pasted, but with About keys added) -->
+  <script>
+  const translations = {
+    en: {
+      home: "Home",
+      analytics: "Analytics",
+      about: "About",
+      contact: "Contact",
+      privacy: "Privacy",
+      terms: "Terms",
+      blogs: "Blogs",
+
+      dashboardTitle: "Your Link Analytics Dashboard",
+      searchPlaceholder: "Search by custom alias / URL / code",
+
+      totalClicks: "Total Clicks",
+      uniqueDevices: "Unique Devices",
+      conversionRate: "Conversion Rate",
+
+      devicesTitle: "Devices",
+      mapTitle: "2D World Map (White + Black Borders)",
+      sourcesTitle: "Sources",
+      browsersTitle: "Browsers",
+      osTitle: "Operating Systems",
+
+      // ✅ About page
+      aboutTitle: "About Smart Link Shortener",
+      aboutLead: "Smart Link Shortener is an easy-to-use tool that converts long URLs into compact short links and generates QR codes for sharing. We focus on simplicity, speed and privacy.",
+      aboutOfferTitle: "What we offer",
+      aboutOffer1: "Quick short link creation with optional custom alias",
+      aboutOffer2: "Instant QR code generation for offline sharing",
+      aboutOffer3: "Privacy-first approach — no tracking by default",
+      aboutOffer4: "Generate QR Code with custom gradient color option",
+      aboutOffer5: "User can upload custom logo for QR Code",
+      aboutOffer6: "User can add custom alias to create short URL",
+      aboutTrustTitle: "Why trust us",
+      aboutTrustBody: "We keep things minimal and transparent. Links and notes are stored on your host (or our server if you choose). We don't sell personal data. For data requests, contact us via the contact page.",
+
+      footerMadeWith: "Made with ♥",
+      mobileClose: "Close"
+    },
+
+    ar: {
+      home: "الرئيسية",
+      analytics: "التحليلات",
+      about: "حول",
+      contact: "اتصال",
+      privacy: "الخصوصية",
+      terms: "الشروط",
+      blogs: "المدونات",
+
+      dashboardTitle: "لوحة تحليلات الروابط",
+      searchPlaceholder: "ابحث باستخدام الرمز أو الرابط",
+
+      totalClicks: "إجمالي النقرات",
+      uniqueDevices: "الأجهزة الفريدة",
+      conversionRate: "معدل التحويل",
+
+      devicesTitle: "الأجهزة",
+      mapTitle: "خريطة العالم ثنائية الأبعاد",
+      sourcesTitle: "المصادر",
+      browsersTitle: "المتصفحات",
+      osTitle: "أنظمة التشغيل",
+
+      aboutTitle: "حول أداة تقصير الروابط Smart Link",
+      aboutLead: "سمارت لينك أداة سهلة الاستخدام لتحويل الروابط الطويلة إلى روابط قصيرة وتوليد أكواد QR للمشاركة. نركز على البساطة والسرعة والخصوصية.",
+      aboutOfferTitle: "ماذا نقدم",
+      aboutOffer1: "إنشاء روابط قصيرة بسرعة مع إمكانية إضافة اسم مخصص",
+      aboutOffer2: "توليد فوري لكود QR للمشاركة بدون إنترنت",
+      aboutOffer3: "نهج يركز على الخصوصية — بدون تتبع افتراضيًا",
+      aboutOffer4: "إنشاء كود QR مع ألوان متدرجة مخصصة",
+      aboutOffer5: "يمكن للمستخدم رفع شعار مخصص لكود QR",
+      aboutOffer6: "يمكن للمستخدم إضافة اسم مخصص لإنشاء رابط قصير",
+      aboutTrustTitle: "لماذا تثق بنا؟",
+      aboutTrustBody: "نحافظ على البساطة والوضوح. يتم تخزين الروابط والملاحظات على خادمك (أو على خادمنا إذا اخترت ذلك). لا نبيع البيانات الشخصية. لطلبات البيانات، تواصل معنا عبر صفحة الاتصال.",
+
+      footerMadeWith: "صُنع بحب ♥",
+      mobileClose: "إغلاق"
+    },
+
+    ur: {
+      home: "ہوم",
+      analytics: "تجزیات",
+      about: "ہمارے بارے میں",
+      contact: "رابطہ",
+      privacy: "پرائیویسی",
+      terms: "شرائط",
+      blogs: "بلاگز",
+
+      dashboardTitle: "آپ کا لنک اینالیٹکس ڈیش بورڈ",
+      searchPlaceholder: "کوڈ یا لنک سے تلاش کریں",
+
+      totalClicks: "کل کلکس",
+      uniqueDevices: "منفرد ڈیوائسز",
+      conversionRate: "کنورژن ریٹ",
+
+      devicesTitle: "ڈیوائسز",
+      mapTitle: "2D دنیا کا نقشہ",
+      sourcesTitle: "ذرائع",
+      browsersTitle: "براؤزرز",
+      osTitle: "آپریٹنگ سسٹمز",
+
+      aboutTitle: "سمارٹ لنک شارٹنر کے بارے میں",
+      aboutLead: "سمارٹ لنک شارٹنر ایک آسان ٹول ہے جو لمبے لنکس کو چھوٹے لنکس میں تبدیل کرتا ہے اور شیئرنگ کے لیے QR کوڈ بناتا ہے۔ ہم سادگی، رفتار اور پرائیویسی پر فوکس کرتے ہیں۔",
+      aboutOfferTitle: "ہم کیا پیش کرتے ہیں",
+      aboutOffer1: "کستوم الیاس کے ساتھ تیز شارٹ لنک بنانا",
+      aboutOffer2: "آف لائن شیئرنگ کے لیے فوری QR کوڈ جنریشن",
+      aboutOffer3: "پرائیویسی فرسٹ — ڈیفالٹ کے طور پر کوئی ٹریکنگ نہیں",
+      aboutOffer4: "کस्टم گریڈینٹ کلر کے ساتھ QR کوڈ جنریٹ کریں",
+      aboutOffer5: "یوزر QR کوڈ کے لیے اپنا کسٹم لوگو اپلوڈ کر سکتا ہے",
+      aboutOffer6: "یوزر شارٹ لنک کے لیے کسٹم الیاس لگا سکتا ہے",
+      aboutTrustTitle: "ہم پر کیوں بھروسہ کریں؟",
+      aboutTrustBody: "ہم چیزوں کو سادہ اور شفاف رکھتے ہیں۔ لنکس اور نوٹس آپ کے ہوسٹ پر (یا اگر آپ چاہیں تو ہمارے سرور پر) محفوظ ہوتے ہیں۔ ہم ذاتی ڈیٹا نہیں بیچتے۔ ڈیٹا سے متعلق درخواست کے لیے، ہم سے کانٹیکٹ پیج کے ذریعے رابطہ کریں۔",
+
+      footerMadeWith: "محبت سے بنایا گیا ♥",
+      mobileClose: "بند کریں"
+    },
+
+    hi: {
+      home: "होम",
+      analytics: "एनालिटिक्स",
+      about: "हमारे बारे में",
+      contact: "संपर्क",
+      privacy: "प्राइवेसी",
+      terms: "नियम",
+      blogs: "ब्लॉग्स",
+
+      dashboardTitle: "आपका लिंक एनालिटिक्स डैशबोर्ड",
+      searchPlaceholder: "कोड या लिंक से खोजें",
+
+      totalClicks: "कुल क्लिक",
+      uniqueDevices: "यूनिक डिवाइसेस",
+      conversionRate: "कनवर्ज़न रेट",
+
+      devicesTitle: "डिवाइसेस",
+      mapTitle: "2D विश्व मानचित्र",
+      sourcesTitle: "सोर्सेज़",
+      browsersTitle: "ब्राउज़र्स",
+      osTitle: "ऑपरेटिंग सिस्टम",
+
+      aboutTitle: "स्मार्ट लिंक शॉर्टनर के बारे में",
+      aboutLead: "स्मार्ट लिंक शॉर्टनर एक आसान टूल है जो लंबे URL को छोटे लिंक में बदलता है और शेयरिंग के लिए QR कोड बनाता है। हमारा फोकस सादगी, गति और प्राइवेसी पर है।",
+      aboutOfferTitle: "हम क्या ऑफर करते हैं",
+      aboutOffer1: "ऑप्शनल कस्टम एलियस के साथ जल्दी शॉर्ट लिंक बनाना",
+      aboutOffer2: "ऑफलाइन शेयरिंग के लिए इंस्टेंट QR कोड जनरेशन",
+      aboutOffer3: "प्राइवेसी-फर्स्ट अप्रोच — डिफॉल्ट रूप से कोई ट्रैकिंग नहीं",
+      aboutOffer4: "कस्टम ग्रेडिएंट कलर के साथ QR कोड जनरेट करें",
+      aboutOffer5: "यूज़र QR कोड के लिए अपना कस्टम लोगो अपलोड कर सकता है",
+      aboutOffer6: "यूज़र शॉर्ट URL के लिए कस्टम एलियस जोड़ सकता है",
+      aboutTrustTitle: "हम पर भरोसा क्यों करें?",
+      aboutTrustBody: "हम चीजों को सिंपल और ट्रांसपेरेंट रखते हैं। लिंक और नोट्स आपके होस्ट पर (या यदि आप चुनें तो हमारे सर्वर पर) स्टोर होते हैं। हम पर्सनल डेटा नहीं बेचते। डेटा रिक्वेस्ट के लिए कॉन्टैक्ट पेज से हमसे संपर्क करें।",
+
+      footerMadeWith: "प्यार से बनाया गया ♥",
+      mobileClose: "बंद करें"
+    },
+
+    fr: {
+      home: "Accueil",
+      analytics: "Analytique",
+      about: "À propos",
+      contact: "Contact",
+      privacy: "Confidentialité",
+      terms: "Conditions",
+      blogs: "Blogs",
+
+      dashboardTitle: "Votre tableau de bord d’analyse de liens",
+      searchPlaceholder: "Rechercher par code / URL",
+
+      totalClicks: "Clics totaux",
+      uniqueDevices: "Appareils uniques",
+      conversionRate: "Taux de conversion",
+
+      devicesTitle: "Appareils",
+      mapTitle: "Carte du monde 2D",
+      sourcesTitle: "Sources",
+      browsersTitle: "Navigateurs",
+      osTitle: "Systèmes d’exploitation",
+
+      aboutTitle: "À propos de Smart Link Shortener",
+      aboutLead: "Smart Link Shortener est un outil simple qui convertit les longues URL en liens courts et génère des QR codes pour le partage. Nous mettons l’accent sur la simplicité, la rapidité et la confidentialité.",
+      aboutOfferTitle: "Ce que nous proposons",
+      aboutOffer1: "Création rapide de liens courts avec alias personnalisé optionnel",
+      aboutOffer2: "Génération instantanée de QR codes pour le partage hors ligne",
+      aboutOffer3: "Approche centrée sur la confidentialité — aucun suivi par défaut",
+      aboutOffer4: "Génération de QR codes avec couleurs dégradées personnalisées",
+      aboutOffer5: "L’utilisateur peut téléverser son propre logo pour le QR code",
+      aboutOffer6: "L’utilisateur peut ajouter un alias personnalisé pour créer un lien court",
+      aboutTrustTitle: "Pourquoi nous faire confiance ?",
+      aboutTrustBody: "Nous restons simples et transparents. Les liens et les notes sont stockés sur votre hébergeur (ou sur nos serveurs si vous le choisissez). Nous ne vendons pas de données personnelles. Pour toute demande de données, contactez-nous via la page de contact.",
+
+      footerMadeWith: "Fait avec ♥",
+      mobileClose: "Fermer"
+    },
+
+    es: {
+      home: "Inicio",
+      analytics: "Analíticas",
+      about: "Acerca de",
+      contact: "Contacto",
+      privacy: "Privacidad",
+      terms: "Términos",
+      blogs: "Blogs",
+
+      dashboardTitle: "Tu panel de analíticas de enlaces",
+      searchPlaceholder: "Buscar por código / URL",
+
+      totalClicks: "Clics totales",
+      uniqueDevices: "Dispositivos únicos",
+      conversionRate: "Tasa de conversión",
+
+      devicesTitle: "Dispositivos",
+      mapTitle: "Mapa mundial 2D",
+      sourcesTitle: "Fuentes",
+      browsersTitle: "Navegadores",
+      osTitle: "Sistemas operativos",
+
+      aboutTitle: "Acerca de Smart Link Shortener",
+      aboutLead: "Smart Link Shortener es una herramienta fácil de usar que convierte URL largas en enlaces cortos y genera códigos QR para compartir. Nos enfocamos en la simplicidad, la velocidad y la privacidad.",
+      aboutOfferTitle: "Qué ofrecemos",
+      aboutOffer1: "Creación rápida de enlaces cortos con alias personalizado opcional",
+      aboutOffer2: "Generación instantánea de códigos QR para compartir sin conexión",
+      aboutOffer3: "Enfoque centrado en la privacidad — sin rastreo por defecto",
+      aboutOffer4: "Generar códigos QR con colores degradados personalizados",
+      aboutOffer5: "El usuario puede subir su propio logo para el código QR",
+      aboutOffer6: "El usuario puede añadir un alias personalizado para crear URLs cortas",
+      aboutTrustTitle: "Por qué confiar en nosotros",
+      aboutTrustBody: "Mantenemos todo simple y transparente. Los enlaces y notas se almacenan en tu servidor (o en el nuestro si lo eliges). No vendemos datos personales. Para solicitudes de datos, contáctanos a través de la página de contacto.",
+
+      footerMadeWith: "Hecho con ♥",
+      mobileClose: "Cerrar"
+    }
+  };
+
+  function applyLanguage(lang) {
+    if (!translations[lang]) lang = "en";
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      const value = translations[lang][key];
+      if (value) el.textContent = value;
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      const value = translations[lang][key];
+      if (value) el.placeholder = value;
+    });
+
+    localStorage.setItem("lang", lang);
+
+    const rtl = (lang === "ar" || lang === "ur");
+    document.body.dir = rtl ? "rtl" : "ltr";
+    document.body.classList.toggle("rtl", rtl);
+
+    console.log("🌐 Language applied:", lang);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("lang") || "en";
+    const select = document.getElementById("languageSwitcher");
+    if (select) select.value = savedLang;
+    applyLanguage(savedLang);
+
+    if (select) {
+      select.addEventListener("change", (e) => {
+        applyLanguage(e.target.value);
+      });
+    }
+  });
+  </script>
 </body>
 </html>

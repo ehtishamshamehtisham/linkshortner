@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ========== SEO: ANALYTICS PAGE ========== -->
+  <title>Free URL Shortener Analytics Dashboard | Track Clicks, Devices & Countries - SmartLink</title>
+
+  <meta name="description" content="SmartLink Analytics lets you track link clicks, devices, browsers, countries, QR code scans and traffic sources in real-time. 100% free URL shortener analytics, no login required.">
+
+  <!-- Optional but fine (Google ignores mostly, but you like it) -->
+  <meta name="keywords" content="url shortener analytics, link tracking dashboard, free link analytics, qr code analytics, click tracking, device analytics, country analytics, browser analytics, SmartLink analytics">
+
+  <meta name="author" content="SmartLink">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://linkshortner.site/analytics.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SmartLink URL Shortener Analytics — Free Click & QR Tracking">
+  <meta property="og:description" content="Visual dashboard to track short link clicks, devices, browsers, countries and QR scans in real-time. No login required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://linkshortner.site/analytics.html">
+  <meta property="og:image" content="https://linkshortner.site/assets/preview-analytics.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Track URL Clicks & QR Code Analytics with SmartLink">
+  <meta name="twitter:description" content="Free link analytics dashboard to monitor clicks, devices, browsers, countries and QR scans.">
+  <meta name="twitter:image" content="https://linkshortner.site/assets/preview-analytics.png">
+
+  <!-- Analytics-specific WebPage schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SmartLink Analytics Dashboard",
+    "url": "https://linkshortner.site/analytics.html",
+    "description": "Free URL shortener analytics dashboard to track clicks, devices, browsers, countries and QR scans in real-time.",
+    "inLanguage": "en",
+    "headline": "SmartLink URL Shortener Analytics Dashboard"
+  }
+  </script>
+
+  <!-- FAQ Schema for Analytics page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is SmartLink Analytics free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, SmartLink Analytics is completely free. Every shortened link automatically gets click and QR tracking with no premium plan or subscription needed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the SmartLink analytics dashboard track?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The SmartLink dashboard tracks total clicks, unique devices, browsers, operating systems, countries, traffic sources and QR code scans for each shortened link."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account or login to see my analytics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, you do not need to create an account. You can shorten URLs and view their analytics directly, without any login or registration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does SmartLink update analytics in real-time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, SmartLink updates analytics in real-time. When someone clicks your short link or scans your QR code, the dashboard reflects the new data almost instantly."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ========== END SEO BLOCK ========== -->
+
+  <link rel="stylesheet" href="analytics.css" />
+
+  <!-- D3 + TopoJSON for the 2D world map -->
+  <script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+</head>
+
+<body>
+    <header class="header nav-enabled site-header">
+    <div class="nav-container nav-wrap">
+      <a class="logo brand" href="index.html" aria-label="Smart Link home">
+        <svg width="35" height="35" viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad" x1="0" x2="1">
+              <stop offset="0" stop-color="#007bff"/>
+              <stop offset="1" stop-color="#00c6ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="18" height="18" rx="5" fill="url(#grad)" />
+          <path d="M7.8 13.5a3.8 3.8 0 0 1 0-5.4l1.2-1.2" stroke="#fff" stroke-width="1.2" fill="none" />
+          <path d="M16.2 10.5a3.8 3.8 0 0 1 0 5.4l-1.2 1.2" stroke="#fff" stroke-width="1.2" fill="none" />
+        </svg>
+        <span class="brand-text">Smart Link</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html" data-i18n="home">Home</a>
+        <a href="analytics.html" data-i18n="analytics">Analytics</a>
+        <a href="about.html" data-i18n="about">About</a>
+        <a href="contact.html" data-i18n="contact">Contact</a>
+        <a href="privacy.html" data-i18n="privacy">Privacy</a>
+        <a href="terms.html" data-i18n="terms">Terms</a>
+        <a href="blogs.html" data-i18n="blogs">Blogs</a>
+      </nav>
+
+      <!-- 🌐 Language switcher 
+      <select id="languageSwitcher" aria-label="Change language">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="ur">اردو</option>
+        <option value="hi">हिन्दी</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>-->
+
+      <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span class="hamburger" aria-hidden="true">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+  <main class="shell">
+  
+   <!-- <section class="small-navbar">
+    <a href="index.html">Home</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="blogs.html">Blogs</a>-->
+
+    <!-- 🌐 Language switcher 
+  <div class="nav-right">
+    <select id="languageSwitcher">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="ur">اردو</option>
+      <option value="hi">हिंदी</option>
+      <option value="fr">Français</option>
+      <option value="es">Español</option>
+    </select>
+  </div>-->
+    
+    </section>
+    <section class="analytics-heading">
+  <h1>URL Shortener Analytics Dashboard</h1>
+  <p style="color:#555;max-width:640px;">
+    Monitor your shortened links with real-time click analytics, device insights, 
+    browser usage, traffic sources, QR code scans, and geo-location data — 
+    all in one clean and easy dashboard.
+  </p>
+</section>
+
+    <!-- A. Search + Range + KPIs + Line Chart -->
+    <section class="search card">
+      <div class="searchbar">
+        <input id="q"data-i18n-placeholder="searchPlaceholder"  placeholder="Search by custom alias / URL / code" />
+        <div class="icon">🔍</div>
+      </div>
+    </section>
+    <section>
+
+      <div class="ranges" id="ranges">
+        <span class="chip active" data-range="24h">24 hrs</span>
+        <span class="chip" data-range="7d">7 days</span>
+        <span class="chip" data-range="28d">28 days</span>
+        <span class="chip" data-range="3m">3 months</span>
+
+        <span class="chip more" id="moreChip">More ▾
+          <div class="dropdown" id="moreMenu">
+            <div class="opt" data-range="6m">Last 6 months</div>
+            <div class="opt" data-range="365d">Last 365 days</div>
+            <div class="hr"></div>
+            <div class="custom">
+              <small>Custom range</small>
+              <input id="from" type="date">
+              <input id="to" type="date">
+              <button class="apply" id="applyRange">Apply</button>
+            </div>
+          </div>
+        </span>
+      </div>
+    </section>
+
+    <section class="kpis">
+      <div class="kpi card"><div class="label" data-i18n="totalClicks">Total Clicks</div><div class="value" id="kpiClicks">—</div></div>
+      <div class="kpi card"><div class="label" data-i18n="uniqueDevices">Unique Devices</div><div class="value" id="kpiDevices">—</div></div>
+      <div class="kpi card"><div class="label" data-i18n="conversionRate">Conversion Rate</div><div class="value" id="kpiConv">—</div></div>
+    </section>
+
+    <section class="chartcard card">
+      <div class="chartwrap">
+        
+        <svg id="chart" viewBox="0 0 760 340" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="note" id="noteLbl">Range: 24 hrs</div>
+    </section>
+
+    <!-- B. Devices Pie  &  C. World Map -->
+    <section class="grid-2">
+      <!-- Devices Pie -->
+      <section class="card">
+        <h2 class="card-title" data-i18n="devicesTitle">Devices</h2>
+        <div class="wrap-2col">
+          <div class="chart">
+            <svg id="pie" viewBox="0 0 320 320" width="100%" height="100%">
+              <g id="slices" transform="translate(160,160)"></g>
+              <circle cx="160" cy="160" r="118" fill="none" stroke="#fff" stroke-width="2"/>
+            </svg>
+          </div>
+          <aside class="legend">
+            <h3>Breakdown</h3>
+            <div class="item">
+              <div class="key"><span class="swatch" style="background:var(--desktop)"></span><span>Desktop</span></div>
+              <strong id="p-desktop">—</strong>
+            </div>
+            <div class="item">
+              <div class="key"><span class="swatch" style="background:var(--mobile)"></span><span>Mobile</span></div>
+              <strong id="p-mobile">—</strong>
+            </div>
+            <div class="item">
+              <div class="key"><span class="swatch" style="background:var(--tablet)"></span><span>Tablet</span></div>
+              <strong id="p-tablet">—</strong>
+            </div>
+            <div class="item">
+              <div class="key"><span class="swatch" style="background:var(--other)"></span><span>Other</span></div>
+              <strong id="p-other">—</strong>
+            </div>
+            <div class="muted" id="notePie">total —</div>
+          </aside>
+        </div>
+        <div class="tip" id="tipPie"></div>
+      </section>
+      </section>
+
+      <!-- World Map -->
+       <section>
+      <section class="card">
+        <h2 class="card-title" data-i18n="mapTitle">2D World Map (White + Black Borders)</h2>
+        <div class="map-wrap">
+          <svg id="map-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet"
+               aria-label="2D world map with black country borders on white background"></svg>
+        </div>
+
+        <div class="table">
+          <div class="head"><div>Country</div><div class="right">Clicks</div></div>
+          <!-- rows will be dynamically updated by JS -->
+          <div class="row"><div class="muted">* Example data (initial)</div><div class="right muted">—</div></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- D. Sources / Browsers / OS -->
+    <section class="grid-3">
+      <!-- Sources -->
+      <section class="mini card">
+        <h3 class="mini-title" data-i18n="sourcesTitle">Sources</h3>
+        <div class="list" id="list-sources"></div>
+        <div class="muted" id="note-sources"></div>
+      </section>
+
+      <!-- Browsers -->
+      <section class="mini card">
+        <h3 class="mini-title" data-i18n="browsersTitle">Browsers</h3>
+        <div class="list" id="list-browsers"></div>
+        <div class="muted" id="note-browsers"></div>
+      </section>
+
+      <!-- OS -->
+      <section class="mini card">
+        <h3 class="mini-title" data-i18n="osTitle">Operating Systems</h3>
+        <div class="list" id="os-list"></div>
+        <div class="muted" id="os-note"></div>
+      </section>
+    </section>
+    <section class="faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <details><summary>Is SmartLink Analytics free?</summary>
+  <p>Yes, analytics are included for free with every shortened link — no premium plans required.</p></details>
+
+  <details><summary>What data does this dashboard track?</summary>
+  <p>You can track link clicks, devices, browsers, operating systems, countries, and QR code scans.</p></details>
+
+  <details><summary>Do I need login or account?</summary>
+  <p>No. You can generate links and view analytics without creating an account.</p></details>
+
+  <details><summary>Does SmartLink track real-time clicks?</summary>
+  <p>Yes, this dashboard updates in real-time, allowing accurate tracking.</p></details>
+</section>
+
+    </main>
+
+  <!-- ✅ footer directly under body, no extra <section> -->
+    
+  <footer class="footer-section">
+    <div class="footer-container">
+      
+      <!-- Main Footer Content -->
+      <div class="footer-main">
+        
+        <!-- Brand Section -->
+        <div class="footer-brand">
+          <div class="footer-logo">🔗 SmartLink</div>
+          <p class="footer-tagline">Your <strong>free URL shortener</strong> and <strong>QR code generator</strong> for all digital needs.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Twitter">
+              <span class="social-icon">🐦</span>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+              <span class="social-icon">💻</span>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <span class="social-icon">💼</span>
+            </a>
+            <a href="#" class="social-link" aria-label="Product Hunt">
+              <span class="social-icon">🚀</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-links-section">
+          <h4 class="footer-heading">Quick Links</h4>
+          <div class="footer-links-grid">
+            <a href="index.html" class="footer-link">
+              <span class="link-icon">🏠</span> Home
+            </a>
+            <a href="premium-analytics.html" class="footer-link">
+              <span class="link-icon">📊</span> Analytics
+            </a>
+            <a href="about.html" class="footer-link">
+              <span class="link-icon">ℹ️</span> About
+            </a>
+            <a href="contact.html" class="footer-link">
+              <span class="link-icon">📧</span> Contact
+            </a>
+            <a href="terms.html" class="footer-link">
+              <span class="link-icon">📜</span> Terms
+            </a>
+            <a href="privacy.html" class="footer-link">
+              <span class="link-icon">🔒</span> Privacy
+            </a>
+            <a href="blogs.html" class="footer-link">
+              <span class="link-icon">📝</span> Blogs
+            </a>
+          </div>
+        </div>
+        
+        <!-- Features Links -->
+        <div class="footer-links-section">
+          <h4 class="footer-heading">Features</h4>
+          <div class="footer-links-grid">
+            <a href="#features" class="footer-link">
+              <span class="link-icon">🔗</span> Free Link Shortener
+            </a>
+            <a href="#qr-generator" class="footer-link">
+              <span class="link-icon">📱</span> QR Code Generator
+            </a>
+            <a href="#analytics" class="footer-link">
+              <span class="link-icon">📈</span> Link Analytics
+            </a>
+            <a href="#custom" class="footer-link">
+              <span class="link-icon">🎨</span> Custom Branding
+            </a>
+            <a href="#premium" class="footer-link">
+              <span class="link-icon">⭐</span> Premium Features
+            </a>
+            <a href="#api" class="footer-link">
+              <span class="link-icon">⚡</span> API Access
+            </a>
+          </div>
+        </div>
+        
+        <!-- Resources Links -->
+        <div class="footer-links-section">
+          <h4 class="footer-heading">Resources</h4>
+          <div class="footer-links-grid">
+            <a href="help-center.html" class="footer-link">
+              <span class="link-icon">❓</span> Help Center
+            </a>
+            <a href="documentation.html" class="footer-link">
+              <span class="link-icon">📚</span> Documentation
+            </a>
+            <a href="blog.html" class="footer-link">
+              <span class="link-icon">✍️</span> Blog
+            </a>
+            <a href="changelog.html" class="footer-link">
+              <span class="link-icon">🔄</span> Changelog
+            </a>
+            <a href="status.html" class="footer-link">
+              <span class="link-icon">✅</span> Status
+            </a>
+            <a href="sitemap.html" class="footer-link">
+              <span class="link-icon">🗺️</span> Sitemap
+            </a>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Platform Specific Links -->
+      <div class="footer-platforms">
+        <h4 class="platforms-title">Platform Solutions</h4>
+        <div class="platforms-grid">
+          <span class="platform-tag">
+            <span class="platform-icon">📱</span> Instagram Link Shortener
+          </span>
+          <span class="platform-tag">
+            <span class="platform-icon">🎵</span> TikTok URL Shortener
+          </span>
+          <span class="platform-tag">
+            <span class="platform-icon">📹</span> YouTube Link Shortener
+          </span>
+          <span class="platform-tag">
+            <span class="platform-icon">📘</span> Facebook Link Shortener
+          </span>
+          <span class="platform-tag">
+            <span class="platform-icon">💼</span> LinkedIn Link Shortener
+          </span>
+          <span class="platform-tag">
+            <span class="platform-icon">🛒</span> E-commerce Solutions
+          </span>
+        </div>
+      </div>
+      
+      <!-- Newsletter -->
+      <div class="footer-newsletter">
+        <h4 class="newsletter-title">Stay Updated</h4>
+        <p>Get tips on <strong>link shortening</strong>, <strong>QR codes</strong>, and digital marketing.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" class="newsletter-input">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+        <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+      </div>
+      
+      <!-- Bottom Footer -->
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>© 2024 <strong>SmartLink</strong> — Advanced <strong>URL Shortener</strong> & <strong>QR Code Generator</strong>. All rights reserved.</p>
+          <p class="footer-meta">The <strong>best link shortener</strong> for <strong>social media</strong>, <strong>business</strong>, and <strong>marketing</strong> needs.</p>
+        </div>
+        
+        <div class="footer-legal">
+          <div class="legal-links">
+            <a href="terms.html" class="legal-link">Terms of Service</a>
+            <span class="separator">•</span>
+            <a href="privacy.html" class="legal-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="cookies.html" class="legal-link">Cookie Policy</a>
+            <span class="separator">•</span>
+            <a href="gdpr.html" class="legal-link">GDPR</a>
+            <span class="separator">•</span>
+            <a href="dmca.html" class="legal-link">DMCA</a>
+          </div>
+          <div class="footer-stats">
+            <span class="stat-item">
+              <strong>2M+</strong> Links Shortened
+            </span>
+            <span class="stat-item">
+              <strong>99.9%</strong> Uptime
+            </span>
+            <span class="stat-item">
+              <strong>50K+</strong> Users
+            </span>
+          </div>
+        </div>
+        
+        <div class="footer-attribution">
+          <p>Made with <span class="heart">❤️</span> for the digital community. 
+            <a href="https://github.com/smartlink" class="attribution-link">Open Source Components</a> • 
+            <a href="https://twitter.com/smartlink" class="attribution-link">Follow Updates</a>
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </footer>
+  
+  <!-- Mobile panel (one per page) -->
+ <!-- Mobile menu (same structure as Home style) -->
+<div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    
+    <!-- Top-right back / close button -->
+  <button id="mobileClose" class="mobile-back-btn" aria-label="Close menu">
+  &lsaquo;
+</button>
+
+    <!-- Links -->
+    <nav class="mobile-menu-nav" aria-label="mobile navigation">
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="analytics.html" data-i18n="analytics">Analytics</a>
+      <a href="about.html" data-i18n="about">About</a>
+      <a href="contact.html" data-i18n="contact">Contact</a>
+      <a href="privacy.html" data-i18n="privacy">Privacy</a>
+      <a href="terms.html" data-i18n="terms">Terms</a>
+      <a href="blogs.html" data-i18n="blogs">Blogs</a>
+    </nav>
+
+  </div>
+
+  <div class="mobile-menu-backdrop" id="mobileBackdrop" tabindex="-1" aria-hidden="true"></div>
+</div>
+
+
+  <!-- your app logic (unchanged) -->
+  <script src="script.js"></script>
+  <!-- global site UI helpers -->
+  <script src="site.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const body          = document.body;
+  const mobileToggle  = document.getElementById('mobileToggle');
+  const mobileMenu    = document.getElementById('mobileMenu');
+  const mobileClose   = document.getElementById('mobileClose');
+  const mobileBackdrop= document.getElementById('mobileBackdrop');
+  const mobileLinks   = document.querySelectorAll('.mobile-menu-nav a');
+
+  if (!mobileToggle || !mobileMenu) return;
+
+  function openMenu() {
+    body.classList.add('nav-open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    mobileToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    body.classList.remove('nav-open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  // Toggle button (hamburger)
+  mobileToggle.addEventListener('click', function () {
+    if (body.classList.contains('nav-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  // Close button inside panel
+  if (mobileClose) {
+    mobileClose.addEventListener('click', closeMenu);
+  }
+
+  // Tap on dark backdrop closes menu
+  if (mobileBackdrop) {
+    mobileBackdrop.addEventListener('click', closeMenu);
+  }
+
+  // Close when clicking any link in the mobile menu
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // If user resizes to desktop, force-close menu
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 992 && body.classList.contains('nav-open')) {
+      closeMenu();
+    }
+  });
+
+  // ESC key closes menu
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && body.classList.contains('nav-open')) {
+      closeMenu();
+    }
+  });
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is SmartLink Analytics free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, analytics are included free with every shortened link."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the analytics dashboard track?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clicks, devices, browsers, countries, traffic sources and QR scans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does SmartLink update analytics in real-time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, click data updates instantly as users interact with your links."
+      }
+    }
+  ]
+}
+</script>
+
+
+
+
+
+  
+  <script>
+// 🌐 SIMPLE FRONTEND I18N
+
+const translations = {
+  en: {
+    home: "Home",
+    analytics: "Analytics",
+    about: "About",
+    contact: "Contact",
+    privacy: "Privacy",
+    terms: "Terms",
+    blogs: "Blogs",
+
+    dashboardTitle: "Your Link Analytics Dashboard",
+    searchPlaceholder: "Search by custom alias / URL / code",
+
+    totalClicks: "Total Clicks",
+    uniqueDevices: "Unique Devices",
+    conversionRate: "Conversion Rate",
+
+    devicesTitle: "Devices",
+    mapTitle: "2D World Map (White + Black Borders)",
+    sourcesTitle: "Sources",
+    browsersTitle: "Browsers",
+    osTitle: "Operating Systems"
+  },
+
+  ar: {
+    home: "الرئيسية",
+    analytics: "التحليلات",
+    about: "حول",
+    contact: "اتصال",
+    privacy: "الخصوصية",
+    terms: "الشروط",
+    blogs: "المدونات",
+
+    dashboardTitle: "لوحة تحليلات الروابط",
+    searchPlaceholder: "ابحث باستخدام الرمز أو الرابط",
+
+    totalClicks: "إجمالي النقرات",
+    uniqueDevices: "الأجهزة الفريدة",
+    conversionRate: "معدل التحويل",
+
+    devicesTitle: "الأجهزة",
+    mapTitle: "خريطة العالم ثنائية الأبعاد",
+    sourcesTitle: "المصادر",
+    browsersTitle: "المتصفحات",
+    osTitle: "أنظمة التشغيل"
+  },
+
+  ur: {
+    home: "ہوم",
+    analytics: "تجزیات",
+    about: "ہمارے بارے میں",
+    contact: "رابطہ",
+    privacy: "پرائیویسی",
+    terms: "شرائط",
+    blogs: "بلاگز",
+
+    dashboardTitle: "آپ کا لنک اینالیٹکس ڈیش بورڈ",
+    searchPlaceholder: "کوڈ یا لنک سے تلاش کریں",
+
+    totalClicks: "کل کلکس",
+    uniqueDevices: "منفرد ڈیوائسز",
+    conversionRate: "کنورژن ریٹ",
+
+    devicesTitle: "ڈیوائسز",
+    mapTitle: "2D دنیا کا نقشہ",
+    sourcesTitle: "ذرائع",
+    browsersTitle: "براؤزرز",
+    osTitle: "آپریٹنگ سسٹمز"
+  },
+
+  hi: {
+    home: "होम",
+    analytics: "एनालिटिक्स",
+    about: "हमारे बारे में",
+    contact: "संपर्क",
+    privacy: "प्राइवेसी",
+    terms: "नियम",
+    blogs: "ब्लॉग्स",
+
+    dashboardTitle: "आपका लिंक एनालिटिक्स डैशबोर्ड",
+    searchPlaceholder: "कोड या लिंक से खोजें",
+
+    totalClicks: "कुल क्लिक",
+    uniqueDevices: "यूनिक डिवाइसेस",
+    conversionRate: "कनवर्ज़न रेट",
+
+    devicesTitle: "डिवाइसेस",
+    mapTitle: "2D विश्व मानचित्र",
+    sourcesTitle: "सोर्सेज़",
+    browsersTitle: "ब्राउज़र्स",
+    osTitle: "ऑपरेटिंग सिस्टम"
+  },
+
+  fr: {
+    home: "Accueil",
+    analytics: "Analytique",
+    about: "À propos",
+    contact: "Contact",
+    privacy: "Confidentialité",
+    terms: "Conditions",
+    blogs: "Blogs",
+
+    dashboardTitle: "Votre tableau de bord d’analyse de liens",
+    searchPlaceholder: "Rechercher par code / URL",
+
+    totalClicks: "Clics totaux",
+    uniqueDevices: "Appareils uniques",
+    conversionRate: "Taux de conversion",
+
+    devicesTitle: "Appareils",
+    mapTitle: "Carte du monde 2D",
+    sourcesTitle: "Sources",
+    browsersTitle: "Navigateurs",
+    osTitle: "Systèmes d’exploitation"
+  },
+
+  es: {
+    home: "Inicio",
+    analytics: "Analíticas",
+    about: "Acerca de",
+    contact: "Contacto",
+    privacy: "Privacidad",
+    terms: "Términos",
+    blogs: "Blogs",
+
+    dashboardTitle: "Tu panel de analíticas de enlaces",
+    searchPlaceholder: "Buscar por código / URL",
+
+    totalClicks: "Clics totales",
+    uniqueDevices: "Dispositivos únicos",
+    conversionRate: "Tasa de conversión",
+
+    devicesTitle: "Dispositivos",
+    mapTitle: "Mapa mundial 2D",
+    sourcesTitle: "Fuentes",
+    browsersTitle: "Navegadores",
+    osTitle: "Sistemas operativos"
+  }
+};
+
+// Apply language to all elements
+function applyLanguage(lang) {
+  if (!translations[lang]) lang = "en";
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const value = translations[lang][key];
+    if (value) el.textContent = value;
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const value = translations[lang][key];
+    if (value) el.placeholder = value;
+  });
+
+  // Save preference
+  localStorage.setItem("lang", lang);
+
+  // RTL support for Arabic + Urdu
+  const rtl = (lang === "ar" || lang === "ur");
+  document.body.dir = rtl ? "rtl" : "ltr";
+  document.body.classList.toggle("rtl", rtl);
+
+  console.log("🌐 Language applied:", lang);
+}
+
+// Init language on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("lang") || "en";
+  const select = document.getElementById("languageSwitcher");
+  if (select) select.value = savedLang;
+  applyLanguage(savedLang);
+
+  if (select) {
+    select.addEventListener("change", (e) => {
+      applyLanguage(e.target.value);
+    });
+  }
+});
+</script>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+/* ========== SHARED UTILITIES FOR CHARTS ========== */
+const svg = document.getElementById('chart');
+const W = 760, H = 340, pad={l:48,r:18,t:20,b:34}, plotW=W-pad.l-pad.r, plotH=H-pad.t-pad.b;
+
+/**
+ * Generate random data points for demo charts
+ */
+function rand(n,min=0,max=10){ 
+  const a=[]; let base=Math.random()*(max-min)+min;
+  for(let i=0;i<n;i++){ 
+    base+=(Math.random()-0.5)*2; 
+    base=Math.max(min,Math.min(max,base)); 
+    a.push(Math.round(base));
+  }
+  return a;
+}
+
+/**
+ * Scale value from one range to another
+ */
+function scale(v,a1,a2,b1,b2){return b1+(v-a1)*(b2-b1)/(a2-a1);}
+
+/**
+ * Clear all child elements from a node
+ */
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild);}
+
+/**
+ * Create SVG element with attributes and content
+ */
+function el(t,a,c){
+  const e=document.createElementNS('http://www.w3.org/2000/svg',t);
+  for(const k in a)e.setAttribute(k,a[k]);
+  if(c)e.textContent=c;
+  return e;
+}
+
+/**
+ * Generate demo data based on selected time range
+ */
+function makeData(range){
+  let n=24, labels=[];
+  if(range==='24h'){n=24;labels=Array.from({length:n},(_,i)=>`${i+1}h`);}
+  if(range==='7d'){n=7;labels=Array.from({length:n},(_,i)=>`Day ${i+1}`);}
+  if(range==='28d'){n=28;labels=Array.from({length:n},(_,i)=>`D${i+1}`);}
+  if(range==='3m'){n=12;labels=Array.from({length:n},(_,i)=>`W${i+1}`);}
+  if(range==='6m'){n=26;labels=Array.from({length:n},(_,i)=>`W${i+1}`);}
+  if(range==='365d'){n=52;labels=Array.from({length:n},(_,i)=>`W${i+1}`);}
+  if(typeof range==='object'&&range.custom){
+    const diff=Math.max(1,Math.round((range.to-range.from)/(24*3600*1000))+1);
+    n=Math.min(60,diff); labels=Array.from({length:n},(_,i)=>`D${i+1}`);}
+  return {points:rand(n,0,10+Math.random()*10),labels};
+}
+
+/**
+ * Draw the main line chart with provided data points
+ */
+function drawChart(points,labels){
+  clear(svg);
+  const maxY=Math.max(5,Math.ceil(Math.max(...points)));
+  const stepX=plotW/Math.max(1,labels.length-1);
+  
+  // Draw grid lines and Y-axis labels
+  for(let i=0;i<=5;i++){
+    const y=pad.t+plotH-i*(plotH/5);
+    svg.append(el('line',{x1:pad.l,y1:y,x2:W-pad.r,y2:y,stroke:'#eef2f6'}));
+    svg.append(el('text',{x:pad.l-6,y:y+4,'text-anchor':'end','font-size':11,fill:'#444'},Math.round(i*(maxY/5))));
+  }
+  
+  // Draw X-axis labels (only show some labels if too many)
+  const maxL=12;
+  for(let i=0;i<labels.length;i++){
+    const show=labels.length<=maxL||i%(Math.ceil(labels.length/maxL))===0||i===labels.length-1;
+    if(!show)continue; const x=pad.l+i*stepX;
+    svg.append(el('text',{x,y:H-8,'text-anchor':'middle','font-size':11,fill:'#444'},labels[i]));
+  }
+  
+  // Draw axes
+  svg.append(el('line',{x1:pad.l,y1:H-pad.b,x2:W-pad.r,y2:H-pad.b,stroke:'#cfd6df'}));
+  svg.append(el('line',{x1:pad.l,y1:pad.t,x2:pad.l,y2:H-pad.b,stroke:'#cfd6df'}));
+
+  // Calculate data points for the line
+  const pts=points.map((v,i)=>[i*stepX,plotH-scale(v,0,maxY,0,plotH)]);
+  const dLine=pts.map((p,i)=>i?`L${p[0]} ${p[1]}`:`M${p[0]} ${p[1]}`).join(' ');
+  const dArea=`${dLine} L${plotW} ${plotH} L0 ${plotH}Z`;
+  
+  // Create chart group and paths
+  const g=el('g',{transform:`translate(${pad.l},${pad.t})`});
+  g.appendChild(el('path',{class:'area',d:dArea,fill:'rgba(0,123,255,0.1)'}));
+  g.appendChild(el('path',{class:'line',d:dLine,stroke:'var(--blue)'}));
+  pts.forEach(([x,y])=>g.appendChild(el('circle',{r:3.5,cx:x,cy:y,fill:'var(--blue)'})));
+  svg.appendChild(g);
+}
+
+/**
+ * Update KPI cards with calculated values (demo when not using API)
+ */
+function updateKPIs(points){
+  const sum=points.reduce((a,b)=>a+b,0);
+  document.getElementById('kpiClicks').textContent=sum;
+  document.getElementById('kpiDevices').textContent=Math.max(1,Math.round(sum*0.6));
+  document.getElementById('kpiConv').textContent=(8+(sum%20)).toFixed(1)+'%';
+}
+
+/**
+ * Set active time range and update charts (demo data)
+ */
+function setRange(r){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active',c.dataset.range===r));
+  const data=makeData(r);
+  drawChart(data.points,data.labels);
+  updateKPIs(data.points);
+  document.getElementById('noteLbl').textContent='Range: '+(typeof r==='string'?r:'Custom');
+}
+
+/* ========== TIME RANGE SELECTOR LOGIC ========== */
+const moreChip=document.getElementById('moreChip');
+const moreMenu=document.getElementById('moreMenu');
+const applyBtn=document.getElementById('applyRange');
+
+// Handle chip clicks for time ranges
+document.getElementById('ranges').addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); 
+  if(!b||b.classList.contains('more'))return; 
+  setRange(b.dataset.range);
+});
+
+// Toggle more options dropdown
+moreChip.addEventListener('click',e=>{
+  const inside=e.target.closest('.dropdown'); 
+  if(inside)return;
+  moreMenu.classList.toggle('open'); 
+  e.stopPropagation();
+});
+
+// Handle dropdown option clicks
+moreMenu.addEventListener('click',e=>{
+  e.stopPropagation();
+  const opt=e.target.closest('.opt'); 
+  if(opt){
+    moreMenu.classList.remove('open'); 
+    setRange(opt.dataset.range);
+  }
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.dropdown')&&!e.target.closest('#moreChip')) moreMenu.classList.remove('open');
+});
+
+// Handle custom date range application (demo)
+applyBtn.addEventListener('click',()=>{
+  const f=document.getElementById('from').value,t=document.getElementById('to').value;
+  if(!f||!t){alert('Select both dates');return;}
+  const from=new Date(f),to=new Date(t); 
+  if(to<from){alert('Invalid range');return;}
+  moreMenu.classList.remove('open'); 
+  setRange({custom:true,from,to});
+});
+
+// Initialize with 24-hour range (demo data)
+setRange('24h');
+
+/* ========== DEVICES PIE CHART (DEMO INIT) ========== */
+(function(){
+  const css = getComputedStyle(document.documentElement);
+  // Demo data for devices pie chart
+  const data = [
+    { label:'Desktop', value:32, color: css.getPropertyValue('--desktop') },
+    { label:'Mobile',  value:29, color: css.getPropertyValue('--mobile')  },
+    { label:'Tablet',  value:12, color: css.getPropertyValue('--tablet')  },
+    { label:'Other',   value:14, color: css.getPropertyValue('--other')   },
+  ];
+  const total = data.reduce((s,d)=>s+d.value,0);
+  const toPct = v => v/total*100;
+  const fmt = n => `${(n/total*100).toFixed(0)}%`;
+  
+  // Update legend values
+  document.getElementById('p-desktop').textContent = `${fmt(32)} (32)`;
+  document.getElementById('p-mobile').textContent  = `${fmt(29)} (29)`;
+  document.getElementById('p-tablet').textContent  = `${fmt(12)} (12)`;
+  document.getElementById('p-other').textContent   = `${fmt(14)} (14)`;
+  document.getElementById('notePie').textContent   = `total ${total}`;
+
+  const g = document.getElementById('slices');
+  const R = 118; let ang = -Math.PI/2;
+  const tip = document.getElementById('tipPie');
+
+  // Create pie chart slices
+  data.forEach(d=>{
+    const slice = toPct(d.value)/100 * Math.PI*2;
+    const a0 = ang, a1 = ang + slice; ang = a1;
+    const p0=[Math.cos(a0)*R, Math.sin(a0)*R];
+    const p1=[Math.cos(a1)*R, Math.sin(a1)*R];
+    const large = (a1-a0) > Math.PI ? 1 : 0;
+    const dPath = `M0 0 L${p0[0]} ${p0[1]} A ${R} ${R} 0 ${large} 1 ${p1[0]} ${p1[1]} Z`;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', dPath); path.setAttribute('fill', d.color);
+    path.setAttribute('stroke','#fff'); path.setAttribute('stroke-width','2'); path.style.cursor='pointer';
+    
+    // Add hover interactions
+    path.addEventListener('mouseenter',()=>{ 
+      path.setAttribute('stroke-width','3'); 
+      tip.style.opacity=1;
+      tip.innerHTML = `<strong>${d.label}</strong><br>${d.value} (${fmt(d.value)})`; 
+    });
+    path.addEventListener('mousemove',e=>{ 
+      tip.style.left=(e.clientX+12)+'px'; 
+      tip.style.top=(e.clientY+12)+'px';
+    });
+    path.addEventListener('mouseleave',()=>{ 
+      path.setAttribute('stroke-width','2'); 
+      tip.style.opacity=0;
+    });
+    g.appendChild(path);
+  });
+})();
+
+/* ========== WORLD MAP WITH D3.js (BASE + REAL DATA HOOK) ========== */
+(async function () {
+  console.log('🌍 World map IIFE starting...');
+  const svg = d3.select('#map-svg');
+  const width = 1200, height = 600;
+  const projection = d3.geoMercator().scale(170).translate([width/2, height/1.45]);
+  const path = d3.geoPath(projection);
+  const g = svg.append('g');
+  
+  // White background for map
+  g.append('rect').attr('x',0).attr('y',0).attr('width',width).attr('height',height).attr('fill','#fff');
+
+  // Load and render world map data
+  const topo = await (await fetch('https://unpkg.com/world-atlas@2/countries-110m.json')).json();
+  const all = topojson.feature(topo, topo.objects.countries).features;
+  const countries = all.filter(f => d3.geoBounds(f)[0][1] > -60); // Filter out Antarctica
+
+  // Draw countries with black borders
+  g.append('g').selectAll('path').data(countries).join('path')
+    .attr('d', path).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',0.7);
+  
+  // Add country borders
+  const mesh = topojson.mesh(topo, topo.objects.countries, (a,b)=>a!==b);
+  g.append('path').attr('d', path(mesh)).attr('fill','none').attr('stroke','#000').attr('stroke-width',0.4);
+
+  // Demo data points (used only if no API data yet)
+  const demoPoints = [
+    { name:'USA', lon:-98.5795, lat:39.8283, clicks:15 },
+    { name:'India', lon:78.9629, lat:20.5937, clicks:12 },
+    { name:'Bangladesh', lon:90.3563, lat:23.6850, clicks:16 },
+  ];
+  
+  // Create tooltip for country hover
+  const tip = d3.select('body').append('div')
+    .style('position','absolute').style('pointer-events','none').style('padding','6px 8px')
+    .style('font','12px system-ui,sans-serif').style('background','#fff').style('border','1px solid #e5e7eb')
+    .style('border-radius','8px').style('box-shadow','0 4px 14px rgba(0,0,0,.08)').style('opacity',0);
+
+  // Group for pins (demo + real)
+  const pins = g.append('g').attr('id','map-pins');
+
+  // Draw initial demo pins
+  demoPoints.forEach(p=>{
+    const [x,y] = projection([p.lon,p.lat]);
+    pins.append('circle').attr('cx',x).attr('cy',y).attr('r',5).attr('fill','#000')
+      .on('mouseenter', (event)=>{
+        tip.style('opacity',1).html(`<strong>${p.name}</strong><br/>Clicks: ${p.clicks}`)
+           .style('left',(event.pageX+10)+'px').style('top',(event.pageY+10)+'px');
+      })
+      .on('mousemove', (event)=>{
+        tip.style('left',(event.pageX+10)+'px').style('top',(event.pageY+10)+'px');
+      })
+      .on('mouseleave', ()=> tip.style('opacity',0));
+  });
+
+  // === NEW: hook for real data from API ===
+  window.updateWorldMapWithRealData = function(topCountries) {
+    console.log('🌍 updateWorldMapWithRealData called with:', topCountries);
+    if (!Array.isArray(topCountries)) {
+      console.warn('🌍 topCountries is not an array, ignoring');
+      return;
+    }
+
+    // Clear existing pins (demo + old)
+    pins.selectAll('*').remove();
+
+    const valid = topCountries.filter(c =>
+      c &&
+      typeof c.latitude === 'number' &&
+      typeof c.longitude === 'number'
+    );
+
+    if (valid.length === 0) {
+      console.warn('🌍 No valid topCountries with lat/lon, keeping map empty');
+    }
+
+    valid.forEach(p=>{
+      const [x,y] = projection([p.longitude, p.latitude]);
+      pins.append('circle')
+        .attr('cx',x).attr('cy',y)
+        .attr('r',5).attr('fill','#000')
+        .on('mouseenter',(event)=>{
+          tip.style('opacity',1).html(
+            `<strong>${p.country || 'Unknown'}</strong><br/>Clicks: ${p.clicks || 0}`
+          )
+          .style('left',(event.pageX+10)+'px')
+          .style('top',(event.pageY+10)+'px');
+        })
+        .on('mousemove',(event)=>{
+          tip.style('left',(event.pageX+10)+'px').style('top',(event.pageY+10)+'px');
+        })
+        .on('mouseleave',()=> tip.style('opacity',0));
+    });
+
+    // Update table under map
+    const table = document.querySelector('.table');
+    if (!table) {
+      console.warn('🌍 Country table element not found');
+      return;
+    }
+
+    // Remove all existing data rows (keep head)
+    table.querySelectorAll('.row').forEach(r => r.remove());
+
+    const total = topCountries.reduce((s,c)=> s + (c.clicks || 0), 0);
+
+    topCountries.forEach(c=>{
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML = `
+        <div>${c.country || 'Unknown'}</div>
+        <div class="right">${c.clicks || 0}</div>
+      `;
+      table.appendChild(row);
+    });
+
+    const footer = document.createElement('div');
+    footer.className = 'row';
+    footer.innerHTML = `
+      <div class="muted">* Top countries</div>
+      <div class="right muted">${total} total</div>
+    `;
+    table.appendChild(footer);
+
+    console.log('🌍 World map + table updated with real API data');
+  };
+
+  console.log('🌍 World map base ready, waiting for API data...');
+})();
+
+/* ========== SOURCES / BROWSERS / OS LISTS (DEMO) ========== */
+(function(){
+  // Demo data for sources, browsers, and OS
+  const SOURCES = [
+    { name:'Facebook', clicks:13, color:'var(--blue)'  },
+    { name:'Insta',    clicks:10, color:'var(--cyan)'  },
+    { name:'Direct',   clicks:19, color:'var(--green)' },
+    { name:'Other',    clicks:19, color:'var(--slate)' }
+  ];
+  const BROWSERS = [
+    { name:'Chrome', clicks:12, color:'var(--blue)'   },
+    { name:'Edge',   clicks:19, color:'var(--cyan)'   },
+    { name:'UC Pro', clicks:12, color:'var(--orange)' },
+    { name:'Other',  clicks:15, color:'var(--violet)' }
+  ];
+  const OS_DATA = [
+    { name:'Windows', clicks:12, color:'var(--win)' },
+    { name:'macOS',   clicks:13, color:'var(--mac)' },
+    { name:'iOS',     clicks:12, color:'var(--ios)' },
+    { name:'Android', clicks:11, color:'var(--android)' },
+    { name:'Other',   clicks:15, color:'var(--other)' },
+  ];
+
+  /**
+   * Render a list with progress bars
+   */
+  function renderList(containerId, noteId, items){
+    const total = items.reduce((s,i)=>s+i.clicks,0);
+    const max = Math.max(...items.map(i=>i.clicks));
+    const box = document.getElementById(containerId); box.innerHTML='';
+    
+    items.forEach(i=>{
+      const row = document.createElement('div'); row.className='row';
+      const left = document.createElement('div'); left.className='left';
+      const dot  = document.createElement('span'); dot.className='dot'; dot.style.background=i.color;
+      const name = document.createElement('span'); name.className='name'; name.textContent=i.name;
+      left.append(dot,name);
+      const right = document.createElement('div'); right.className='right'; right.textContent=i.clicks;
+      const bar = document.createElement('div'); bar.className='bar';
+      const fill = document.createElement('div'); fill.className='fill';
+      fill.style.width = (i.clicks/max*100).toFixed(0)+'%'; fill.style.background=i.color; bar.appendChild(fill);
+      row.append(left,right,bar); box.appendChild(row);
+    });
+    document.getElementById(noteId).textContent = `Total clicks: ${total}`;
+  }
+
+  // Expose function for premium analytics
+  window.renderList = renderList;
+  
+  // Render initial demo data
+  renderList('list-sources','note-sources',SOURCES);
+  renderList('list-browsers','note-browsers',BROWSERS);
+
+  // OS list with animation
+  const osBox=document.getElementById('os-list');
+  const totalOS = OS_DATA.reduce((s,d)=>s+d.clicks,0);
+  const maxOS = Math.max(...OS_DATA.map(d=>d.clicks));
+  OS_DATA.forEach(d=>{
+    const row=document.createElement('div'); row.className='row';
+    const left=document.createElement('div'); left.className='left';
+    const dot=document.createElement('span'); dot.className='dot'; dot.style.background=d.color;
+    const label=document.createElement('span'); label.textContent=d.name; left.append(dot,label);
+    const right=document.createElement('div'); right.className='right'; right.textContent=d.clicks;
+    const bar=document.createElement('div'); bar.className='bar';
+    const fill=document.createElement('div'); fill.className='fill'; fill.style.background=d.color; bar.appendChild(fill);
+    row.append(left,right,bar); osBox.appendChild(row);
+    // Animate bar width
+    requestAnimationFrame(()=> fill.style.width=(d.clicks/maxOS*100).toFixed(1)+'%');
+  });
+  document.getElementById('os-note').textContent=`Total clicks: ${totalOS}`;
+})();
+
+/* ========== PREMIUM ANALYTICS INTEGRATION IIFE ========== */
+(() => {
+  const PREMIUM_API_BASE = '/api/premium-analytics';
+  let currentCode = null;
+  let currentRange = '24h';
+  
+  /**
+   * Extract short code from URL or direct input
+   */
+ function extractCode(input) {
+  const trimmed = (input || '').trim();
+  if (!trimmed) return null;
+
+  // If user pasted a full URL like http://127.0.0.1:3000/neu317
+  try {
+    const u = new URL(trimmed);
+    const path = u.pathname.replace(/^\/+|\/+$/g, '');
+    if (path) {
+      return path.split('/').pop();
+    }
+  } catch (e) {
+    // not a full URL, continue
+  }
+
+  // Handle common domain pattern
+  if (trimmed.includes('linkshortner.site/')) {
+    const urlParts = trimmed.split('linkshortner.site/');
+    if (urlParts.length > 1) return urlParts[1].split('?')[0].split('#')[0];
+  }
+
+  // If they entered the short code directly
+  if (/^[A-Za-z0-9_-]{3,64}$/.test(trimmed)) return trimmed;
+
+  // fallback
+  return trimmed;
+}
+
+  /**
+   * Perform search with premium analytics
+   */
+  async function performPremiumSearch() {
+    const searchInput = document.getElementById('q');
+    const searchTerm = searchInput.value.trim();
+    
+    console.log('🔎 performPremiumSearch called with input:', searchTerm);
+
+    if (!searchTerm) {
+      alert('Please enter a short code to search');
+      searchInput.focus();
+      return;
+    }
+    
+    const code = extractCode(searchTerm);
+    console.log('🔎 Extracted short code:', code);
+
+    if (!code) {
+      alert('Invalid code format. Please enter a valid short code.');
+      return;
+    }
+    
+    currentCode = code;
+    showLoadingState(true);
+    await fetchPremiumAnalytics(code, currentRange);
+    showLoadingState(false);
+
+    // START POLLING AFTER SUCCESSFUL SEARCH
+    startAutoRefresh(currentCode, 5000);
+  }
+  
+  /**
+   * Fetch analytics data from premium API
+   */
+  async function fetchPremiumAnalytics(code, range, fromDate = null, toDate = null) {
+    try {
+      let url = `${PREMIUM_API_BASE}/${encodeURIComponent(code)}?range=${encodeURIComponent(range)}`;
+      
+      if (range === 'custom' && fromDate && toDate) {
+        url += `&from=${fromDate}&to=${toDate}`;
+      }
+      
+      console.log('📡 Fetching premium analytics from:', url);
+      
+      const response = await fetch(url);
+      console.log('📡 Premium analytics response status:', response.status);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('📡 Premium analytics data received:', data);
+      
+      // Update all UI components with real data
+      updatePremiumUI(data);
+      
+    } catch (error) {
+      console.error('❌ Premium analytics fetch failed:', error);
+      showErrorState('Failed to load analytics: ' + error.message);
+    }
+  }
+  
+  /**
+   * Update all UI components with premium data
+   */
+
+
+
+
+  // === NEW: format labels for dynamic X-axis from backend timeSeries ===
+  function formatTimeSeriesLabel(rawLabel, granularity) {
+    if (!rawLabel) return '';
+
+    // Example hourly label from server: "2025-12-02 05:00"
+    if (granularity === 'hour') {
+      const parts = rawLabel.split(' ');
+      // Show only "05:00"
+      return parts[1] || rawLabel;
+    }
+
+    // Example daily label from server: "2025-12-02"
+    const bits = rawLabel.split('-'); // [YYYY, MM, DD]
+    if (bits.length === 3) {
+      // Show "12-02"
+      return `${bits[1]}-${bits[2]}`;
+    }
+
+    return rawLabel;
+  }
+
+
+
+function updatePremiumUI(data) {
+  console.log('🧩 updatePremiumUI (timeSeries-first) called with:', data);
+
+  // 1) KPIs
+  if (typeof data.totalClicks === 'number') {
+    document.getElementById('kpiClicks').textContent =
+      data.totalClicks.toLocaleString();
+  }
+  if (typeof data.uniqueDevices === 'number') {
+    document.getElementById('kpiDevices').textContent =
+      data.uniqueDevices.toLocaleString();
+  }
+  if (typeof data.conversionRate === 'number') {
+    document.getElementById('kpiConv').textContent =
+      data.conversionRate.toFixed(1) + '%';
+  } else {
+    document.getElementById('kpiConv').textContent = '—';
+  }
+
+  // 2) MAIN LINE CHART – use normalized timeSeries from backend
+  let labels = [];
+  let points = [];
+
+  if (Array.isArray(data.timeSeries) && data.timeSeries.length > 0) {
+    // backend already sent full ordered buckets: label + count
+    labels = data.timeSeries.map(b => b.label);          // e.g. "1h","2h","D1","W1"
+    points = data.timeSeries.map(b => Number(b.count) || 0);
+  } else if (
+    Array.isArray(data.hourlyDistribution) &&
+    data.hourlyDistribution.length > 0
+  ) {
+    // fallback: reconstruct 24h buckets from hourlyDistribution
+    const byHour = {};
+    data.hourlyDistribution.forEach(h => {
+      const idx = parseInt(h._id, 10);
+      if (!isNaN(idx)) byHour[idx] = Number(h.count) || 0;
+    });
+    for (let i = 0; i < 24; i++) {
+      labels.push(`${i + 1}h`);
+      points.push(byHour[i] || 0);
+    }
+  } else {
+    console.warn('📈 No chart data available in response');
+  }
+
+  if (points.length && typeof drawChart === 'function') {
+    drawChart(points, labels);
+  }
+
+  // Range label
+  const range = data.range || currentRange || '24h';
+  const rangePretty = {
+    '24h': '24 hrs',
+    '7d': '7 days',
+    '28d': '28 days',
+    '3m': '3 months',
+    '6m': '6 months',
+    '365d': '365 days',
+    'custom': 'Custom range'
+  }[range] || range;
+
+  const noteLbl = document.getElementById('noteLbl');
+  if (noteLbl) {
+    noteLbl.textContent = `Range: ${rangePretty}`;
+  }
+
+  // 3) Devices pie
+  if (Array.isArray(data.deviceBreakdown)) {
+    updateDevicesPieWithRealData(data.deviceBreakdown);
+  }
+
+  // 4) Lists
+  if (data.sourceBreakdown) {
+    updateListWithRealData('list-sources','note-sources',data.sourceBreakdown,'Sources');
+  }
+  if (data.browserBreakdown) {
+    updateListWithRealData('list-browsers','note-browsers',data.browserBreakdown,'Browsers');
+  }
+  if (data.osBreakdown) {
+    updateListWithRealData('os-list','os-note',data.osBreakdown,'OS');
+  }
+
+  // 5) World map
+  if (Array.isArray(data.topCountries) &&
+      typeof window.updateWorldMapWithRealData === 'function') {
+    window.updateWorldMapWithRealData(data.topCountries);
+  }
+}
+
+  
+
+  function updateDevicesPieWithRealData(deviceData) {
+  console.log('📊 updateDevicesPieWithRealData called with:', deviceData);
+
+  const css = getComputedStyle(document.documentElement);
+  const COLOR_MAP = {
+    Desktop: css.getPropertyValue('--desktop'),
+    Mobile:  css.getPropertyValue('--mobile'),
+    Tablet:  css.getPropertyValue('--tablet'),
+    Other:   css.getPropertyValue('--other')
+  };
+
+  const buckets = { Desktop:0, Mobile:0, Tablet:0, Other:0 };
+  (deviceData || []).forEach(d => {
+    const key = (d._id || d.name || '').toString();
+    const norm = /desktop/i.test(key) ? 'Desktop'
+              : /mobile|phone/i.test(key) ? 'Mobile'
+              : /tablet|ipad/i.test(key) ? 'Tablet'
+              : 'Other';
+    buckets[norm] += Number(d.count) || 0;
+  });
+
+  console.log('📊 Device buckets after normalization:', buckets);
+
+  const total = Object.values(buckets).reduce((a,b)=>a+b,0) || 1;
+  const pct = v => Math.round(v/total*100) + '%';
+
+  const byId = (id,val)=>{ 
+    const el=document.getElementById(id); 
+    if(el) el.textContent=`${pct(val)} (${val})`; 
+  };
+  byId('p-desktop', buckets.Desktop);
+  byId('p-mobile',  buckets.Mobile);
+  byId('p-tablet',  buckets.Tablet);
+  byId('p-other',   buckets.Other);
+  const note=document.getElementById('notePie'); 
+  if(note) note.textContent=`total ${total}`;
+
+  const g = document.getElementById('slices'); 
+  if(!g) return;
+  while (g.firstChild) g.removeChild(g.firstChild);
+
+  const data = [
+    {label:'Desktop', value:buckets.Desktop, color:COLOR_MAP.Desktop},
+    {label:'Mobile',  value:buckets.Mobile,  color:COLOR_MAP.Mobile},
+    {label:'Tablet',  value:buckets.Tablet,  color:COLOR_MAP.Tablet},
+    {label:'Other',   value:buckets.Other,   color:COLOR_MAP.Other},
+  ].filter(d=>d.value>0);
+
+  const R = 118; 
+  const tip = document.getElementById('tipPie');
+
+  // 🔴 SPECIAL CASE: Only one slice (100%) → draw a full circle
+  if (data.length === 1) {
+    const d = data[0];
+    console.log('📊 Single-slice pie detected, drawing full circle for:', d.label);
+
+    const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    circle.setAttribute('cx', 0);
+    circle.setAttribute('cy', 0);
+    circle.setAttribute('r', R);
+    circle.setAttribute('fill', d.color);
+    circle.setAttribute('stroke', '#fff');
+    circle.setAttribute('stroke-width', '2');
+    circle.style.cursor = 'pointer';
+
+    circle.addEventListener('mouseenter',()=>{
+      circle.setAttribute('stroke-width','3');
+      if (tip) { 
+        tip.style.opacity=1; 
+        tip.innerHTML=`<strong>${d.label}</strong><br>${d.value} (${pct(d.value)})`; 
+      }
+    });
+    circle.addEventListener('mousemove',(e)=>{ 
+      if(tip){ 
+        tip.style.left=(e.clientX+12)+'px'; 
+        tip.style.top=(e.clientY+12)+'px'; 
+      }
+    });
+    circle.addEventListener('mouseleave',()=>{ 
+      circle.setAttribute('stroke-width','2'); 
+      if(tip) tip.style.opacity=0; 
+    });
+
+    g.appendChild(circle);
+    return;
+  }
+
+  // 🔵 Normal multi-slice case
+  let ang = -Math.PI/2;
+  const toPct = v => v/total*100;
+
+  data.forEach(d=>{
+    const slice = toPct(d.value)/100*Math.PI*2;
+    const a0 = ang, a1 = ang + slice; ang = a1;
+    const p0=[Math.cos(a0)*R, Math.sin(a0)*R];
+    const p1=[Math.cos(a1)*R, Math.sin(a1)*R];
+    const large = (a1-a0) > Math.PI ? 1 : 0;
+    const dPath = `M0 0 L${p0[0]} ${p0[1]} A ${R} ${R} 0 ${large} 1 ${p1[0]} ${p1[1]} Z`;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', dPath);
+    path.setAttribute('fill', d.color);
+    path.setAttribute('stroke','#fff');
+    path.setAttribute('stroke-width','2');
+    path.style.cursor='pointer';
+
+    path.addEventListener('mouseenter',()=>{
+      path.setAttribute('stroke-width','3');
+      if (tip) { 
+        tip.style.opacity=1; 
+        tip.innerHTML=`<strong>${d.label}</strong><br>${d.value} (${Math.round(toPct(d.value))}%)`; 
+      }
+    });
+    path.addEventListener('mousemove',(e)=>{ 
+      if(tip){ 
+        tip.style.left=(e.clientX+12)+'px'; 
+        tip.style.top=(e.clientY+12)+'px'; 
+      }
+    });
+    path.addEventListener('mouseleave',()=>{ 
+      path.setAttribute('stroke-width','2'); 
+      if(tip) tip.style.opacity=0; 
+    });
+
+    g.appendChild(path);
+  });
+
+  console.log('📊 Device pie chart updated with real data');
+}
+
+  /**
+   * Update list components with real API data
+   */
+  
+    function updateListWithRealData(listId, noteId, data, type) {
+  console.log(`📋 updateListWithRealData(${listId}, ${type}) called with:`, data);
+
+  const listElement = document.getElementById(listId);
+  if (!listElement) {
+    console.warn('📋 List element not found:', listId);
+    return;
+  }
+
+  const COLOR_MAP = {
+    Facebook:'var(--blue)', Insta:'var(--cyan)', Direct:'var(--green)', Other:'var(--slate)',
+    Chrome:'var(--blue)', Edge:'var(--cyan)', 'UC Pro':'var(--orange)', Safari:'var(--violet)', Firefox:'var(--violet)',
+    Windows:'var(--win)', macOS:'var(--mac)', iOS:'var(--ios)', Android:'var(--android)', Unknown:'var(--slate)'
+  };
+
+  const normName = (raw) => {
+    const n = (raw||'').toString();
+    if (/facebook/i.test(n)) return 'Facebook';
+    if (/insta/i.test(n)) return 'Insta';
+    if (/direct/i.test(n)) return 'Direct';
+    if (/chrome/i.test(n)) return 'Chrome';
+    if (/edge/i.test(n)) return 'Edge';
+    if (/uc/i.test(n)) return 'UC Pro';
+    if (/safari/i.test(n)) return 'Safari';
+    if (/firefox/i.test(n)) return 'Firefox';
+    if (/windows/i.test(n)) return 'Windows';
+    if (/mac|macos|os x/i.test(n)) return 'macOS';
+    if (/ios|iphone|ipad/i.test(n)) return 'iOS';
+    if (/android/i.test(n)) return 'Android';
+    return 'Other';
+  };
+
+  const items = (data||[]).map(x=>{
+    const name = normName(x._id || x.name || 'Other');
+    return { name, clicks: Number(x.count)||0, color: COLOR_MAP[name] || 'var(--slate)' };
+  });
+
+  const total = items.reduce((s,i)=>s+i.clicks,0);
+  const max = Math.max(...items.map(i=>i.clicks), 1);
+  listElement.innerHTML = '';
+
+  items.forEach(i=>{
+    const row = document.createElement('div'); row.className='row';
+    row.innerHTML = `
+      <div class="left">
+        <span class="dot" style="background:${i.color}"></span>
+        <span class="name">${i.name}</span>
+      </div>
+      <div class="right">${i.clicks}</div>
+      <div class="bar"><div class="fill" style="width:${(i.clicks/max*100).toFixed(0)}%; background:${i.color}"></div></div>
+    `;
+    listElement.appendChild(row);
+  });
+
+  const note = document.getElementById(noteId);
+  if (note) note.textContent = `Total ${type.toLowerCase()}: ${total}`;
+
+  console.log(`📋 ${type} list updated. Total:`, total);
+}
+
+    
+  
+  /**
+   * Show/hide loading state
+   */
+  function showLoadingState(show) {
+    if (show) {
+      console.log('⏳ Showing loading state...');
+    } else {
+      console.log('✅ Hiding loading state...');
+    }
+  }
+  
+  /**
+   * Show error message to user
+   */
+  function showErrorState(message) {
+    console.error('❌ Premium analytics error:', message);
+    alert(message);
+  }
+  
+  // Initialize event listeners when DOM is ready
+  function initPremiumAnalytics() {
+    console.log('⚙️ initPremiumAnalytics called');
+    const searchInput = document.getElementById('q');
+    const searchIcon = document.querySelector('.searchbar .icon');
+    
+    if (searchInput && searchIcon) {
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          performPremiumSearch();
+        }
+      });
+      
+      searchIcon.addEventListener('click', performPremiumSearch);
+      searchInput.placeholder = "Search by code (e.g., mongodbtesting, 2mq16e)";
+    }
+    
+    // ===== TOP CHIPS (24h, 7d, 28d, 3m) → PREMIUM FETCH =====
+    const rangesContainer = document.getElementById('ranges');
+    if (rangesContainer) {
+      rangesContainer.addEventListener('click', function(e) {
+        const chip = e.target.closest('.chip');
+        if (!chip || chip.classList.contains('more')) return;
+        
+        const range = chip.dataset.range;
+        console.log('⏱ Range chip clicked:', range);
+
+        if (range && currentCode) {
+          currentRange = range;
+          fetchPremiumAnalytics(currentCode, currentRange);
+        } else {
+          console.log('⏱ Range change ignored because no currentCode yet');
+        }
+      });
+    }
+
+    // ===== NEW: "More ▾" dropdown options (6m, 365d) → PREMIUM FETCH =====
+    const moreMenuEl = document.getElementById('moreMenu');
+    if (moreMenuEl) {
+      moreMenuEl.addEventListener('click', function(e) {
+        const opt = e.target.closest('.opt');
+        if (!opt) return;
+
+        const range = opt.dataset.range;   // "6m" or "365d"
+        console.log('⏱ [Premium] More dropdown option clicked:', range);
+
+        // UI demo setRange is already handled ABOVE in global code.
+        // Here we only care about API fetch.
+        if (range) {
+          currentRange = range;
+          if (currentCode) {
+            fetchPremiumAnalytics(currentCode, currentRange);
+          } else {
+            console.log('⏱ [Premium] No currentCode yet, skipping API fetch');
+          }
+        }
+      });
+    }
+
+    // ===== NEW: Custom range "Apply" → PREMIUM FETCH WITH from/to =====
+    const applyRangeBtn = document.getElementById('applyRange');
+    if (applyRangeBtn) {
+      applyRangeBtn.addEventListener('click', function() {
+        // Outer (demo) listener already does alerts + setRange.
+        // Here we ONLY call the premium API if we have a code.
+        if (!currentCode) {
+          console.log('⏱ [Premium] Custom Apply clicked but no currentCode set – skip API');
+          return;
+        }
+
+        const fromInput = document.getElementById('from');
+        const toInput   = document.getElementById('to');
+        const from = fromInput && fromInput.value;
+        const to   = toInput && toInput.value;
+
+        if (!from || !to) {
+          console.log('⏱ [Premium] Custom range missing from/to – not calling API');
+          return;
+        }
+
+        currentRange = 'custom';
+        console.log('⏱ [Premium] Fetching analytics for custom range:', { code: currentCode, from, to });
+
+        // Your backend already supports: ?range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD
+        fetchPremiumAnalytics(currentCode, 'custom', from, to);
+      });
+    }
+  }
+
+  
+  // Initialize when page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPremiumAnalytics);
+  } else {
+    initPremiumAnalytics();
+  }
+
+  /* ===== AUTO-REFRESH (POLLING) PUT INSIDE IIFE ===== */
+let _autoPollInterval = null;
+
+function startAutoRefresh(code, intervalMs = 5000) {
+  if (!code) return;
+  if (_autoPollInterval) clearInterval(_autoPollInterval);
+
+  console.log('🔁 startAutoRefresh for code:', code, 'currentRange:', currentRange);
+
+  // Helper: always read the latest currentRange
+  const doFetch = () => {
+    const r = currentRange || '24h';
+    console.log('🔁 Auto-refresh tick for code:', code, 'range:', r);
+    fetchPremiumAnalytics(code, r).catch(err =>
+      console.error('🔁 Auto-refresh fetch failed:', err)
+    );
+  };
+
+  // optional: first tick (you already did one fetch in performPremiumSearch)
+  // doFetch();
+
+  _autoPollInterval = setInterval(doFetch, intervalMs);
+}
+
+
+  function stopAutoRefresh() {
+    if (_autoPollInterval) {
+      clearInterval(_autoPollInterval);
+      _autoPollInterval = null;
+      console.log('⏹ Auto-refresh stopped');
+    }
+  }
+
+  // stop polling when user clears search input
+  document.getElementById('q')?.addEventListener('input', (e) => {
+    if (!e.target.value.trim()) stopAutoRefresh();
+  });
+
+  /* ===== END AUTO-REFRESH (POLLING) ===== */
+
+})(); /* end of premium analytics IIFE */
+
+console.log('✅ Analytics Dashboard initialized successfully');
+</script>
+<script>
+  // FAQ accordion: only one <details> open at a time
+  document.addEventListener("DOMContentLoaded", function() {
+    const faqDetails = document.querySelectorAll(".faq details");
+
+    faqDetails.forEach((detail) => {
+      detail.addEventListener("click", function (e) {
+        // allow normal toggle first
+        const isOpen = detail.hasAttribute("open");
+
+        // close all others
+        faqDetails.forEach((other) => {
+          if (other !== detail) {
+            other.removeAttribute("open");
+          }
+        });
+
+        // if it was open, browser will close it by default
+        // if it was closed, it will open → nothing else needed
+      });
+    });
+  });
+</script>
+
+  <script>
+const mobileToggle = document.getElementById("mobileToggle");
+const mobileMenu   = document.getElementById("mobileMenu");
+const backdrop     = document.getElementById("mobileBackdrop");
+
+if(mobileToggle){
+  mobileToggle.addEventListener("click", () => {
+    document.body.classList.toggle("nav-open");
+  });
+}
+
+if(backdrop){
+  backdrop.addEventListener("click", () => {
+    document.body.classList.remove("nav-open");
+  });
+}
+</script>
+
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1077,3 +1077,215 @@ body.nav-open .mobile-menu { display: block !important; pointer-events: auto !im
 
 
 
+/* =======================
+   GLOBAL RESPONSIVENESS
+   ======================= */
+
+/* Reset Widths */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Ensure Content Stays Inside Screen */
+body {
+  overflow-x: hidden;
+}
+
+/* Make Inputs Full Width on Mobile */
+.form input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Make Buttons Stack on Small Screens */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-group button {
+  width: 100%;
+}
+
+/* Center QR Output on Mobile */
+.result {
+  text-align: center;
+}
+
+.qr-area img {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Mobile Menu Fix */
+.mobile-menu-nav a {
+  display: block;
+  width: 100%;
+  padding: 15px;
+}
+
+/* =========================
+      MEDIA BREAKPOINTS
+   ========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  nav.main-nav {
+    display: none;
+  }
+
+  #mobileToggle {
+    display: block;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .form input {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .features-grid,
+  .analytics-grid,
+  .steps-container,
+  .platform-grid,
+  .use-case-card,
+  .qr-use-cases-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .share button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .premium-cta,
+  .final-call-to-action,
+  section {
+    padding: 20px;
+  }
+}
+/* =======================
+   GLOBAL RESPONSIVENESS
+   ======================= */
+
+/* Reset Widths */
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Ensure Content Stays Inside Screen */
+body {
+  overflow-x: hidden;
+}
+
+/* Make Inputs Full Width on Mobile */
+.form input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Make Buttons Stack on Small Screens */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-group button {
+  width: 100%;
+}
+
+/* Center QR Output on Mobile */
+.result {
+  text-align: center;
+}
+
+.qr-area img {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Mobile Menu Fix */
+.mobile-menu-nav a {
+  display: block;
+  width: 100%;
+  padding: 15px;
+}
+
+/* =========================
+      MEDIA BREAKPOINTS
+   ========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  nav.main-nav {
+    display: none;
+  }
+
+  #mobileToggle {
+    display: block;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+
+  .hero h1 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .form input {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .features-grid,
+  .analytics-grid,
+  .steps-container,
+  .platform-grid,
+  .use-case-card,
+  .qr-use-cases-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .share button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .premium-cta,
+  .final-call-to-action,
+  section {
+    padding: 20px;
+  }
+}
