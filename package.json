@@ -1,0 +1,8 @@
+{
+    "name": "premium-shortener-root",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "npm start --prefix backend",
+        "install-all": "npm install --prefix backend"
+    }
+}
