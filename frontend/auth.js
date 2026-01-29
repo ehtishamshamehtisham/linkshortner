@@ -1,3 +1,6 @@
+const API_BASE = "https://linkshortner-6ils.onrender.com";
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginTab = document.getElementById('login-tab');
     const signupTab = document.getElementById('signup-tab');
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('login-password').value;
 
         try {
-            const res = await fetch('/api/auth/login', {
+            const res = await fetch(`${API_BASE}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -89,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('signup-password').value;
 
         try {
-            const res = await fetch('/api/auth/register', {
+            const res = await fetch(`${API_BASE}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password })

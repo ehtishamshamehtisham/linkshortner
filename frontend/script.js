@@ -1,3 +1,5 @@
+const API_BASE = "https://linkshortner-6ils.onrender.com";
+
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -209,7 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 console.log('fetchAnalytics called:', { currentPage, range, linkIdFilter });
 
-                let url = `/api/analytics-data?range=${range}`;
+                let url = `${API_BASE}/api/analytics-data?range=${range}`;
+
 
                 if (range === 'custom' && start && end) {
                     url += `&startDate=${start}&endDate=${end}`;
@@ -591,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     debounce = setTimeout(async () => {
                         try {
-                            const res = await fetch(`/api/links?search=${val}&limit=5`, {
+                            const res = await fetch(`${API_BASE}/api/links?search=${val}&limit=5`, {
                                 headers: { 'Authorization': token }
                             });
                             const d = await res.json();
@@ -835,7 +838,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (editId) {
                         // UPDATE EXISTING LINK
-                        res = await fetch(`/api/links/${editId}`, {
+                        res = await fetch(`${API_BASE}/api/links/${editId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -852,7 +855,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         return; // Stop here for edit mode
                     } else {
                         // CREATE NEW LINK
-                        res = await fetch('/api/shorten', {
+                        res = await fetch(`${API_BASE}/api/shorten`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -1108,7 +1111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const id = e.currentTarget.dataset.id;
                     showConfirmModal('Delete Link?', 'This will permanently remove the link and all its analytics data.', async () => {
                         try {
-                            const res = await fetch(`/api/links/${id}`, {
+                            const res = await fetch(`${API_BASE}/api/links/${id}`, {
                                 method: 'DELETE',
                                 headers: { 'Authorization': token }
                             });
@@ -1128,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const fetchLinks = async () => {
             try {
-                const res = await fetch(`/api/links?page=${currentPageNum}&sort=${currentSort}&search=${currentSearch}`, {
+                const res = await fetch(`${API_BASE}/api/links?page=${currentPageNum}&sort=${currentSort}&search=${currentSearch}`, {
                     headers: { 'Authorization': token }
                 });
                 const data = await res.json();
@@ -1272,7 +1275,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const fetchQRCodes = async () => {
             try {
                 loading && loading.classList.remove('hidden');
-                let url = `/api/qr/list?page=${qrCurrentPageNum}&limit=${qrLimit}&search=${qrSearch}&status=${qrStatus}&dateRange=${qrDateRange}&caption=${qrCaption}`;
+                let url = `${API_BASE}/api/qr/list?page=${qrCurrentPageNum}&limit=${qrLimit}&search=${qrSearch}&status=${qrStatus}&dateRange=${qrDateRange}&caption=${qrCaption}`;
+
                 if (qrDateRange === 'custom') {
                     url += `&startDate=${qrStartDate}&endDate=${qrEndDate}`;
                 }
@@ -1378,7 +1382,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const id = e.currentTarget.dataset.id;
                         showConfirmModal('Delete QR?', 'This will permanently remove this QR code record.', async () => {
                             try {
-                                const res = await fetch(`/api/qr/${id}`, {
+                                const res = await fetch(`${API_BASE}/api/qr/${id}`, {
                                     method: 'DELETE',
                                     headers: { 'Authorization': token }
                                 });
@@ -1471,7 +1475,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     qrCurrentPageNum = 1;
                     fetchQRCodes();
                     try {
-                        const res = await fetch(`/api/links?search=${val}&limit=5`, { headers: { 'Authorization': token } });
+                        const res = await fetch(`${API_BASE}/api/links?search=${val}&limit=5`, { headers: { 'Authorization': token } });
                         const d = await res.json();
                         loading && loading.classList.add('hidden');
                         resultsDropdown.innerHTML = '';
@@ -1560,7 +1564,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     submitIcon.innerHTML = 'refresh';
                     submitIcon.classList.add('animate-spin');
 
-                    const res = await fetch('/api/contact', {
+                    const res = await fetch(`${API_BASE}/api/contact`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, email, subject, message })
@@ -1671,7 +1675,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const fetchUserData = async () => {
             try {
-                const res = await fetch('/api/auth/me', {
+                const res = await fetch(`${API_BASE}/api/auth/me`, {
                     headers: { 'Authorization': token }
                 });
                 if (!res.ok) throw new Error('Failed to fetch user');
@@ -1728,7 +1732,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     saveIcon.innerHTML = 'refresh';
                     saveIcon.classList.add('animate-spin');
 
-                    const res = await fetch('/api/auth/profile', {
+                    const res = await fetch(`${API_BASE}/api/auth/profile`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1768,7 +1772,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 try {
-                    const res = await fetch('/api/auth/password', {
+                    const res = await fetch(`${API_BASE}/api/auth/password`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1801,7 +1805,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 reader.onloadend = async () => {
                     const base64Avatar = reader.result;
                     try {
-                        const res = await fetch('/api/auth/profile', {
+                        const res = await fetch(`${API_BASE}/api/auth/profile`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -1828,7 +1832,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (removeAvatarBtn) {
             removeAvatarBtn.onclick = async () => {
                 try {
-                    const res = await fetch('/api/auth/profile', {
+                    const res = await fetch(`${API_BASE}/api/auth/profile`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
