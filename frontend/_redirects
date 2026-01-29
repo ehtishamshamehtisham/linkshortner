@@ -1,3 +1,2 @@
-/tool2/*  https://linkshortner-tool2.netlify.app/:splat  200
-/tool1/*  /index.html                                   200
-/*        /index.html                                   200
+/tool2/*  /tool2/index.html  200
+/*        /index.html        200

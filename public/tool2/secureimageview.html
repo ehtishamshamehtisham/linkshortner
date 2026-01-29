@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SecureShare - Image View</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2513ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <header
+            class="sticky top-0 z-50 w-full border-b border-solid border-[#e8e7f3] dark:border-white/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-3">
+            <div class="flex items-center justify-between max-w-[1280px] mx-auto">
+                <div class="flex items-center gap-2 text-primary dark:text-white cursor-pointer"
+                    onclick="window.location.href='index.html'">
+                    <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                    <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                </div>
+                <div class="flex flex-1 justify-end gap-8 items-center">
+                    <nav class="hidden md:flex items-center gap-9">
+                        <div class="relative group">
+                            <button
+                                class="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2">
+                                Tools
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+                            </button>
+                            <div
+                                class="absolute left-0 mt-0 w-48 bg-white dark:bg-[#1a1835] border border-[#e8e7f3] dark:border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+                                <div class="p-2 flex flex-col gap-1">
+                                    <a href="index.html"
+                                        class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium">Tool
+                                        1</a>
+                                    <a href="#"
+                                        class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium text-gray-400 cursor-not-allowed">Tool
+                                        2 GPT (Soon)</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="text-sm font-medium hover:text-primary transition-colors"
+                            href="securehowitworks.html">How it works</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors"
+                            href="secureaboutus.html">About Us</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors"
+                            href="securecontact.html">Contact</a>
+                    </nav>
+                    <div class="flex gap-3">
+                        <button onclick="window.location.href='index.html'"
+                            class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                            <span>Share Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 md:px-10 lg:px-40">
+            <div class="w-full max-w-[1080px] space-y-8 flex flex-col">
+                <!-- Image Title & Info -->
+                <div class="flex flex-col md:flex-row justify-between items-end gap-4 border-l-4 border-primary pl-4">
+                    <div>
+                        <h1 id="fileName" class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Secure
+                            Image</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Shared via <span
+                                class="font-medium text-primary">SecureShare</span> • <span id="fileType">Image</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg">
+                        <span class="material-symbols-outlined text-green-500 text-[18px]">verified_user</span>
+                        <span
+                            class="text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">End-to-End
+                            Encrypted</span>
+                    </div>
+                </div>
+                <!-- Centered Image Preview -->
+                <div
+                    class="w-full bg-white dark:bg-slate-900 p-4 md:p-8 rounded-xl shadow-xl dark:shadow-2xl border border-slate-200 dark:border-slate-800">
+                    <div class="relative group">
+                        <div
+                            class="flex items-center justify-center bg-slate-50 dark:bg-slate-800/50 rounded-lg overflow-hidden min-h-[400px] md:min-h-[600px] border border-slate-100 dark:border-slate-700">
+                            <img id="mainImage" class="max-w-full max-h-[800px] object-contain" src=""
+                                alt="Secure content" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Action Toolbar -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="flex flex-wrap justify-center gap-4 w-full max-w-[520px]">
+                        <button id="downloadBtn"
+                            class="flex-1 min-w-[180px] flex items-center justify-center gap-2 bg-primary text-white rounded-xl h-14 px-6 text-base font-bold transition-all hover:bg-opacity-90 active:scale-[0.98] shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined">download</span>
+                            <span>Download Image</span>
+                        </button>
+                        <button id="fullSizeBtn"
+                            class="flex-1 min-w-[180px] flex items-center justify-center gap-2 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl h-14 px-6 text-base font-bold transition-all hover:bg-slate-50 dark:hover:bg-slate-700 active:scale-[0.98]">
+                            <span class="material-symbols-outlined">fullscreen</span>
+                            <span>View Full Size</span>
+                        </button>
+                    </div>
+                    <!-- Security Disclaimer -->
+                    <div class="flex flex-col items-center pt-4 px-4 text-center">
+                        <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-1">
+                            <span class="material-symbols-outlined text-[18px]">lock</span>
+                            <p class="text-sm font-medium uppercase tracking-widest">Confidential Information</p>
+                        </div>
+                        <p class="text-primary/80 dark:text-primary/60 text-sm font-normal italic">
+                            This content is one-time view and protected.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer
+            class="bg-white dark:bg-background-dark/80 border-t border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-16 mt-auto">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Brand Column -->
+                    <div
+                        class="col-span-1 lg:col-span-1 border-b border-gray-100 dark:border-white/5 pb-8 md:border-none md:pb-0">
+                        <div class="flex items-center gap-2 text-primary dark:text-white mb-6">
+                            <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                            <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
+                            End-to-end encrypted file sharing for everyone. Private by design, secure by default.
+                        </p>
+                    </div>
+
+                    <!-- Product Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            Product</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="securehowitworks.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">How
+                                    it works</a></li>
+                            <li><a href="index.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Share
+                                    Tool</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">Legal
+                        </h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="secureprivacypolicy.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Privacy
+                                    Policy</a></li>
+                            <li><a href="securetermsandcondition.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Terms
+                                    & Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            Company</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="secureaboutus.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">About
+                                    Us</a></li>
+                            <li><a href="securecontact.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Support
+                                    / Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-xs mt-4">© 2024 SecureShare Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/toast.js"></script>
+    <script src="js/imageview.js"></script>
+</body>
+
+</html>

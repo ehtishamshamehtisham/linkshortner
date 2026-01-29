@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SecureShare - View Content</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2513ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Anti-Copy & Anti-Screenshot Measures */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#0f0d1b] dark:text-white transition-colors duration-300"
+    oncontextmenu="return false;">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Sticky Timer Banner -->
+        <div id="timerBanner"
+            class="sticky top-0 z-[60] w-full bg-red-600 text-white py-2 px-6 flex items-center justify-center gap-4 shadow-lg hidden">
+            <span class="material-symbols-outlined animate-pulse">timer</span>
+            <p class="font-bold text-sm uppercase tracking-widest leading-none">Self-Destruct in: <span
+                    id="countdown">--:--</span></p>
+        </div>
+
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-4 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+            <div class="flex items-center gap-4 text-primary dark:text-white cursor-pointer"
+                onclick="window.location.href='index.html'">
+                <div class="size-6 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-3xl">shield_lock</span>
+                </div>
+                <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">SecureShare</h2>
+            </div>
+            <div class="flex flex-1 justify-end gap-8 items-center">
+                <nav class="hidden md:flex items-center gap-9">
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2">
+                            Tools
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-0 w-48 bg-white dark:bg-[#1a1835] border border-[#e8e7f3] dark:border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+                            <div class="p-2 flex flex-col gap-1">
+                                <a href="index.html"
+                                    class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium">Tool
+                                    1</a>
+                                <a href="#"
+                                    class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium text-gray-400 cursor-not-allowed">Tool
+                                    2 GPT (Soon)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="securehowitworks.html">How
+                        it works</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="secureaboutus.html">About
+                        Us</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="securecontact.html">Contact</a>
+                </nav>
+                <div class="flex gap-3">
+                    <button onclick="window.location.href='index.html'"
+                        class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                        <span>Share Now</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 max-w-[800px] w-full mx-auto p-6 space-y-8">
+            <div id="contentContainer" class="space-y-6">
+                <!-- Content items will be injected here -->
+            </div>
+
+            <div class="pt-10 border-t border-[#e8e7f3] dark:border-white/10 text-center space-y-4">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 text-yellow-600 rounded-lg text-sm font-medium">
+                    <span class="material-symbols-outlined text-lg">warning</span>
+                    This content will self-destruct once you close this page.
+                </div>
+                <p class="text-xs text-[#524c9a] dark:text-gray-500 uppercase tracking-widest font-bold">
+                    One-Time Access • End-to-End Encrypted
+                </p>
+            </div>
+        </main>
+
+        <footer
+            class="bg-white dark:bg-background-dark/80 border-t border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-16 mt-auto">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Brand Column -->
+                    <div
+                        class="col-span-1 lg:col-span-1 border-b border-gray-100 dark:border-white/5 pb-8 md:border-none md:pb-0">
+                        <div class="flex items-center gap-2 text-primary dark:text-white mb-6">
+                            <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                            <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
+                            End-to-end encrypted file sharing for everyone. Private by design, secure by default.
+                        </p>
+                    </div>
+
+                    <!-- Product Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            Product</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="securehowitworks.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">How
+                                    it works</a></li>
+                            <li><a href="index.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Share
+                                    Tool</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">Legal
+                        </h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="secureprivacypolicy.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Privacy
+                                    Policy</a></li>
+                            <li><a href="securetermsandcondition.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Terms
+                                    & Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            Company</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="secureaboutus.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">About
+                                    Us</a></li>
+                            <li><a href="securecontact.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Support
+                                    / Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-xs mt-4">© 2024 SecureShare Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/toast.js"></script>
+    <script src="js/view.js"></script>
+    <script>
+        function handleClose() {
+            if (confirm('Are you sure? This session will be destroyed and content will no longer be accessible.')) {
+                sessionStorage.removeItem('secure_content');
+                window.location.href = 'index.html';
+            }
+        }
+        window.onbeforeunload = () => {
+            // sessionStorage.removeItem('secure_content'); // Optional: enforce destruction on close
+        };
+    </script>
+</body>
+
+</html>
