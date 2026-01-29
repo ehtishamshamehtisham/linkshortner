@@ -161,7 +161,7 @@ generateBtn.onclick = async () => {
     generateBtn.innerText = 'Creating Secure Share...';
 
     try {
-        const res = await fetch(`${API_BASE}/api/content`, {
+        const res = await fetch(`${API_BASE}/api/content/upload`, {
             method: 'POST',
             body: formData
         });

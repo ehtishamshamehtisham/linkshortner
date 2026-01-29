@@ -1193,8 +1193,28 @@
     <div id="mobile-menu"
         class="fixed top-[72px] left-0 w-full bg-surface-darker/95 backdrop-blur-xl border-b border-border-dark z-[999] hidden -translate-y-full transition-transform duration-300">
         <nav class="flex flex-col p-6 gap-4">
+            <!-- Tools Accordion -->
+            <div class="border-b border-white/5">
+                <button
+                    class="w-full text-gray-300 hover:text-white text-lg font-bold py-3 flex items-center justify-between group"
+                    onclick="const d = document.getElementById('mobile-tools-dropdown'); d.classList.toggle('hidden'); this.querySelector('.arrow').classList.toggle('rotate-180')">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[24px]">widgets</span> Tools
+                    </div>
+                    <span class="material-symbols-outlined arrow transition-transform duration-300">expand_more</span>
+                </button>
+                <div id="mobile-tools-dropdown" class="hidden flex flex-col gap-2 pl-4 py-2 bg-white/5 rounded-lg mb-2">
+                    <a href="/" class="text-gray-400 hover:text-white text-base py-2 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[20px]">link</span> Shortener
+                    </a>
+                    <a href="/tool2/" class="text-gray-400 hover:text-white text-base py-2 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-[20px] text-emerald-400">lock</span> Secure View
+                    </a>
+                </div>
+            </div>
+
             <a class="text-gray-300 hover:text-white text-lg font-bold py-3 border-b border-white/5 flex items-center gap-3"
-                href="index.html">
+                href="/">
                 <span class="material-symbols-outlined">dashboard</span> Dashboard
             </a>
             <a class="text-gray-300 hover:text-white text-lg font-bold py-3 border-b border-white/5 flex items-center gap-3"
