@@ -6,7 +6,7 @@ const countdownEl = document.getElementById('countdown');
 if (!contentData || !contentData.items) {
     showToast('No content found or session expired.', 'error');
     setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = 'secure.html';
     }, 2000);
 }
 
@@ -28,7 +28,7 @@ const startTimer = () => {
                     <span class="material-symbols-outlined text-7xl text-red-500 mb-6 animate-bounce">timer_off</span>
                     <h1 class="text-4xl font-black mb-4">Content Destroyed</h1>
                     <p class="text-gray-400 max-w-md">Your secure session has timed out. For security reasons, all data has been wiped from this view.</p>
-                    <button onclick="window.location.href='index.html'" class="mt-10 bg-primary px-10 py-4 rounded-2xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all">Return Home</button>
+                    <button onclick="window.location.href='secure.html'" class="mt-10 bg-primary px-10 py-4 rounded-2xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all">Return Home</button>
                 </div>
             `;
             return;

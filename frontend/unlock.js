@@ -59,7 +59,7 @@ if (!shareId) {
                         class="w-full bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/20">
                         Unlock Manually
                     </button>
-                    <button onclick="window.location.href = 'index.html'" class="w-full text-sm text-gray-500 hover:text-primary transition-colors">
+                    <button onclick="window.location.href = 'secure.html'" class="w-full text-sm text-gray-500 hover:text-primary transition-colors">
                         Go Home
                     </button>
                 </div>
