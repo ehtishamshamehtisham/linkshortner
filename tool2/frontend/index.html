@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SecureShare - Home &amp; Tool Hub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2513ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(37, 19, 236, 0.05) 0%, rgba(246, 246, 248, 1) 100%);
+        }
+        .dark .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(37, 19, 236, 0.15) 0%, rgba(18, 16, 34, 1) 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#0f0d1b] dark:text-white transition-colors duration-300">
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+        <header
+            class="sticky top-0 z-50 w-full border-b border-solid border-[#e8e7f3] dark:border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 lg:px-40 py-3">
+            <div class="flex items-center justify-between max-w-[1280px] mx-auto">
+                <div class="flex items-center gap-2">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                    </div>
+                    <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                </div>
+                <div class="flex flex-1 justify-end gap-8 items-center">
+                    <nav class="hidden md:flex items-center gap-9">
+                        <div class="relative group">
+                            <button
+                                class="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2">
+                                Tools
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+                            </button>
+                            <div
+                                class="absolute left-0 mt-0 w-48 bg-white dark:bg-[#1a1835] border border-[#e8e7f3] dark:border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+                                <div class="p-2 flex flex-col gap-1">
+                                    <!--tool-1 -->
+                                    <a href="/tool1"
+                                        class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium">URL Shortener
+                                        </a>
+                                    <!--tool-2 -->
+                                    <a href="/tool2"
+                                        class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium text-gray-400 cursor-not-allowed">Tool
+                                        Secure View</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="text-sm font-medium hover:text-primary transition-colors"
+                            href="securehowitworks.html">How it works</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors"
+                            href="secureaboutus.html">About Us</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors"
+                            href="securecontact.html">Contact</a>
+                    </nav>
+                    <div class="flex gap-3">
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                            class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                            <span>Share Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1">
+            <section class="hero-gradient pt-16 pb-24 px-6 lg:px-40 flex flex-col items-center text-center">
+                <div class="max-w-[840px] w-full flex flex-col items-center gap-4 mb-10">
+                    <h1
+                        class="text-[#0f0d1b] dark:text-white text-3xl md:text-6xl font-black leading-tight tracking-[-0.033em]">
+                        Share Anything <span class="text-primary">Securely</span>
+                    </h1>
+                    <p
+                        class="text-[#524c9a] dark:text-gray-400 text-base md:text-lg font-normal leading-relaxed max-w-[600px]">
+                        The simplest way to send sensitive files and messages with end-to-end encryption.
+                        Your data is never stored unencrypted.
+                    </p>
+                </div>
+
+                <div class="max-w-[720px] w-full relative">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-purple-500/20 blur-3xl opacity-50 -z-10">
+                    </div>
+                    <div
+                        class="bg-white dark:bg-[#1a1835] rounded-3xl border border-[#d1cfe7] dark:border-white/10 shadow-2xl overflow-hidden flex flex-col text-left">
+                        <div
+                            class="flex border-b border-[#e8e7f3] dark:border-white/10 bg-[#f8f8fc] dark:bg-white/5 px-2 gap-2 md:gap-4 overflow-x-auto no-scrollbar">
+                            <a id="textTabBtn"
+                                class="flex-1 min-w-[100px] flex flex-col items-center justify-center border-b-[3px] border-b-primary text-slate-900 dark:text-white pb-3 pt-4 cursor-pointer whitespace-nowrap transition-all"
+                                href="#">
+                                <span class="material-symbols-outlined mb-1">description</span>
+                                <p class="text-xs font-bold">Text Content</p>
+                            </a>
+                            <a id="linkTabBtn"
+                                class="flex-1 min-w-[100px] flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-400 pb-3 pt-4 hover:text-slate-600 transition-colors cursor-pointer whitespace-nowrap transition-all"
+                                href="#">
+                                <span class="material-symbols-outlined mb-1">link</span>
+                                <p class="text-xs font-bold">Secure Link</p>
+                            </a>
+                            <a id="imageTabBtn"
+                                class="flex-1 min-w-[100px] flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-400 pb-3 pt-4 hover:text-slate-600 transition-colors cursor-pointer whitespace-nowrap transition-all"
+                                href="#">
+                                <span class="material-symbols-outlined mb-1">image</span>
+                                <p class="text-xs font-bold">Upload Image</p>
+                            </a>
+                            <a id="videoTabBtn"
+                                class="flex-1 min-w-[100px] flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-400 pb-3 pt-4 hover:text-slate-600 transition-colors cursor-pointer whitespace-nowrap transition-all"
+                                href="#">
+                                <span class="material-symbols-outlined mb-1">videocam</span>
+                                <p class="text-xs font-bold">Upload Video</p>
+                            </a>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <!-- Text Section -->
+                            <div id="textInputArea" class="space-y-3">
+                                <textarea id="textDataInput"
+                                    class="w-full min-h-[160px] p-4 rounded-xl border-2 border-[#e8e7f3] dark:border-white/10 bg-[#f8f8fc] dark:bg-[#121022] text-[#0f0d1b] dark:text-white focus:border-primary focus:ring-0 transition-all resize-none placeholder:text-gray-400"
+                                    placeholder="Type your secret message here..."></textarea>
+                            </div>
+
+                            <!-- Link Section -->
+                            <div id="linkInputArea" class="space-y-3 hidden">
+                                <input id="linkDataInput" type="url"
+                                    class="w-full h-14 p-4 rounded-xl border-2 border-[#e8e7f3] dark:border-white/10 bg-[#f8f8fc] dark:bg-[#121022] text-[#0f0d1b] dark:text-white focus:border-primary focus:ring-0 transition-all placeholder:text-gray-400"
+                                    placeholder="https://example.com" />
+                            </div>
+
+                            <!-- Image Section -->
+                            <div id="imageInputArea" class="space-y-3 hidden">
+                                <div id="imageDropZone"
+                                    class="flex flex-col items-center justify-center w-full min-h-[160px] border-2 border-dashed border-[#e8e7f3] dark:border-white/10 rounded-xl bg-[#f8f8fc] dark:bg-white/5 p-6 text-center cursor-pointer hover:border-primary transition-colors">
+                                    <span
+                                        class="material-symbols-outlined text-4xl text-primary mb-2">add_photo_alternate</span>
+                                    <p class="text-[#0f0d1b] dark:text-white font-bold">Add Images (Max 5MB)</p>
+                                </div>
+                                <div id="selectedImagesList" class="flex flex-wrap gap-2 pt-2"></div>
+                            </div>
+
+                            <!-- Video Section -->
+                            <div id="videoInputArea" class="space-y-3 hidden">
+                                <div
+                                    class="flex flex-col items-center justify-center w-full min-h-[160px] border-2 border-dashed border-[#e8e7f3] dark:border-white/10 rounded-xl bg-[#f8f8fc] dark:bg-white/5 p-6 text-center opacity-60 cursor-not-allowed">
+                                    <span
+                                        class="material-symbols-outlined text-4xl text-gray-400 mb-2">videocam_off</span>
+                                    <p class="text-[#0f0d1b] dark:text-white font-bold">Video Upload Disabled</p>
+                                    <p
+                                        class="text-[#524c9a] dark:text-gray-400 text-xs font-bold uppercase tracking-wider mt-2 bg-yellow-500/10 text-yellow-600 px-3 py-1 rounded-full w-fit mx-auto">
+                                        Coming Soon</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="flex flex-col gap-2">
+                                    <label
+                                        class="text-xs font-bold text-[#524c9a] dark:text-gray-400 uppercase tracking-wider text-left">Max
+                                        Views</label>
+                                    <select id="maxViewsSelect"
+                                        class="rounded-lg border-[#e8e7f3] dark:border-white/10 bg-white dark:bg-[#121022] text-sm h-11">
+                                        <option value="1">1 View</option>
+                                        <option value="2">2 Views</option>
+                                        <option value="3">3 Views</option>
+                                        <option value="4">4 Views</option>
+                                        <option value="5">5 Views</option>
+                                        <option value="6">6 Views</option>
+                                        <option value="7">7 Views</option>
+                                        <option value="10">10 Views</option>
+                                        <option value="20">20 Views</option>
+                                        <option value="35">35 Views</option>
+                                        <option value="50">50 Views</option>
+                                        <option value="100">100 Views</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label
+                                        class="text-xs font-bold text-[#524c9a] dark:text-gray-400 uppercase tracking-wider text-left">Expiry
+                                        Duration</label>
+                                    <select id="expirySelect"
+                                        class="rounded-lg border-[#e8e7f3] dark:border-white/10 bg-white dark:bg-[#121022] text-sm h-11">
+                                        <option>1 minute</option>
+                                        <option>2 minutes</option>
+                                        <option>5 minutes</option>
+                                        <option>10 minutes</option>
+                                        <option>1 hour</option>
+                                        <option>2 hours</option>
+                                        <option>6 hours</option>
+                                        <option>10 hours</option>
+                                        <option>24 hours</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label
+                                        class="text-xs font-bold text-[#524c9a] dark:text-gray-400 uppercase tracking-wider text-left">Password</label>
+                                    <div class="relative">
+                                        <input id="passwordInput"
+                                            class="w-full rounded-lg border-[#e8e7f3] dark:border-white/10 bg-white dark:bg-[#121022] text-sm h-11 pr-10"
+                                            placeholder="Set a password" type="password" />
+                                        <span
+                                            class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">lock</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="generateBtn"
+                                class="w-full bg-primary text-white h-14 rounded-xl font-bold text-lg shadow-xl shadow-primary/30 transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined">link</span>
+                                Generate Secure Link
+                            </button>
+
+                            <!-- Result Card -->
+                            <div id="resultCard" class="p-4 bg-primary/10 border border-primary/20 rounded-xl hidden">
+                                <p class="text-primary text-xs font-bold mb-2">Secure Link Created:</p>
+                                <div class="flex gap-2">
+                                    <input id="shareLinkInput"
+                                        class="flex-1 bg-white dark:bg-[#121022] border-none rounded-lg px-3 py-2 text-xs font-mono"
+                                        readonly />
+                                    <button id="copyBtn"
+                                        class="bg-primary text-white px-3 rounded-lg hover:bg-opacity-90">
+                                        <span class="material-symbols-outlined text-sm">content_copy</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-24 px-6 lg:px-40 bg-white dark:bg-background-dark/50">
+                <div class="max-w-[1280px] mx-auto">
+                    <div class="flex flex-col gap-4 mb-16 items-center text-center">
+                        <h2 class="text-primary text-sm font-bold uppercase tracking-[0.2em]">Our Core Strengths</h2>
+                        <h3
+                            class="text-[#0f0d1b] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-tight max-w-[720px]">
+                            Built for privacy-conscious individuals and modern teams.
+                        </h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div
+                            class="group flex flex-col gap-6 rounded-2xl border border-[#d1cfe7] dark:border-white/10 bg-background-light dark:bg-white/5 p-8 transition-all hover:shadow-xl hover:border-primary/30">
+                            <div
+                                class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-3xl">verified_user</span>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4 class="text-xl font-bold leading-tight">Privacy First</h4>
+                                <p class="text-[#524c9a] dark:text-gray-400 text-base leading-normal">
+                                    Zero-knowledge architecture means only you and your recipient can see the data.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="group flex flex-col gap-6 rounded-2xl border border-[#d1cfe7] dark:border-white/10 bg-background-light dark:bg-white/5 p-8 transition-all hover:shadow-xl hover:border-primary/30">
+                            <div
+                                class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-3xl">bolt</span>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4 class="text-xl font-bold leading-tight">Lightning Speed</h4>
+                                <p class="text-[#524c9a] dark:text-gray-400 text-base leading-normal">
+                                    Instant link generation and hardware-accelerated uploads.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="group flex flex-col gap-6 rounded-2xl border border-[#d1cfe7] dark:border-white/10 bg-background-light dark:bg-white/5 p-8 transition-all hover:shadow-xl hover:border-primary/30">
+                            <div
+                                class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-3xl">lock</span>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4 class="text-xl font-bold leading-tight">Bank-Grade Security</h4>
+                                <p class="text-[#524c9a] dark:text-gray-400 text-base leading-normal">
+                                    Military-grade AES-256 encryption protecting every byte.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer
+            class="bg-white dark:bg-background-dark/80 border-t border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-16">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <!-- Brand Column -->
+                    <div
+                        class="col-span-1 lg:col-span-1 border-b border-gray-100 dark:border-white/5 pb-8 md:border-none md:pb-0">
+                        <div class="flex items-center gap-2 text-primary dark:text-white mb-6">
+                            <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                            <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
+                            End-to-end encrypted file sharing for everyone. Private by design, secure by default.
+                        </p>
+                    </div>
+
+                    <!-- Product Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            Product</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="securehowitworks.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">How
+                                    it works</a></li>
+                            <li><a href="index.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Share
+                                    Tool</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">Legal
+                        </h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="secureprivacypolicy.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Privacy
+                                    Policy</a></li>
+                            <li><a href="securetermsandcondition.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Terms
+                                    & Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div>
+                        <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            Company</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="secureaboutus.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">About
+                                    Us</a></li>
+                            <li><a href="securecontact.html"
+                                    class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Support
+                                    / Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    class="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-xs mt-4">© 2024 SecureShare Inc. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/toast.js"></script>
+    <script src="js/tool.js"></script>
+</body>
+
+</html>

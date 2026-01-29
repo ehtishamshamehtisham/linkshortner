@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About SecureShare - Privacy-First Sharing</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2513ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#0f0d1b] dark:text-white transition-colors duration-200">
+    <!-- Top Navigation -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-solid border-[#e8e7f3] dark:border-white/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-3">
+        <div class="flex items-center justify-between max-w-[1280px] mx-auto">
+            <div class="flex items-center gap-2 text-primary dark:text-white cursor-pointer"
+                onclick="window.location.href='index.html'">
+                <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+            </div>
+            <div class="flex flex-1 justify-end gap-8 items-center">
+                <nav class="hidden md:flex items-center gap-9">
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2">
+                            Tools
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute left-0 mt-0 w-48 bg-white dark:bg-[#1a1835] border border-[#e8e7f3] dark:border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+                            <div class="p-2 flex flex-col gap-1">
+                                <a href="index.html"
+                                    class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium">Tool
+                                    1</a>
+                                <a href="#"
+                                    class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium text-gray-400 cursor-not-allowed">Tool
+                                    2 GPT (Soon)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="securehowitworks.html">How
+                        it works</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="secureaboutus.html">About
+                        Us</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="securecontact.html">Contact</a>
+                </nav>
+                <div class="flex gap-3">
+                    <button onclick="window.location.href='index.html'"
+                        class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                        <span>Share Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="flex flex-col items-center">
+        <!-- Hero Section -->
+        <section class="w-full max-w-[1200px] px-6 py-20 text-center">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                <span class="material-symbols-outlined text-sm">verified_user</span>
+                Security First
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight mb-6 max-w-[800px] mx-auto">
+                Privacy-first sharing for the <span class="text-primary">modern web</span>
+            </h1>
+            <p class="text-lg text-[#524c9a] dark:text-gray-400 max-w-[650px] mx-auto mb-10 leading-relaxed">
+                In an era of data breaches, we built a sanctuary for your files. Our mission is to democratize
+                high-level encryption for everyday users, ensuring your digital footprint remains yours alone.
+            </p>
+            <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-2xl relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+                <img alt="Abstract blue digital network and data security concept" class="w-full h-full object-cover"
+                    data-alt="Abstract blue digital network representation"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8sQYw-g7rG39OX_Fk_CQnZ7bX9AEmafj438cB2qy9pkZa2QNaXGaEKttky6PuTCnll41NedJR-nQjjOon4jE00gElxlsP0B_MZq9cPg62uKenzFYh7r-xTAUj9YByA9peUMM1GZql4kZjQbSGthy75ztgMlzCV5cqfvuF5-DRQNcTWyzJNLK7EtiERwvEBJHu4Hxc13TejQUSroRz-Do6kiNlTsYsv9rsyXbOM4pdPd0bAWMh-oBKW4yU3Li8Fxjw0rhnJHrU-Kfw" />
+            </div>
+        </section>
+        <!-- Narrative Section -->
+        <section class="w-full max-w-[800px] px-6 py-12">
+            <div class="flex flex-col gap-6">
+                <h3 class="text-2xl font-bold">Our Story</h3>
+                <p class="text-lg leading-relaxed text-[#524c9a] dark:text-gray-400">
+                    SecureShare began in 2021 when a small team of cryptographers and developers realized that the tools
+                    we use to share our most sensitive information were fundamentally broken. Most platforms treat user
+                    data as a commodity to be mined, analyzed, and sold.
+                </p>
+                <p class="text-lg leading-relaxed text-[#524c9a] dark:text-gray-400">
+                    We decided to build something different. A platform where zero-knowledge encryption isn't an
+                    "advanced feature," but the core foundation. We believe that whether you're a designer sharing a
+                    client mockup or a legal team transferring sensitive contracts, you shouldn't have to sacrifice ease
+                    of use for peace of mind.
+                </p>
+            </div>
+        </section>
+        <!-- Values Section -->
+        <section class="w-full bg-[#f8f8fc] dark:bg-white/5 py-24">
+            <div class="max-w-[1200px] mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-black mb-4">Our Core Values</h2>
+                    <p class="text-[#524c9a] dark:text-gray-400">The pillars that define every decision we make at
+                        SecureShare.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Value 1 -->
+                    <div
+                        class="bg-white dark:bg-background-dark p-8 rounded-xl border border-[#e8e7f3] dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">shield</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Privacy First</h4>
+                        <p class="text-sm leading-relaxed text-[#524c9a] dark:text-gray-400">
+                            No tracking, no data selling. Your data stays yours alone. We employ end-to-end encryption
+                            by default on every single transfer.
+                        </p>
+                    </div>
+                    <!-- Value 2 -->
+                    <div
+                        class="bg-white dark:bg-background-dark p-8 rounded-xl border border-[#e8e7f3] dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">bolt</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Simplicity</h4>
+                        <p class="text-sm leading-relaxed text-[#524c9a] dark:text-gray-400">
+                            Enterprise-grade security with consumer-grade ease of use. We hide the complexity of
+                            encryption behind a clean, intuitive interface.
+                        </p>
+                    </div>
+                    <!-- Value 3 -->
+                    <div
+                        class="bg-white dark:bg-background-dark p-8 rounded-xl border border-[#e8e7f3] dark:border-white/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">dns</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Reliability</h4>
+                        <p class="text-sm leading-relaxed text-[#524c9a] dark:text-gray-400">
+                            99.9% uptime for your most critical transfers. Our distributed infrastructure ensures your
+                            files are available whenever you need them.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Technical Philosophy Section -->
+        <section class="w-full max-w-[1200px] px-6 py-24">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="flex-1 order-2 md:order-1">
+                    <h2 class="text-3xl font-black mb-6">Our Technical Philosophy</h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="mt-1 text-primary"><span class="material-symbols-outlined">lock_open</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-1">Open Standards</h5>
+                                <p class="text-sm text-[#524c9a] dark:text-gray-400">We use industry-standard AES-256
+                                    and Argon2 key derivation. No custom, unproven protocols.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1 text-primary"><span class="material-symbols-outlined">key</span></div>
+                            <div>
+                                <h5 class="font-bold mb-1">Zero-Knowledge Architecture</h5>
+                                <p class="text-sm text-[#524c9a] dark:text-gray-400">We never see your passwords or your
+                                    files. Encryption happens locally in your browser.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1 text-primary"><span class="material-symbols-outlined">analytics</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-1">Ethical Telemetry</h5>
+                                <p class="text-sm text-[#524c9a] dark:text-gray-400">We only collect anonymized
+                                    performance data to improve our service, never your identity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 order-1 md:order-2">
+                    <div
+                        class="relative w-full aspect-square bg-primary/5 rounded-2xl flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <!-- Decorative abstract grid -->
+                            <div class="grid grid-cols-4 gap-4 opacity-20">
+                                <div class="w-16 h-16 bg-primary rounded"></div>
+                                <div class="w-16 h-16 bg-primary/50 rounded"></div>
+                                <div class="w-16 h-16 bg-primary rounded"></div>
+                                <div class="w-16 h-16 bg-primary/20 rounded"></div>
+                            </div>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-[120px] text-primary relative z-10">enhanced_encryption</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="w-full max-w-[1200px] px-6 pb-24">
+            <div class="bg-primary rounded-2xl p-12 text-center text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-12 -mt-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-12 -mb-12 w-64 h-64 bg-black/10 rounded-full blur-3xl"></div>
+                <h2 class="text-3xl font-black mb-4 relative z-10">Join the movement for a safer web</h2>
+                <p class="text-white/80 max-w-[600px] mx-auto mb-8 relative z-10">
+                    Experience the peace of mind that comes with enterprise-grade encryption. No account required to
+                    start your first secure transfer.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 relative z-10">
+                    <button
+                        class="h-12 px-8 bg-white text-primary font-bold rounded-lg hover:bg-[#f8f8fc] transition-colors shadow-lg">Start
+                        Sharing Now</button>
+                    <button
+                        class="h-12 px-8 bg-primary/20 border border-white/20 text-white font-bold rounded-lg hover:bg-white/10 transition-colors">Contact
+                        Sales</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer
+        class="bg-white dark:bg-background-dark/80 border-t border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-16">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand Column -->
+                <div
+                    class="col-span-1 lg:col-span-1 border-b border-gray-100 dark:border-white/5 pb-8 md:border-none md:pb-0">
+                    <div class="flex items-center gap-2 text-primary dark:text-white mb-6">
+                        <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
+                        <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
+                        End-to-end encrypted file sharing for everyone. Private by design, secure by default.
+                    </p>
+                </div>
+
+                <!-- Product Column -->
+                <div>
+                    <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">Product
+                    </h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="securehowitworks.html"
+                                class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">How
+                                it works</a></li>
+                        <li><a href="index.html"
+                                class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Share
+                                Tool</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal Column -->
+                <div>
+                    <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">Legal
+                    </h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="secureprivacypolicy.html"
+                                class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Privacy
+                                Policy</a></li>
+                        <li><a href="securetermsandcondition.html"
+                                class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Terms
+                                & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Column -->
+                <div>
+                    <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">Company
+                    </h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="secureaboutus.html"
+                                class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">About
+                                Us</a></li>
+                        <li><a href="securecontact.html"
+                                class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Support
+                                / Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-xs mt-4">© 2024 SecureShare Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/toast.js"></script>
+</body>
+
+</html>
