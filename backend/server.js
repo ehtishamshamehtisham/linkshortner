@@ -2,7 +2,7 @@
 const tool1Routes = require("./routes/tool1.routes");
 const tool2Routes = require("./routes/tool2.routes");
 const contentRoutes = require("./routes/content");
-const contactRoutes = require("./routes/Contact");
+const contactRoutes = require("./routes/contact");
 
 // ===== CORE =====
 const express = require('express');
