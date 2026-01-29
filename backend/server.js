@@ -1,12 +1,26 @@
+// ===== ROUTES =====
+const tool1Routes = require("./routes/tool1.routes");
+const tool2Routes = require("./routes/tool2.routes");
+const contentRoutes = require("./routes/content");
+const contactRoutes = require("./routes/Contact");
+
+// ===== CORE =====
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
+
+// ===== UTILS =====
 const UAParser = require('ua-parser-js');
 const geoip = require('geoip-lite');
+
+// ===== AUTH / SECURITY =====
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
+// ===== MODELS =====
 const Url = require('./models/Url');
 const Click = require('./models/Click');
 const User = require('./models/User');
@@ -15,54 +29,91 @@ const QRCodeLib = require('qrcode');
 
 dotenv.config();
 
+// ===== ENV VALIDATION (STEP 1) =====
+const requiredEnv = [
+  'MONGO_URI',
+  'JWT_SECRET',
+  'CLOUDINARY_CLOUD_NAME',
+  'CLOUDINARY_API_KEY',
+  'CLOUDINARY_API_SECRET'
+];
+
+const missingEnv = requiredEnv.filter(env => !process.env[env]);
+if (missingEnv.length > 0) {
+  console.warn(`⚠️ Missing env vars: ${missingEnv.join(', ')}`);
+}
+
+// ===== APP INIT =====
 const app = express();
 const PORT = process.env.PORT || 5500;
 
-// Middleware
-app.use(cors());
+// ===== GLOBAL RATE LIMITER (STEP 2) =====
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: 'Too many requests, please try again later'
+});
+app.use(globalLimiter);
+
+// ===== CORS (STEP 3) =====
+app.use(cors({
+  origin: [
+    "http://localhost:5500",
+    "http://localhost:3000",
+    "https://linkshortner.site",
+    "https://tiny-starship-9a96e7.netlify.app",
+    "https://linkshortner-tool2.netlify.app"
+  ],
+  credentials: true
+}));
+
+// ===== MIDDLEWARE =====
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend'))); // Serve static files from frontend folder
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Database Connection
+// ===== ROUTE REGISTRATION =====
+app.use("/api/tool1", tool1Routes);
+app.use("/api/tool2", tool2Routes);
+app.use("/api/content", contentRoutes);
+app.use("/api/contact", contactRoutes);
+
+// ===== DATABASE =====
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/premium-shortener')
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.error('MongoDB Error:', err));
 
-// --- MIDDLEWARE ---
+// ===== AUTH MIDDLEWARE =====
 const authMiddleware = async (req, res, next) => {
-    const token = req.header('Authorization');
-    if (!token) return res.status(401).json({ error: 'No token, authorization denied' });
+  const token = req.header('Authorization');
+  if (!token) return res.status(401).json({ error: 'No token provided' });
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
-        const user = await User.findById(decoded.user.id);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.user.id);
+    if (!user) return res.status(401).json({ error: 'User not found' });
 
-        if (!user) return res.status(401).json({ error: 'User does not exist' });
-
-        // Invalidate session if password version changed
-        if (decoded.user.version !== user.passwordVersion) {
-            return res.status(401).json({ error: 'Session expired. Please log in again.' });
-        }
-
-        req.user = decoded.user;
-        next();
-    } catch (err) {
-        res.status(401).json({ error: 'Token is not valid' });
+    if (decoded.user.version !== user.passwordVersion) {
+      return res.status(401).json({ error: 'Session expired' });
     }
+
+    req.user = decoded.user;
+    next();
+  } catch {
+    res.status(401).json({ error: 'Invalid token' });
+  }
 };
 
 const optionalAuth = (req, res, next) => {
-    const token = req.header('Authorization');
-    if (!token) return next();
+  const token = req.header('Authorization');
+  if (!token) return next();
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret');
-        req.user = decoded.user;
-        next();
-    } catch (err) {
-        next();
-    }
-};
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded.user;
+  } catch {}
+  next();
+}
 
 // --- AUTH ROUTES ---
 
