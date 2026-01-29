@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 const Url = require('./models/Url');
 const Click = require('./models/Click');
 const User = require('./models/User');
@@ -17,10 +18,12 @@ async function runTest() {
         let user = await User.findOne({ email: 'test@example.com' });
         if (!user) {
             console.log('Creating test user...');
+            const hashedPassword = await bcrypt.hash('password123', 10);
+
             user = await User.create({
                 username: 'testuser',
                 email: 'test@example.com',
-                password: 'password123'
+                password: hashedPassword
             });
         }
         const userId = user._id;
@@ -36,10 +39,44 @@ async function runTest() {
         // 3. Generate some mock clicks
         console.log('Generating mock clicks...');
         const clicks = [
-            { urlId: testUrl._id, timestamp: new Date(), ip: '8.8.8.8', country: 'US', city: 'Mountain View', browser: 'Chrome', device: 'Desktop', isQr: false, referrer: 'Direct' },
-            { urlId: testUrl._id, timestamp: new Date(), ip: '1.1.1.1', country: 'UK', city: 'London', browser: 'Safari', device: 'Mobile', isQr: true, referrer: 'Direct' },
-            { urlId: testUrl._id, timestamp: new Date(), ip: '2.2.2.2', country: 'IN', city: 'Mumbai', browser: 'Chrome', device: 'Mobile', isQr: false, referrer: 'Social' }
+            {
+                urlId: testUrl._id,
+                timestamp: new Date(),
+                ip: '8.8.8.8',
+                country: 'US',
+                city: 'Mountain View',
+                browser: 'Chrome',
+                device: 'Desktop',
+                os: 'Windows',
+                isQr: false,
+                referrer: 'Direct'
+            },
+            {
+                urlId: testUrl._id,
+                timestamp: new Date(),
+                ip: '1.1.1.1',
+                country: 'UK',
+                city: 'London',
+                browser: 'Safari',
+                device: 'Mobile',
+                os: 'iOS',
+                isQr: true,
+                referrer: 'Direct'
+            },
+            {
+                urlId: testUrl._id,
+                timestamp: new Date(),
+                ip: '2.2.2.2',
+                country: 'IN',
+                city: 'Mumbai',
+                browser: 'Chrome',
+                device: 'Mobile',
+                os: 'Android',
+                isQr: false,
+                referrer: 'Social'
+            }
         ];
+
         await Click.insertMany(clicks);
 
         // 4. Run the same aggregation logic as in server.js to verify

@@ -45,7 +45,7 @@ if (missingEnv.length > 0) {
 
 // ===== APP INIT =====
 const app = express();
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 5000;
 
 // ===== GLOBAL RATE LIMITER (STEP 2) =====
 const globalLimiter = rateLimit({
@@ -56,21 +56,22 @@ const globalLimiter = rateLimit({
 app.use(globalLimiter);
 
 // ===== CORS (STEP 3) =====
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "https://www.linkshortner.site"
+].filter(Boolean);
+
 app.use(cors({
-  origin: [
-    "http://localhost:5500",
-    "http://localhost:3000",
-    "https://linkshortner.site",
-    "https://tiny-starship-9a96e7.netlify.app",
-    "https://linkshortner-tool2.netlify.app"
-  ],
+  origin: allowedOrigins,
   credentials: true
 }));
+
+
 
 // ===== MIDDLEWARE =====
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../frontend')));
+
 
 // ===== ROUTE REGISTRATION =====
 app.use("/api/tool1", tool1Routes);
@@ -136,10 +137,16 @@ app.post('/api/auth/register', async (req, res) => {
 
         // Create JWT
         const payload = { user: { id: user.id, version: user.passwordVersion } };
-        jwt.sign(payload, process.env.JWT_SECRET || 'secret', { expiresIn: '7d' }, (err, token) => {
-            if (err) throw err;
-            res.json({ token, username: user.username });
-        });
+        jwt.sign(
+  payload,
+  process.env.JWT_SECRET,
+  { expiresIn: '7d' },
+  (err, token) => {
+    if (err) throw err;
+    res.json({ token, username: user.username });
+  }
+);
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server error' });
@@ -158,10 +165,16 @@ app.post('/api/auth/login', async (req, res) => {
         if (!isMatch) return res.status(400).json({ error: 'Invalid Credentials' });
 
         const payload = { user: { id: user.id, version: user.passwordVersion } };
-        jwt.sign(payload, process.env.JWT_SECRET || 'secret', { expiresIn: '7d' }, (err, token) => {
-            if (err) throw err;
-            res.json({ token, username: user.username });
-        });
+        jwt.sign(
+  payload,
+  process.env.JWT_SECRET,
+  { expiresIn: '7d' },
+  (err, token) => {
+    if (err) throw err;
+    res.json({ token, username: user.username });
+  }
+);
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server error' });
@@ -222,7 +235,7 @@ app.put('/api/auth/password', authMiddleware, async (req, res) => {
 const Message = require('./models/ContactMessage');
 
 // --- CONTACT ENDPOINT ---
-app.post('/api/contact', async (req, res) => {
+/*app.post('/api/contact', async (req, res) => {
     try {
         const { name, email, subject, message } = req.body;
 
@@ -246,7 +259,9 @@ app.post('/api/contact', async (req, res) => {
         console.error('Contact API Error:', err);
         res.status(500).json({ error: 'Server error' });
     }
-});
+});*/
+
+
 
 // 1. Shorten URL (Optional Auth)
 app.post('/api/shorten', optionalAuth, async (req, res) => {

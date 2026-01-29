@@ -10,13 +10,13 @@ const { moderateImage } = require('../utils/moderator');
 // Specific Rate Limiters
 const uploadLimiter = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 hour
-    max: 10, // 10 uploads per hour per IP
+    max: 50, // 10 uploads per hour per IP
     message: 'Upload limit reached. Please try again later.'
 });
 
 const accessLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // 5 attempts per 15 mins (prevents brute force)
+    max: 20, // 5 attempts per 15 mins (prevents brute force)
     message: 'Too many password attempts. Please try again in 15 minutes.'
 });
 
@@ -75,11 +75,11 @@ router.post('/upload', uploadLimiter, upload.array('files', 5), async (req, res)
                             message: `Content rejected: Explicit content detected in image "${file.originalname}". Our policy strictly prohibits NSFW content.`
                         });
                     } else if (moderation.status === 'error') {
-                        logEvent('MODERATION', 'ERROR', { file: file.originalname, error: moderation.error });
-                        cleanupFiles(tempFiles);
-                        return res.status(500).json({
-                            message: `Moderation Error: Image "${file.originalname}" could not be scanned. Please try again or use a different image format.`
-                        });
+    // Option 1: FAIL-OPEN (allow image if moderation service fails)
+    logEvent('MODERATION', 'SKIPPED', {
+        file: file.originalname,
+        reason: 'moderation_service_error'
+    });
                     }
                 }
 

@@ -13,7 +13,7 @@
             right: 24px;
             z-index: 9999;
             display: flex;
-            flex-col: column;
+            flex-direction: column;
             gap: 12px;
             pointer-events: none;
         }
