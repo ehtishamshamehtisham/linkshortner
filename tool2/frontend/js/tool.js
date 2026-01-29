@@ -1,5 +1,6 @@
 // BACKEND BASE URL
-const API_BASE = "https://linkshortner-6ils.onrender.com/api/content";
+const API_BASE = "https://linkshortner-6ils.onrender.com";
+
 
 
 // Selectors
