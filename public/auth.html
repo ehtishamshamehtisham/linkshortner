@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Login / Sign Up - URL Shortener</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+  <!-- Material Symbols -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#5b13ec",
+            "background-light": "#f6f6f8",
+            "background-dark": "#161022",
+            "surface-dark": "#1f1c27",
+            "border-dark": "#433b54",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar for sleek look */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #161022;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #433b54;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5b13ec;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+  <div class="flex flex-1 w-full min-h-screen">
+    <!-- Left Panel: Authentication Forms -->
+    <div
+      class="flex flex-col justify-center items-center w-full lg:w-5/12 xl:w-4/12 px-6 py-12 bg-white dark:bg-background-dark border-r dark:border-border-dark relative z-10">
+      <div class="w-full max-w-md flex flex-col gap-8">
+        <!-- Header / Logo Area -->
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-3xl">qr_code_2</span>
+          </div>
+          <span class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">ShortLy</span>
+        </div>
+        <!-- Tab Switcher -->
+        <div class="flex p-1 bg-slate-100 dark:bg-surface-dark rounded-xl">
+          <button id="login-tab"
+            class="flex-1 py-2.5 text-sm font-bold text-center rounded-lg bg-white dark:bg-background-dark text-slate-900 dark:text-white shadow-sm ring-1 ring-slate-900/5 dark:ring-white/10 transition-all duration-200">
+            Log In
+          </button>
+          <button id="signup-tab"
+            class="flex-1 py-2.5 text-sm font-medium text-center rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all duration-200">
+            Sign Up
+          </button>
+        </div>
+        <!-- Intro Text -->
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Welcome back</h1>
+          <p class="text-slate-500 dark:text-slate-400">Enter your details to access your analytics dashboard.</p>
+        </div>
+        <!-- Social Auth -->
+        <button
+          class="flex w-full items-center justify-center gap-3 rounded-xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-border-dark h-12 px-5 text-slate-700 dark:text-white font-bold text-base transition-colors hover:bg-slate-50 dark:hover:bg-[#2a2635]">
+          <img alt="Google Logo" class="w-5 h-5"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1OGN7u0jfMSeyNAjcttgPCKdRU3L3OCYLbnsR44bgQ54ySaascDm9NO4xoE7Ee7Izp5ipIEENK_qmInrGtfzfwau3MwHSK8z2SrB_9q2nXzIKhXO_0MD786c6oSEQWqk3bP-Q51u6AEp3xdt6ruKbPGXHL01qKBTNvE8WxykJVN1eKwLcb9PTBiVCHveoAh4VUCq_gmhom6PtWOxg879vLvb5i6dnYSfXz6_8Kp_5RFuyIgrKi5lxaza253kL6Sq7AuZgMtRZ6-k" />
+          <span>Continue with Google</span>
+        </button>
+        <!-- Divider -->
+        <div class="relative flex py-2 items-center">
+          <div class="flex-grow border-t border-slate-200 dark:border-border-dark"></div>
+          <span class="flex-shrink-0 mx-4 text-slate-400 text-xs uppercase tracking-wider font-semibold">Or continue
+            with email</span>
+          <div class="flex-grow border-t border-slate-200 dark:border-border-dark"></div>
+        </div>
+        <!-- Login Form -->
+        <form id="login-form" class="flex flex-col gap-5">
+          <!-- Email Field -->
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-slate-700 dark:text-slate-200" for="login-email">Email
+              Address</label>
+            <div class="relative group">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+              </span>
+              <input
+                class="block w-full rounded-xl border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-surface-dark py-3.5 pl-11 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary sm:text-sm sm:leading-6 transition-all"
+                id="login-email" placeholder="name@example.com" type="email" required />
+            </div>
+          </div>
+          <!-- Password Field -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label class="block text-sm font-medium text-slate-700 dark:text-slate-200"
+                for="login-password">Password</label>
+              <a class="text-sm font-medium text-primary hover:text-primary/80 transition-colors" href="#">Forgot
+                password?</a>
+            </div>
+            <div class="relative group">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">lock</span>
+              </span>
+              <input
+                class="block w-full rounded-xl border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-surface-dark py-3.5 pl-11 pr-12 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary sm:text-sm sm:leading-6 transition-all"
+                id="login-password" placeholder="••••••••" type="password" required />
+              <button
+                class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                type="button">
+                <span class="material-symbols-outlined text-[20px]">visibility</span>
+              </button>
+            </div>
+          </div>
+          <!-- Submit Button -->
+          <button
+            class="mt-2 w-full flex items-center justify-center rounded-xl bg-primary py-3.5 px-4 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all"
+            type="submit">
+            Log In
+          </button>
+        </form>
+
+        <!-- Signup Form (Hidden by default) -->
+        <form id="signup-form" class="hidden flex flex-col gap-5">
+          <!-- Username Field -->
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-slate-700 dark:text-slate-200"
+              for="signup-username">Username</label>
+            <div class="relative group">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">person</span>
+              </span>
+              <input
+                class="block w-full rounded-xl border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-surface-dark py-3.5 pl-11 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary sm:text-sm sm:leading-6 transition-all"
+                id="signup-username" placeholder="johndoe" type="text" required />
+            </div>
+          </div>
+          <!-- Email Field -->
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-slate-700 dark:text-slate-200" for="signup-email">Email
+              Address</label>
+            <div class="relative group">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">mail</span>
+              </span>
+              <input
+                class="block w-full rounded-xl border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-surface-dark py-3.5 pl-11 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary sm:text-sm sm:leading-6 transition-all"
+                id="signup-email" placeholder="name@example.com" type="email" required />
+            </div>
+          </div>
+          <!-- Password Field -->
+          <div class="space-y-1.5">
+            <label class="block text-sm font-medium text-slate-700 dark:text-slate-200"
+              for="signup-password">Password</label>
+            <div class="relative group">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">lock</span>
+              </span>
+              <input
+                class="block w-full rounded-xl border-slate-200 dark:border-border-dark bg-slate-50 dark:bg-surface-dark py-3.5 pl-11 pr-12 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:focus:border-primary sm:text-sm sm:leading-6 transition-all"
+                id="signup-password" placeholder="••••••••" type="password" required />
+            </div>
+          </div>
+          <!-- Submit Button -->
+          <button
+            class="mt-2 w-full flex items-center justify-center rounded-xl bg-primary py-3.5 px-4 text-base font-bold text-white shadow-lg shadow-primary/25 hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all"
+            type="submit">
+            Sign Up
+          </button>
+        </form>
+        <!-- Footer Text -->
+        <p class="text-center text-sm text-slate-500 dark:text-slate-400">
+          Don't have an account?
+          <a class="font-bold text-primary hover:text-primary/80 transition-colors" href="#">Sign up for free</a>
+        </p>
+      </div>
+    </div>
+    <!-- Right Panel: Visuals & Branding -->
+    <div class="hidden lg:flex lg:flex-1 relative overflow-hidden bg-background-dark items-center justify-center">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img alt="Abstract Background" class="h-full w-full object-cover opacity-40 mix-blend-overlay"
+          data-alt="Abstract 3D digital landscape with purple neon glowing data streams and nodes"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQX-TfREHxb-uOUgqgL_i43O_GPEbBxC7H_WjZ6sMrc96Ga3K4r27YDWXAUBIe3cEJtylm96jqIbwkZdV-bJ6y9ePuVK2YdhdE6C__1ux8NYxJIZzb1nBaL6SJdXmNn27NKNTY-VggQjNJ97dduDtlzgTb-waQs-q4utBh2UMWBJ8Evzz2eOLCRdVItdKgmuLQNF5GRZdoQ6sSJXwXRUw9b3-7GDCwnUqJQ2QjaKIGef8TsGW4FNsIAo-HYCCwsBGLpKH_5MGL7w" />
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-background-dark via-background-dark/90 to-primary/40"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+      </div>
+      <!-- Content Container -->
+      <div class="relative z-10 max-w-lg text-center px-8 space-y-8">
+        <!-- Hero Visual Representation -->
+        <div class="relative mx-auto w-80 h-80 flex items-center justify-center">
+          <!-- Outer Glow Ring -->
+          <div class="absolute inset-0 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"></div>
+          <!-- Inner Pulse -->
+          <div class="absolute inset-4 rounded-full border border-primary/30 animate-pulse"></div>
+          <!-- Floating Card 1 -->
+          <div
+            class="absolute top-10 -left-12 bg-surface-dark/90 backdrop-blur-md border border-border-dark p-4 rounded-xl shadow-2xl flex items-center gap-3 animate-[bounce_4s_infinite]">
+            <div class="bg-green-500/20 p-2 rounded-lg text-green-400">
+              <span class="material-symbols-outlined text-xl">trending_up</span>
+            </div>
+            <div class="text-left">
+              <p class="text-xs text-slate-400 font-medium">Click Rate</p>
+              <p class="text-sm font-bold text-white">+24.5%</p>
+            </div>
+          </div>
+          <!-- Floating Card 2 -->
+          <div
+            class="absolute bottom-12 -right-8 bg-surface-dark/90 backdrop-blur-md border border-border-dark p-4 rounded-xl shadow-2xl flex items-center gap-3 animate-[bounce_5s_infinite]">
+            <div class="bg-primary/20 p-2 rounded-lg text-primary">
+              <span class="material-symbols-outlined text-xl">link</span>
+            </div>
+            <div class="text-left">
+              <p class="text-xs text-slate-400 font-medium">Links Created</p>
+              <p class="text-sm font-bold text-white">12,402</p>
+            </div>
+          </div>
+          <!-- Central Icon -->
+          <div
+            class="h-32 w-32 bg-gradient-to-br from-primary to-purple-600 rounded-2xl shadow-[0_0_50px_-12px_rgba(91,19,236,0.5)] flex items-center justify-center rotate-12 transform hover:rotate-0 transition-transform duration-500">
+            <span class="material-symbols-outlined text-6xl text-white">analytics</span>
+          </div>
+        </div>
+        <!-- Value Proposition -->
+        <div class="space-y-4">
+          <h2 class="text-4xl font-extrabold text-white leading-tight">
+            Turn every click <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">into an
+              insight.</span>
+          </h2>
+          <p class="text-lg text-slate-400 leading-relaxed max-w-md mx-auto">
+            Join 10,000+ marketers using ShortLy to track, optimize, and grow their audience with intelligent links and
+            QR codes.
+          </p>
+        </div>
+        <!-- Social Proof / Indicators -->
+        <div class="pt-6 flex justify-center gap-2">
+          <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+          <div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+          <div class="h-1.5 w-1.5 rounded-full bg-white/20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+</body>
+
+</html>
