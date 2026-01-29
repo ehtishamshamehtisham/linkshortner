@@ -1,4 +1,6 @@
-const API_BASE = 'http://localhost:5000/api/content';
+// BACKEND BASE URL
+const API_BASE = "https://linkshortner-6ils.onrender.com/api/content";
+
 
 // Selectors
 const textDataInput = document.getElementById('textDataInput');
@@ -158,7 +160,7 @@ generateBtn.onclick = async () => {
     generateBtn.innerText = 'Creating Secure Share...';
 
     try {
-        const res = await fetch(`${API_BASE}/upload`, {
+        const res = await fetch(`${API_BASE}/api/content`, {
             method: 'POST',
             body: formData
         });
