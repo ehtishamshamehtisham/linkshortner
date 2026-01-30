@@ -872,16 +872,19 @@ fetchAnalytics('24h');
 
                     if (data.error) throw new Error(data.error);
 
-                    // Success (Create Mode Only continues here)
-                    currentShortUrl = `${REDIRECT_BASE}/${data.shortCode}`;
+                    // Define your display domain at the top
+const DISPLAY_DOMAIN = "linkshortner.site"; // Add this line at the top with other constants
+
+// Then in your shorten function:
+currentShortUrl = `${REDIRECT_BASE}/${data.shortCode}`;
+
+// Update UI
+if (resultLink) {
+    resultLink.textContent = `${DISPLAY_DOMAIN}/${data.shortCode}`;  // Shows: linkshortner.site/mhzjFB
+    resultLink.href = `${REDIRECT_BASE}/${data.shortCode}`;          // Links to: https://linkshortner-6ils.onrender.com/mhzjFB
+}
 
 
-                    // Update UI
-                    if (resultCard) {
-                        resultCard.classList.remove('hidden');
-                        resultCard.style.opacity = '0';
-                        setTimeout(() => resultCard.style.opacity = '1', 50);
-                    }
 
                     if (resultLink) {
                         resultLink.textContent = `linkshortner.site/${data.shortCode}`;

@@ -24,13 +24,68 @@ const startTimer = () => {
             clearInterval(timerInterval);
             sessionStorage.removeItem('secure_content');
             document.body.innerHTML = `
-                <div class="h-screen w-full flex flex-col items-center justify-center bg-[#121022] text-white p-6 text-center">
-                    <span class="material-symbols-outlined text-7xl text-red-500 mb-6 animate-bounce">timer_off</span>
-                    <h1 class="text-4xl font-black mb-4">Content Destroyed</h1>
-                    <p class="text-gray-400 max-w-md">Your secure session has timed out. For security reasons, all data has been wiped from this view.</p>
-                    <button onclick="window.location.href='secure.html'" class="mt-10 bg-primary px-10 py-4 rounded-2xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all">Return Home</button>
+    <div class="h-screen w-full flex flex-col items-center justify-center bg-[#121022] text-white p-6 text-center">
+        <!-- Top Banner Ad -->
+        <div class="mb-8 w-full max-w-[728px]">
+            <div id="ad-top" class="w-full h-[90px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                <iframe 
+                    src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.html"
+                    width="728"
+                    height="90"
+                    frameborder="0"
+                    scrolling="no"
+                    style="border: none; width: 100%; height: 90px;"
+                    allow="autoplay; encrypted-media"
+                    title="Advertisement"
+                ></iframe>
+            </div>
+        </div>
+
+        <div class="max-w-lg">
+            <span class="material-symbols-outlined text-7xl text-red-500 mb-6 animate-bounce">timer_off</span>
+            <h1 class="text-4xl font-black mb-4">Content Destroyed</h1>
+            <p class="text-gray-400 mb-8 max-w-md mx-auto">Your secure session has timed out. For security reasons, all data has been wiped from this view.</p>
+
+            <button onclick="window.location.href='secure.html'" class="mt-4 bg-primary px-10 py-4 rounded-2xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all">Return Home</button>
+            
+            <!-- Bottom Ad -->
+            <div class="mt-12 w-full max-w-[468px]">
+                <div id="ad-bottom" class="w-full h-[60px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <iframe 
+                        src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.html"
+                        width="468"
+                        height="60"
+                        frameborder="0"
+                        scrolling="no"
+                        style="border: none; width: 100%; height: 60px;"
+                        allow="autoplay; encrypted-media"
+                        title="Advertisement"
+                    ></iframe>
                 </div>
-            `;
+            </div>
+        </div>
+
+        <!-- Ad Fallback Script -->
+        <script>
+            setTimeout(() => {
+                ['ad-top', 'ad-bottom'].forEach(containerId => {
+                    const container = document.getElementById(containerId);
+                    if (container) {
+                        const iframe = container.querySelector('iframe');
+                        if (!iframe || iframe.offsetWidth === 0) {
+                            const fallback = document.createElement('div');
+                            fallback.className = 'w-full h-full flex items-center justify-center bg-gray-800 rounded-lg';
+                            fallback.innerHTML = '<span class="text-gray-400 text-sm">Advertisement</span>';
+                            if (iframe) container.replaceChild(fallback, iframe);
+                            else container.appendChild(fallback);
+                        }
+                    }
+                });
+            }, 3000);
+        </script>
+    </div>
+`;
+
             return;
         }
 

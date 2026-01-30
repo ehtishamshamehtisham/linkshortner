@@ -47,6 +47,16 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Ad fallback styles */
+        .ad-fallback {
+            background: linear-gradient(135deg, #f6f6f8 0%, #e8e7f3 100%);
+            border: 2px dashed #2513ec;
+        }
+        .dark .ad-fallback {
+            background: linear-gradient(135deg, #1a1835 0%, #121022 100%);
+            border-color: #635cff;
+        }
     </style>
 </head>
 
@@ -118,74 +128,66 @@
 
                 <!-- Fixed Sidebars for Ads (Responsive Desktop) -->
                 <!-- Left Sidebar -->
-                <div class="hidden xl:flex flex-col gap-6 fixed left-2 2xl:left-10 top-24 z-40 items-center">
+                <div class="hidden xl:flex flex-col gap-6 fixed left-2 2xl:left-10 top-24 z-[100] items-center">
                     <!-- Left Top: 300x250 -->
-                    <div
-                        class="w-[300px] h-[250px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl flex items-center justify-center">
-                        <script>
-                            atOptions = {
-                                'key': '9ad838278dc8e53ec577d59c72133ae2',
-                                'format': 'iframe',
-                                'height': 250,
-                                'width': 300,
-                                'params': {}
-                            };
-                        </script>
-                        <script
-                            src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                    <div id="ad-left-top" class="w-[300px] h-[250px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl">
+                        <iframe 
+                            src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.html"
+                            width="300"
+                            height="250"
+                            frameborder="0"
+                            scrolling="no"
+                            style="border: none; width: 300px; height: 250px;"
+                            allow="autoplay; encrypted-media"
+                            title="Advertisement"
+                        ></iframe>
                     </div>
                     <!-- Left Bottom: 160x600 -->
-                    <div
-                        class="w-[160px] h-[600px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl flex items-center justify-center">
-                        <script>
-                            atOptions = {
-                                'key': '7a9c4ae3ff8b42ccd7f1308efa96161c',
-                                'format': 'iframe',
-                                'height': 600,
-                                'width': 160,
-                                'params': {}
-                            };
-                        </script>
-                        <script
-                            src="https://www.highperformanceformat.com/7a9c4ae3ff8b42ccd7f1308efa96161c/invoke.js"></script>
+                    <div id="ad-left-bottom" class="w-[160px] h-[600px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl">
+                        <iframe 
+                            src="https://www.highperformanceformat.com/7a9c4ae3ff8b42ccd7f1308efa96161c/invoke.html"
+                            width="160"
+                            height="600"
+                            frameborder="0"
+                            scrolling="no"
+                            style="border: none; width: 160px; height: 600px;"
+                            allow="autoplay; encrypted-media"
+                            title="Advertisement"
+                        ></iframe>
                     </div>
                 </div>
 
                 <!-- Right Sidebar -->
-                <div class="hidden xl:flex flex-col gap-6 fixed right-2 2xl:right-10 top-24 z-40 items-center">
+                <div class="hidden xl:flex flex-col gap-6 fixed right-2 2xl:right-10 top-24 z-[100] items-center">
                     <!-- Right Top: 160x300 -->
-                    <div
-                        class="w-[160px] h-[300px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl flex items-center justify-center">
-                        <script>
-                            atOptions = {
-                                'key': '65e4ed2bd95a6a2b1a9211a79c81e2c3',
-                                'format': 'iframe',
-                                'height': 300,
-                                'width': 160,
-                                'params': {}
-                            };
-                        </script>
-                        <script
-                            src="https://www.highperformanceformat.com/65e4ed2bd95a6a2b1a9211a79c81e2c3/invoke.js"></script>
+                    <div id="ad-right-top" class="w-[160px] h-[300px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl">
+                        <iframe 
+                            src="https://www.highperformanceformat.com/65e4ed2bd95a6a2b1a9211a79c81e2c3/invoke.html"
+                            width="160"
+                            height="300"
+                            frameborder="0"
+                            scrolling="no"
+                            style="border: none; width: 160px; height: 300px;"
+                            allow="autoplay; encrypted-media"
+                            title="Advertisement"
+                        ></iframe>
                     </div>
                 </div>
 
                 <div class="flex flex-col items-center gap-10 w-full overflow-hidden">
                     <!-- Mobile/Tablet Top Ad -->
                     <div class="flex flex-col items-center gap-6 xl:hidden w-full overflow-hidden">
-                        <div
-                            class="w-[320px] max-w-full h-[50px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg flex items-center justify-center">
-                            <script>
-                                atOptions = {
-                                    'key': 'dbac2741ab7ffdfd9a56cfe03db8c579',
-                                    'format': 'iframe',
-                                    'height': 50,
-                                    'width': 320,
-                                    'params': {}
-                                };
-                            </script>
-                            <script
-                                src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                        <div id="ad-mobile" class="w-[320px] max-w-full h-[50px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg">
+                            <iframe 
+                                src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.html"
+                                width="320"
+                                height="50"
+                                frameborder="0"
+                                scrolling="no"
+                                style="border: none; width: 100%; height: 50px;"
+                                allow="autoplay; encrypted-media"
+                                title="Advertisement"
+                            ></iframe>
                         </div>
                     </div>
 
@@ -393,7 +395,23 @@
                 </div>
             </section>
 
-
+            <!-- Additional Ad Section (Optional) -->
+            <section class="py-12 px-6 lg:px-40 bg-background-light dark:bg-background-dark">
+                <div class="max-w-[1280px] mx-auto">
+                    <div class="w-full h-[90px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden">
+                        <iframe 
+                            src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.html"
+                            width="728"
+                            height="90"
+                            frameborder="0"
+                            scrolling="no"
+                            style="border: none; width: 100%; height: 90px;"
+                            allow="autoplay; encrypted-media"
+                            title="Advertisement"
+                        ></iframe>
+                    </div>
+                </div>
+            </section>
 
         </main>
 
@@ -463,6 +481,46 @@
             </div>
         </footer>
     </div>
+    
+    <!-- Ad Fallback Script -->
+    <script>
+    // Check if ads loaded properly and show fallback if not
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait 5 seconds to check if ads loaded
+        setTimeout(() => {
+            const adContainers = [
+                'ad-left-top', 'ad-left-bottom', 'ad-right-top', 'ad-mobile'
+            ];
+            
+            adContainers.forEach(containerId => {
+                const container = document.getElementById(containerId);
+                if (container) {
+                    const iframe = container.querySelector('iframe');
+                    
+                    // Check if iframe is empty or not visible
+                    if (!iframe || iframe.offsetWidth === 0 || iframe.offsetHeight === 0) {
+                        // Create fallback content
+                        const fallback = document.createElement('div');
+                        fallback.className = 'ad-fallback w-full h-full flex flex-col items-center justify-center rounded-lg';
+                        fallback.innerHTML = `
+                            <span class="material-symbols-outlined text-primary text-2xl mb-1">ads_click</span>
+                            <p class="text-xs font-medium text-gray-600 dark:text-gray-300">Advertisement</p>
+                            <p class="text-[10px] text-gray-400 mt-0.5">Support our site</p>
+                        `;
+                        
+                        // Replace iframe with fallback
+                        if (iframe) {
+                            container.replaceChild(fallback, iframe);
+                        } else {
+                            container.appendChild(fallback);
+                        }
+                    }
+                }
+            });
+        }, 5000); // Check after 5 seconds
+    });
+    </script>
+    
     <script src="config.js"></script>
     <script src="toast.js"></script>
     <script src="tool.js"></script>
