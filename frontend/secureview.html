@@ -108,20 +108,114 @@
             </div>
         </header>
 
-        <main class="flex-1 max-w-[800px] w-full mx-auto p-6 space-y-8">
-            <div id="contentContainer" class="space-y-6">
-                <!-- Content items will be injected here -->
+        <main class="flex-1 p-6 md:py-12 relative">
+            <!-- Fixed Sidebars for Ads (Responsive Desktop) -->
+            <!-- Left Sidebar -->
+            <div class="hidden xl:flex flex-col gap-6 fixed left-2 2xl:left-10 top-24 z-40 items-center">
+                <!-- Left Top: 300x250 -->
+                <div
+                    class="w-[300px] h-[250px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl flex items-center justify-center">
+                    <script>
+                        atOptions = {
+                            'key': '9ad838278dc8e53ec577d59c72133ae2',
+                            'format': 'iframe',
+                            'height': 250,
+                            'width': 300,
+                            'params': {}
+                        };
+                    </script>
+                    <script
+                        src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                </div>
+                <!-- Left Bottom: 160x600 -->
+                <div
+                    class="w-[160px] h-[600px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl flex items-center justify-center">
+                    <script>
+                        atOptions = {
+                            'key': '7a9c4ae3ff8b42ccd7f1308efa96161c',
+                            'format': 'iframe',
+                            'height': 600,
+                            'width': 160,
+                            'params': {}
+                        };
+                    </script>
+                    <script
+                        src="https://www.highperformanceformat.com/7a9c4ae3ff8b42ccd7f1308efa96161c/invoke.js"></script>
+                </div>
             </div>
 
-            <div class="pt-10 border-t border-[#e8e7f3] dark:border-white/10 text-center space-y-4">
+            <!-- Right Sidebar -->
+            <div class="hidden xl:flex flex-col gap-6 fixed right-2 2xl:right-10 top-24 z-40 items-center">
+                <!-- Right Top: 160x300 -->
                 <div
-                    class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 text-yellow-600 rounded-lg text-sm font-medium">
-                    <span class="material-symbols-outlined text-lg">warning</span>
-                    This content will self-destruct once you close this page.
+                    class="w-[160px] h-[300px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl flex items-center justify-center">
+                    <script>
+                        atOptions = {
+                            'key': '65e4ed2bd95a6a2b1a9211a79c81e2c3',
+                            'format': 'iframe',
+                            'height': 300,
+                            'width': 160,
+                            'params': {}
+                        };
+                    </script>
+                    <script
+                        src="https://www.highperformanceformat.com/65e4ed2bd95a6a2b1a9211a79c81e2c3/invoke.js"></script>
                 </div>
-                <p class="text-xs text-[#524c9a] dark:text-gray-500 uppercase tracking-widest font-bold">
-                    One-Time Access • End-to-End Encrypted
-                </p>
+            </div>
+
+            <div class="flex flex-col items-center justify-center w-full">
+                <!-- Mobile/Tablet Top Ad -->
+                <div class="flex flex-col items-center gap-6 xl:hidden w-full overflow-hidden mb-8">
+                    <div
+                        class="w-[320px] max-w-full h-[50px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg flex items-center justify-center">
+                        <script>
+                            atOptions = {
+                                'key': 'dbac2741ab7ffdfd9a56cfe03db8c579',
+                                'format': 'iframe',
+                                'height': 50,
+                                'width': 320,
+                                'params': {}
+                            };
+                        </script>
+                        <script
+                            src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                    </div>
+                </div>
+
+                <!-- Ad Banner: 468x60 -->
+                <div class="mb-8 w-full flex justify-center overflow-hidden">
+                    <div
+                        class="w-[468px] max-w-full h-[60px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg flex items-center justify-center">
+                        <script>
+                            atOptions = {
+                                'key': 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                'format': 'iframe',
+                                'height': 60,
+                                'width': 468,
+                                'params': {}
+                            };
+                        </script>
+                        <script
+                            src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                    </div>
+                </div>
+
+                <div class="max-w-[800px] w-full mx-auto space-y-8 relative">
+                    <div id="contentContainer" class="space-y-6">
+                        <!-- Content items will be injected here -->
+                    </div>
+
+                    <div class="pt-10 border-t border-[#e8e7f3] dark:border-white/10 text-center space-y-4">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 text-yellow-600 rounded-lg text-sm font-medium">
+                            <span class="material-symbols-outlined text-lg">warning</span>
+                            This content will self-destruct once you close this page.
+                        </div>
+                        <p class="text-xs text-[#524c9a] dark:text-gray-500 uppercase tracking-widest font-bold">
+                            One-Time Access • End-to-End Encrypted
+                        </p>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -207,4 +301,5 @@
     </script>
 </body>
 <script src="config.js"></script>
+
 </html>
