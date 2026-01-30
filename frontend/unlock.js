@@ -1,4 +1,4 @@
-const API_BASE = 'https://linkshortner-6ils.onrender.com/api/content';
+
 
 const passwordInput = document.getElementById('passwordInput');
 const errorMsg = document.getElementById('errorMsg');

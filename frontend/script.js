@@ -1,5 +1,7 @@
 const API_BASE = "https://linkshortner-6ils.onrender.com";
 
+const REDIRECT_BASE = "https://linkshortner-6ils.onrender.com";
+
 document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -643,7 +645,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Initial Load
-        fetchAnalytics('24h');
+        const storedFilter = sessionStorage.getItem('analyticsFilterId');
+fetchAnalytics('24h');
+
     }
 
     const logout = () => {
@@ -869,7 +873,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (data.error) throw new Error(data.error);
 
                     // Success (Create Mode Only continues here)
-                    currentShortUrl = window.location.origin + '/' + data.shortCode;
+                    currentShortUrl = `${REDIRECT_BASE}/${data.shortCode}`;
+
 
                     // Update UI
                     if (resultCard) {
@@ -879,8 +884,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     if (resultLink) {
-                        resultLink.textContent = window.location.hostname + '/' + data.shortCode;
-                        resultLink.href = currentShortUrl;
+                        resultLink.textContent = `linkshortner.site/${data.shortCode}`;
+resultLink.href = `${REDIRECT_BASE}/${data.shortCode}`;
                     }
 
                     // Generate QR
@@ -937,10 +942,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Copy Button
         const copyBtn = document.getElementById('copy-btn');
         if (copyBtn) {
-            copyBtn.onclick = () => {
-                showNotification('Copied to clipboard!');
-            };
+    copyBtn.onclick = () => {
+        if (!currentShortUrl) {
+            showNotification('Nothing to copy', 'error');
+            return;
         }
+        navigator.clipboard.writeText(currentShortUrl);
+        showNotification('Copied to clipboard!');
+    };
+}
+
 
         // Download QR
         const downloadBtn = document.getElementById('download-qr-btn');
@@ -1055,10 +1066,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex items-center gap-2">
-                            <a href="${window.location.origin}/${link.shortCode}" target="_blank" class="text-primary font-medium hover:underline text-sm truncate max-w-[150px]">
+                            <a href="${REDIRECT_BASE}/${link.shortCode}" target="_blank" class="text-primary font-medium hover:underline text-sm truncate max-w-[150px]">
                                 /${link.shortCode}
                             </a>
-                            <button onclick="navigator.clipboard.writeText('${window.location.origin}/${link.shortCode}'); showNotification('Copied!')" 
+                            <button onclick="navigator.clipboard.writeText('${REDIRECT_BASE}/${link.shortCode}'); showNotification('Copied!')" 
                                 class="text-slate-500 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors" title="Copy">
                                 <span class="material-symbols-outlined text-[16px]">content_copy</span>
                             </button>
@@ -1318,7 +1329,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 tbody.innerHTML = data.qrCodes.map(qr => {
                     if (!qr.urlId) return '';
                     const link = qr.urlId;
-                    const shortUrl = `${window.location.origin}/${link.shortCode}`;
+                    const shortUrl = `${REDIRECT_BASE}/${link.shortCode}`;
                     const statusClass = qr.status === 'active' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-amber-500/10 text-amber-400 border-amber-500/20';
 
                     return `

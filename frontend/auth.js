@@ -1,6 +1,5 @@
+
 const API_BASE = "https://linkshortner-6ils.onrender.com";
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginTab = document.getElementById('login-tab');
     const signupTab = document.getElementById('signup-tab');

@@ -47,24 +47,43 @@ if (missingEnv.length > 0) {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.set('trust proxy', 1);
+
 // ===== GLOBAL RATE LIMITER (STEP 2) =====
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 300,
   message: 'Too many requests, please try again later'
 });
+
+
 app.use(globalLimiter);
 
-// ===== CORS (STEP 3) =====
+// ===== CORS (FIXED) =====
 const allowedOrigins = [
   process.env.FRONTEND_URL,
+  "https://linkshortner.site",
   "https://www.linkshortner.site"
 ].filter(Boolean);
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow server-to-server & Postman
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// 🔴 VERY IMPORTANT
+app.options('*', cors());
 
 
 
