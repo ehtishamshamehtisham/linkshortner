@@ -33,14 +33,87 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
-        /* Ad fallback styles */
+        /* Ad container responsive styles */
+        .ad-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e8e7f3;
+        }
+        .dark .ad-container {
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive aspect ratios using CSS padding technique */
+        .ad-container::before {
+            content: '';
+            display: block;
+            padding-top: var(--ad-ratio);
+        }
+        
+        .ad-container iframe,
+        .ad-container .ad-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+        }
+        
+        /* Aspect ratio classes for different ad sizes */
+        .ad-ratio-300x250 { --ad-ratio: 83.33%; }  /* 250/300 = 0.8333 */
+        .ad-ratio-160x600 { --ad-ratio: 375%; }    /* 600/160 = 3.75 */
+        .ad-ratio-160x300 { --ad-ratio: 187.5%; }  /* 300/160 = 1.875 */
+        .ad-ratio-320x50 { --ad-ratio: 15.625%; }  /* 50/320 = 0.15625 */
+        .ad-ratio-468x60 { --ad-ratio: 12.82%; }   /* 60/468 = 0.1282 */
+        .ad-ratio-728x90 { --ad-ratio: 12.36%; }   /* 90/728 = 0.1236 */
+        .ad-ratio-320x100 { --ad-ratio: 31.25%; }  /* 100/320 = 0.3125 */
+        
+        /* Maximum width constraints */
+        .ad-max-w-300 { max-width: 300px; }
+        .ad-max-w-160 { max-width: 160px; }
+        .ad-max-w-320 { max-width: 320px; }
+        .ad-max-w-468 { max-width: 468px; }
+        .ad-max-w-728 { max-width: 728px; }
+        
+        /* Hide sidebars on mobile/tablet */
+        @media (max-width: 1279px) {
+            .desktop-sidebar {
+                display: none !important;
+            }
+        }
+        
+        /* Show mobile ads only on mobile */
+        @media (min-width: 1280px) {
+            .mobile-only-ad {
+                display: none !important;
+            }
+        }
+        
+        /* Ad fallback styling */
         .ad-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, #f6f6f8 0%, #e8e7f3 100%);
             border: 2px dashed #2513ec;
+            color: #666;
+            border-radius: 0.75rem;
         }
         .dark .ad-fallback {
             background: linear-gradient(135deg, #1a1835 0%, #121022 100%);
             border-color: #635cff;
+            color: #aaa;
         }
     </style>
 </head>
@@ -49,18 +122,38 @@
     class="bg-background-light dark:bg-background-dark font-display text-[#0f0d1b] dark:text-white transition-colors duration-300">
     <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
         <div class="layout-container flex h-full grow flex-col">
-            <!-- Header (Simple) -->
+            <!-- Header -->
             <header
-                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-4 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e8e7f3] dark:border-white/10 px-4 md:px-20 lg:px-40 py-4 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
                 <div class="flex items-center gap-4 text-primary dark:text-white cursor-pointer"
                     onclick="window.location.href='index.html'">
                     <div class="size-6 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-3xl">shield_lock</span>
+                        <span class="material-symbols-outlined text-2xl md:text-3xl">shield_lock</span>
                     </div>
-                    <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">SecureShare</h2>
+                    <h2 class="text-base md:text-lg font-bold leading-tight tracking-[-0.015em]">SecureShare</h2>
                 </div>
-                <div class="flex flex-1 justify-end gap-8 items-center">
-                    <nav class="hidden md:flex items-center gap-9">
+                
+                <!-- Header Ad (320x50) - Desktop only -->
+                <div class="hidden md:block mx-4 flex-1">
+                    <div class="ad-container ad-ratio-320x50 ad-max-w-320 mx-auto">
+                        <div id="header-ad">
+                            <!-- 320x50 Ad -->
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'dbac2741ab7ffdfd9a56cfe03db8c579',
+                                    'format' : 'iframe',
+                                    'height' : 50,
+                                    'width' : 320,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end gap-6 md:gap-8 items-center">
+                    <nav class="hidden md:flex items-center gap-6 md:gap-9">
                         <div class="relative group">
                             <button
                                 class="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2">
@@ -70,11 +163,9 @@
                             <div
                                 class="absolute left-0 mt-0 w-48 bg-white dark:bg-[#1a1835] border border-[#e8e7f3] dark:border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
                                 <div class="p-2 flex flex-col gap-1">
-                                    <!--tool-1 -->
                                     <a href="index.html"
                                         class="px-4 py-2 text-sm rounded-lg hover:bg-primary/5 hover:text-primary transition-all font-medium">URL
                                         Shortener</a>
-                                    <!--tool-2 -->
                                     <a href="secure.html"
                                         class="px-4 py-2 text-sm rounded-lg bg-primary/5 text-primary transition-all font-medium">Secure
                                         View</a>
@@ -88,151 +179,228 @@
                         <a class="text-sm font-medium hover:text-primary transition-colors"
                             href="securecontact.html">Contact</a>
                     </nav>
-                    <div class="flex gap-3">
+                    <div class="flex gap-2 md:gap-3">
                         <button onclick="window.location.href='secure.html'"
-                            class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
+                            class="flex min-w-[90px] md:min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-9 md:h-10 px-3 md:px-4 bg-primary text-white text-xs md:text-sm font-bold shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]">
                             <span>Share Now</span>
                         </button>
                     </div>
                 </div>
             </header>
 
-            <main class="flex-1 p-6 md:py-12 relative flex flex-col items-center">
-                <!-- Fixed Sidebars for Ads (Responsive Desktop) -->
-                <!-- Left Sidebar -->
-                <div class="hidden xl:flex flex-col gap-6 fixed left-2 2xl:left-10 top-24 z-[100] items-center">
-                    <!-- Left Top: 300x250 -->
-                    <div id="ad-left-top" class="w-[300px] h-[250px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl">
-                        <iframe 
-                            src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.html"
-                            width="300"
-                            height="250"
-                            frameborder="0"
-                            scrolling="no"
-                            style="border: none; width: 300px; height: 250px;"
-                            allow="autoplay; encrypted-media"
-                            title="Advertisement"
-                        ></iframe>
-                    </div>
-                    <!-- Left Bottom: 160x600 -->
-                    <div id="ad-left-bottom" class="w-[160px] h-[600px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl">
-                        <iframe 
-                            src="https://www.highperformanceformat.com/7a9c4ae3ff8b42ccd7f1308efa96161c/invoke.html"
-                            width="160"
-                            height="600"
-                            frameborder="0"
-                            scrolling="no"
-                            style="border: none; width: 160px; height: 600px;"
-                            allow="autoplay; encrypted-media"
-                            title="Advertisement"
-                        ></iframe>
+            <main class="flex-1 p-4 md:p-6 md:py-12 relative flex flex-col items-center">
+                <!-- Mobile Top Ad (320x50) -->
+                <div class="mobile-only-ad w-full py-3">
+                    <div class="ad-container ad-ratio-320x50 ad-max-w-320 mx-auto">
+                        <div id="mobile-top-ad">
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'dbac2741ab7ffdfd9a56cfe03db8c579',
+                                    'format' : 'iframe',
+                                    'height' : 50,
+                                    'width' : 320,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Right Sidebar -->
-                <div class="hidden xl:flex flex-col gap-6 fixed right-2 2xl:right-10 top-24 z-[100] items-center">
-                    <!-- Right Top: 160x300 -->
-                    <div id="ad-right-top" class="w-[160px] h-[300px] bg-white dark:bg-white/5 rounded-2xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-2xl">
-                        <iframe 
-                            src="https://www.highperformanceformat.com/65e4ed2bd95a6a2b1a9211a79c81e2c3/invoke.html"
-                            width="160"
-                            height="300"
-                            frameborder="0"
-                            scrolling="no"
-                            style="border: none; width: 160px; height: 300px;"
-                            allow="autoplay; encrypted-media"
-                            title="Advertisement"
-                        ></iframe>
+                <!-- Desktop Sidebar Ads -->
+                <div class="desktop-sidebar hidden xl:flex flex-col gap-4 fixed left-2 2xl:left-6 top-24 z-40">
+                    <!-- 160x600 Skyscraper -->
+                    <div class="ad-container ad-ratio-160x600 ad-max-w-160">
+                        <div id="left-skyscraper-ad">
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : '7a9c4ae3ff8b42ccd7f1308efa96161c',
+                                    'format' : 'iframe',
+                                    'height' : 600,
+                                    'width' : 160,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/7a9c4ae3ff8b42ccd7f1308efa96161c/invoke.js"></script>
+                        </div>
+                    </div>
+                    
+                    <!-- 300x250 Rectangle -->
+                    <div class="ad-container ad-ratio-300x250 ad-max-w-300 mt-4">
+                        <div id="left-rectangle-ad">
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                    'format' : 'iframe',
+                                    'height' : 250,
+                                    'width' : 300,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center justify-center w-full">
-                    <!-- Mobile/Tablet Top Ad -->
-                    <div class="flex flex-col items-center gap-6 xl:hidden w-full overflow-hidden mb-8">
-                        <div id="ad-mobile-top" class="w-[320px] max-w-full h-[50px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg">
-                            <iframe 
-                                src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.html"
-                                width="320"
-                                height="50"
-                                frameborder="0"
-                                scrolling="no"
-                                style="border: none; width: 100%; height: 50px;"
-                                allow="autoplay; encrypted-media"
-                                title="Advertisement"
-                            ></iframe>
+                <!-- Right Sidebar Ads -->
+                <div class="desktop-sidebar hidden xl:flex flex-col gap-4 fixed right-2 2xl:right-6 top-24 z-40">
+                    <!-- 160x300 Sidebar -->
+                    <div class="ad-container ad-ratio-160x300 ad-max-w-160">
+                        <div id="right-sidebar-ad">
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : '65e4ed2bd95a6a2b1a9211a79c81e2c3',
+                                    'format' : 'iframe',
+                                    'height' : 300,
+                                    'width' : 160,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/65e4ed2bd95a6a2b1a9211a79c81e2c3/invoke.js"></script>
+                        </div>
+                    </div>
+                    
+                    <!-- 468x60 Leaderboard -->
+                    <div class="ad-container ad-ratio-468x60 ad-max-w-468 mt-4">
+                        <div id="right-leaderboard-ad">
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                    'format' : 'iframe',
+                                    'height' : 60,
+                                    'width' : 468,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center w-full max-w-[500px] mx-auto px-4">
+                    <!-- Top Banner (468x60) -->
+                    <div class="mb-6 w-full">
+                        <div class="ad-container ad-ratio-468x60 ad-max-w-468 mx-auto">
+                            <div id="top-banner-ad">
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                        'format' : 'iframe',
+                                        'height' : 60,
+                                        'width' : 468,
+                                        'params' : {}
+                                    };
+                                </script>
+                                <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Ad Banner: 468x60 -->
-                    <div class="mb-8 w-full flex justify-center overflow-hidden">
-                        <div id="ad-banner-468" class="w-[468px] max-w-full h-[60px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg">
-                            <iframe 
-                                src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.html"
-                                width="468"
-                                height="60"
-                                frameborder="0"
-                                scrolling="no"
-                                style="border: none; width: 100%; height: 60px;"
-                                allow="autoplay; encrypted-media"
-                                title="Advertisement"
-                            ></iframe>
+                    <!-- Mobile Square Ad (300x250) -->
+                    <div class="mobile-only-ad mb-6 w-full">
+                        <div class="ad-container ad-ratio-300x250 ad-max-w-300 mx-auto">
+                            <div id="mobile-square-ad">
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                        'format' : 'iframe',
+                                        'height' : 250,
+                                        'width' : 300,
+                                        'params' : {}
+                                    };
+                                </script>
+                                <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Main Content Card -->
                     <div
-                        class="max-w-[500px] w-full bg-white dark:bg-[#1a1835] rounded-3xl border border-[#d1cfe7] dark:border-white/10 shadow-2xl overflow-hidden relative">
-                        <!-- Progress Bar Simulation -->
+                        class="w-full bg-white dark:bg-[#1a1835] rounded-3xl border border-[#d1cfe7] dark:border-white/10 shadow-2xl overflow-hidden relative">
+                        <!-- Progress Bar -->
                         <div class="h-1.5 w-full bg-primary/10">
                             <div class="h-full bg-primary w-1/3"></div>
                         </div>
 
-                        <div class="p-8 md:p-10 text-center border-b border-[#e8e7f3] dark:border-white/5">
+                        <div class="p-6 md:p-8 lg:p-10 text-center border-b border-[#e8e7f3] dark:border-white/5">
                             <div
-                                class="size-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6 transform -rotate-6">
-                                <span class="material-symbols-outlined text-4xl">lock_open</span>
+                                class="size-16 md:size-20 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 transform -rotate-6">
+                                <span class="material-symbols-outlined text-3xl md:text-4xl">lock_open</span>
                             </div>
-                            <h1 class="text-2xl md:text-3xl font-black text-[#0f0d1b] dark:text-white mb-3">Content
-                                Locked
-                            </h1>
+                            <h1 class="text-xl md:text-2xl lg:text-3xl font-black text-[#0f0d1b] dark:text-white mb-3">Content Locked</h1>
                             <p class="text-[#524c9a] dark:text-gray-400 text-sm md:text-base leading-relaxed">
                                 Please enter the password provided by the sender to access and download the files.
                             </p>
                         </div>
+                        
+                        <!-- In-content Mobile Ad (320x50) -->
+                        <div class="mobile-only-ad px-6 md:px-8 py-4">
+                            <div class="ad-container ad-ratio-320x50 ad-max-w-320 mx-auto">
+                                <div id="incontent-mobile-ad">
+                                    <script type="text/javascript">
+                                        atOptions = {
+                                            'key' : 'dbac2741ab7ffdfd9a56cfe03db8c579',
+                                            'format' : 'iframe',
+                                            'height' : 50,
+                                            'width' : 320,
+                                            'params' : {}
+                                        };
+                                    </script>
+                                    <script type="text/javascript" src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <!-- Unlock Form -->
-                        <form id="unlockForm" class="p-8 space-y-6" onsubmit="return false;">
+                        <form id="unlockForm" class="p-6 md:p-8 space-y-6" onsubmit="return false;">
                             <div class="flex flex-col gap-2">
                                 <label class="flex flex-col">
                                     <span
-                                        class="text-[#0f0d1b] dark:text-gray-200 text-sm font-semibold leading-normal pb-2">File
-                                        Password</span>
+                                        class="text-[#0f0d1b] dark:text-gray-200 text-sm font-semibold leading-normal pb-2">File Password</span>
                                     <div class="relative flex w-full items-stretch">
                                         <input id="passwordInput"
-                                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0f0d1b] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#d1cfe7] dark:border-white/10 bg-[#f8f8fc] dark:bg-[#0f0d1b] h-14 placeholder:text-[#524c9a]/60 p-4 pr-12 text-base font-normal leading-normal transition-all"
+                                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0f0d1b] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#d1cfe7] dark:border-white/10 bg-[#f8f8fc] dark:bg-[#0f0d1b] h-12 md:h-14 placeholder:text-[#524c9a]/60 p-3 md:p-4 pr-12 text-base font-normal leading-normal transition-all"
                                             placeholder="Enter secure password" type="password" value="" />
                                         <button id="togglePassword"
                                             class="absolute right-4 top-1/2 -translate-y-1/2 text-[#524c9a] dark:text-gray-400 hover:text-primary transition-colors"
                                             type="button">
-                                            <span class="material-symbols-outlined">visibility</span>
+                                            <span class="material-symbols-outlined text-lg">visibility</span>
                                         </button>
                                     </div>
                                 </label>
-                                <!-- Error Message Placeholder -->
                                 <div id="errorMsg" class="hidden items-center gap-2 px-1 pt-1">
                                     <span class="material-symbols-outlined text-sm text-red-500">error</span>
-                                    <p class="text-red-500 text-sm font-medium">Incorrect password. Please try again.
-                                    </p>
+                                    <p class="text-red-500 text-sm font-medium">Incorrect password. Please try again.</p>
                                 </div>
                             </div>
-                            <!-- Action Button -->
                             <button id="unlockBtn"
-                                class="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+                                class="w-full h-12 md:h-14 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
                                 <span class="material-symbols-outlined">key</span>
                                 Unlock Content
                             </button>
                         </form>
+                        
+                        <!-- In-content Desktop Ad (728x90) -->
+                        <div class="hidden md:block px-6 md:px-8 py-4">
+                            <div class="ad-container ad-ratio-728x90 ad-max-w-728 mx-auto">
+                                <div id="incontent-desktop-ad">
+                                    <script type="text/javascript">
+                                        atOptions = {
+                                            'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                            'format' : 'iframe',
+                                            'height' : 90,
+                                            'width' : 728,
+                                            'params' : {}
+                                        };
+                                    </script>
+                                    <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <!-- Footer Meta -->
-                        <div class="px-8 pb-10">
-                            <div class="pt-6 border-t border-[#e8e7f3] dark:border-white/5 text-center">
+                        <div class="px-6 md:px-8 pb-8 md:pb-10">
+                            <div class="pt-4 md:pt-6 border-t border-[#e8e7f3] dark:border-white/5 text-center">
                                 <p class="text-[#524c9a] dark:text-gray-500 text-xs font-normal leading-normal">
                                     SecureShare does not store passwords in plain text.<br />
                                     All content is end-to-end encrypted before reaching our servers.
@@ -241,145 +409,167 @@
                         </div>
                     </div>
                     
-                    <!-- Additional bottom ad for mobile -->
-                    <div class="flex flex-col items-center gap-6 xl:hidden w-full overflow-hidden mt-8">
-                        <div id="ad-mobile-bottom" class="w-[320px] max-w-full h-[100px] bg-white dark:bg-white/5 rounded-xl border border-[#d1cfe7] dark:border-white/10 overflow-hidden shadow-lg">
-                            <iframe 
-                                src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.html"
-                                width="320"
-                                height="100"
-                                frameborder="0"
-                                scrolling="no"
-                                style="border: none; width: 100%; height: 100px;"
-                                allow="autoplay; encrypted-media"
-                                title="Advertisement"
-                            ></iframe>
+                    <!-- Bottom Banner (468x60) -->
+                    <div class="mt-6 w-full">
+                        <div class="ad-container ad-ratio-468x60 ad-max-w-468 mx-auto">
+                            <div id="bottom-banner-ad">
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                        'format' : 'iframe',
+                                        'height' : 60,
+                                        'width' : 468,
+                                        'params' : {}
+                                    };
+                                </script>
+                                <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional mobile ad (300x250) -->
+                    <div class="mobile-only-ad mt-6 w-full">
+                        <div class="ad-container ad-ratio-300x250 ad-max-w-300 mx-auto">
+                            <div id="mobile-bottom-ad">
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                        'format' : 'iframe',
+                                        'height' : 250,
+                                        'width' : 300,
+                                        'params' : {}
+                                    };
+                                </script>
+                                <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                            </div>
                         </div>
                     </div>
                 </div>
             </main>
+
+            <!-- Footer Banner (728x90) -->
+            <div class="py-6 md:py-8 px-4 md:px-20 lg:px-40 bg-white dark:bg-background-dark/80">
+                <div class="max-w-[728px] mx-auto">
+                    <div class="ad-container ad-ratio-728x90 ad-max-w-728 mx-auto">
+                        <div id="footer-banner-ad">
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                    'format' : 'iframe',
+                                    'height' : 90,
+                                    'width' : 728,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <footer
-                class="bg-white dark:bg-background-dark/80 border-t border-[#e8e7f3] dark:border-white/10 px-6 md:px-20 lg:px-40 py-16 mt-auto">
+                class="bg-white dark:bg-background-dark/80 border-t border-[#e8e7f3] dark:border-white/10 px-4 md:px-20 lg:px-40 py-12 md:py-16 mt-auto">
                 <div class="max-w-[1280px] mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
                         <!-- Brand Column -->
                         <div
-                            class="col-span-1 lg:col-span-1 border-b border-gray-100 dark:border-white/5 pb-8 md:border-none md:pb-0">
-                            <div class="flex items-center gap-2 text-primary dark:text-white mb-6">
-                                <span class="material-symbols-outlined text-3xl font-bold">shield_lock</span>
-                                <h2 class="text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
+                            class="col-span-1 lg:col-span-1 border-b border-gray-100 dark:border-white/5 pb-6 md:border-none md:pb-0">
+                            <div class="flex items-center gap-2 text-primary dark:text-white mb-4 md:mb-6">
+                                <span class="material-symbols-outlined text-2xl md:text-3xl font-bold">shield_lock</span>
+                                <h2 class="text-lg md:text-xl font-bold leading-tight tracking-tight">SecureShare</h2>
                             </div>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
+                            <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed max-w-xs">
                                 End-to-end encrypted file sharing for everyone. Private by design, secure by default.
                             </p>
                         </div>
 
                         <!-- Product Column -->
                         <div>
-                            <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            <h3 class="text-[#0f0d1b] dark:text-white font-bold text-xs md:text-sm uppercase tracking-wider mb-4 md:mb-6">
                                 Product</h3>
-                            <ul class="flex flex-col gap-4">
+                            <ul class="flex flex-col gap-3 md:gap-4">
                                 <li><a href="securehowitworks.html"
-                                        class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">How
+                                        class="text-gray-500 dark:text-gray-400 text-xs md:text-sm hover:text-primary transition-colors">How
                                         it works</a></li>
                                 <li><a href="index.html"
-                                        class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Share
+                                        class="text-gray-500 dark:text-gray-400 text-xs md:text-sm hover:text-primary transition-colors">Share
                                         Tool</a></li>
                             </ul>
                         </div>
 
                         <!-- Legal Column -->
                         <div>
-                            <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            <h3 class="text-[#0f0d1b] dark:text-white font-bold text-xs md:text-sm uppercase tracking-wider mb-4 md:mb-6">
                                 Legal</h3>
-                            <ul class="flex flex-col gap-4">
+                            <ul class="flex flex-col gap-3 md:gap-4">
                                 <li><a href="secureprivacypolicy.html"
-                                        class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Privacy
+                                        class="text-gray-500 dark:text-gray-400 text-xs md:text-sm hover:text-primary transition-colors">Privacy
                                         Policy</a></li>
                                 <li><a href="securetermsandcondition.html"
-                                        class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Terms
+                                        class="text-gray-500 dark:text-gray-400 text-xs md:text-sm hover:text-primary transition-colors">Terms
                                         & Conditions</a></li>
                             </ul>
                         </div>
 
                         <!-- Company Column -->
                         <div>
-                            <h3 class="text-[#0f0d1b] dark:text-white font-bold text-sm uppercase tracking-wider mb-6">
+                            <h3 class="text-[#0f0d1b] dark:text-white font-bold text-xs md:text-sm uppercase tracking-wider mb-4 md:mb-6">
                                 Company</h3>
-                            <ul class="flex flex-col gap-4">
+                            <ul class="flex flex-col gap-3 md:gap-4">
                                 <li><a href="secureaboutus.html"
-                                        class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">About
+                                        class="text-gray-500 dark:text-gray-400 text-xs md:text-sm hover:text-primary transition-colors">About
                                         Us</a></li>
                                 <li><a href="securecontact.html"
-                                        class="text-gray-500 dark:text-gray-400 text-sm hover:text-primary transition-colors">Support
+                                        class="text-gray-500 dark:text-gray-400 text-xs md:text-sm hover:text-primary transition-colors">Support
                                         / Contact</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div
-                        class="pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p class="text-gray-400 text-xs mt-4">© 2024 SecureShare Inc. All rights reserved.</p>
+                        class="pt-6 md:pt-8 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-gray-400 text-xs">© 2024 SecureShare Inc. All rights reserved.</p>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
     
-    <!-- Ad Fallback Script -->
+    <!-- Simple ad fallback check -->
     <script>
-    // Check if ads loaded properly and show fallback if not
     document.addEventListener('DOMContentLoaded', function() {
-        // Wait 5 seconds to check if ads loaded
         setTimeout(() => {
-            const adContainers = [
-                'ad-left-top', 'ad-left-bottom', 'ad-right-top', 
-                'ad-mobile-top', 'ad-banner-468', 'ad-mobile-bottom'
+            const adIds = [
+                'header-ad', 'mobile-top-ad', 'left-skyscraper-ad', 
+                'left-rectangle-ad', 'right-sidebar-ad', 'right-leaderboard-ad',
+                'top-banner-ad', 'mobile-square-ad', 'incontent-mobile-ad',
+                'incontent-desktop-ad', 'bottom-banner-ad', 'mobile-bottom-ad',
+                'footer-banner-ad'
             ];
             
-            adContainers.forEach(containerId => {
-                const container = document.getElementById(containerId);
+            adIds.forEach(adId => {
+                const container = document.getElementById(adId);
                 if (container) {
                     const iframe = container.querySelector('iframe');
-                    
-                    // Check if iframe is empty or not visible
                     if (!iframe || iframe.offsetWidth === 0 || iframe.offsetHeight === 0) {
-                        // Create fallback content
                         const fallback = document.createElement('div');
-                        fallback.className = 'ad-fallback w-full h-full flex flex-col items-center justify-center rounded-lg';
-                        
-                        // Determine ad size for label
-                        let sizeLabel = 'Ad Space';
-                        if (container.classList.contains('w-[300px]')) sizeLabel = '300 × 250';
-                        else if (container.classList.contains('w-[160px]') && container.classList.contains('h-[600px]')) sizeLabel = '160 × 600';
-                        else if (container.classList.contains('w-[160px]') && container.classList.contains('h-[300px]')) sizeLabel = '160 × 300';
-                        else if (container.classList.contains('h-[50px]')) sizeLabel = '320 × 50';
-                        else if (container.classList.contains('h-[60px]')) sizeLabel = '468 × 60';
-                        else if (container.classList.contains('h-[100px]')) sizeLabel = '320 × 100';
-                        
+                        fallback.className = 'ad-fallback';
                         fallback.innerHTML = `
-                            <span class="material-symbols-outlined text-primary text-2xl mb-1">ads_click</span>
-                            <p class="text-xs font-medium text-gray-600 dark:text-gray-300">${sizeLabel}</p>
-                            <p class="text-[10px] text-gray-400 mt-0.5">Support our site</p>
+                            <span class="material-symbols-outlined text-primary mb-1">ads_click</span>
+                            <p class="text-xs">Advertisement</p>
+                            <p class="text-[10px] mt-0.5">Support our site</p>
                         `;
-                        
-                        // Replace iframe with fallback
-                        if (iframe) {
-                            container.replaceChild(fallback, iframe);
-                        } else {
-                            container.appendChild(fallback);
-                        }
+                        container.appendChild(fallback);
                     }
                 }
             });
-        }, 5000); // Check after 5 seconds
+        }, 3000);
     });
     
     // Toggle password visibility
     document.getElementById('togglePassword')?.addEventListener('click', function() {
         const passwordInput = document.getElementById('passwordInput');
         const icon = this.querySelector('.material-symbols-outlined');
-        
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
             icon.textContent = 'visibility_off';

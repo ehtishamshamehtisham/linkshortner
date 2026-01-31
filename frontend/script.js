@@ -876,7 +876,7 @@ fetchAnalytics('24h');
 const DISPLAY_DOMAIN = "linkshortner.site"; // Add this line at the top with other constants
 
 // Then in your shorten function:
-currentShortUrl = `${REDIRECT_BASE}/${data.shortCode}`;
+currentShortUrl = `${DISPLAY_DOMAIN}/${data.shortCode}`;
 
 // Update UI
 if (resultLink) {

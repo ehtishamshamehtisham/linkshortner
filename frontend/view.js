@@ -21,61 +21,307 @@ const startTimer = () => {
         const distance = sessionExpiresAt - now;
 
         if (distance < 0) {
-            clearInterval(timerInterval);
-            sessionStorage.removeItem('secure_content');
-            document.body.innerHTML = `
-    <div class="h-screen w-full flex flex-col items-center justify-center bg-[#121022] text-white p-6 text-center">
-        <!-- Top Banner Ad -->
-        <div class="mb-8 w-full max-w-[728px]">
-            <div id="ad-top" class="w-full h-[90px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
-                <iframe 
-                    src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.html"
-                    width="728"
-                    height="90"
-                    frameborder="0"
-                    scrolling="no"
-                    style="border: none; width: 100%; height: 90px;"
-                    allow="autoplay; encrypted-media"
-                    title="Advertisement"
-                ></iframe>
+    clearInterval(timerInterval);
+    sessionStorage.removeItem('secure_content');
+    document.body.innerHTML = `
+    <div class="relative flex min-h-screen w-full flex-col bg-[#121022] text-white overflow-x-hidden">
+        <!-- Header -->
+        <header class="flex items-center justify-between px-6 md:px-20 lg:px-40 py-4 bg-white/5 backdrop-blur-md border-b border-white/10">
+            <div class="flex items-center gap-4 text-white cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="size-6 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl md:text-3xl">shield_lock</span>
+                </div>
+                <h2 class="text-base md:text-lg font-bold leading-tight tracking-[-0.015em]">SecureShare</h2>
             </div>
-        </div>
-
-        <div class="max-w-lg">
-            <span class="material-symbols-outlined text-7xl text-red-500 mb-6 animate-bounce">timer_off</span>
-            <h1 class="text-4xl font-black mb-4">Content Destroyed</h1>
-            <p class="text-gray-400 mb-8 max-w-md mx-auto">Your secure session has timed out. For security reasons, all data has been wiped from this view.</p>
-
-            <button onclick="window.location.href='secure.html'" class="mt-4 bg-primary px-10 py-4 rounded-2xl font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-all">Return Home</button>
             
-            <!-- Bottom Ad -->
-            <div class="mt-12 w-full max-w-[468px]">
-                <div id="ad-bottom" class="w-full h-[60px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
-                    <iframe 
-                        src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.html"
-                        width="468"
-                        height="60"
-                        frameborder="0"
-                        scrolling="no"
-                        style="border: none; width: 100%; height: 60px;"
-                        allow="autoplay; encrypted-media"
-                        title="Advertisement"
-                    ></iframe>
+            <!-- Header Ad (320x50) - Desktop only -->
+            <div class="hidden md:block mx-4 flex-1">
+                <div class="relative w-full max-w-[320px] mx-auto h-[50px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="header-ad-destroyed">
+                        <!-- 320x50 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : 'dbac2741ab7ffdfd9a56cfe03db8c579',
+                                'format' : 'iframe',
+                                'height' : 50,
+                                'width' : 320,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="window.location.href='secure.html'" 
+                class="flex min-w-[90px] md:min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-9 md:h-10 px-3 md:px-4 bg-[#2513ec] text-white text-xs md:text-sm font-bold shadow-lg shadow-[#2513ec]/20 transition-all hover:scale-[1.02]">
+                <span>Share Now</span>
+            </button>
+        </header>
+
+        <!-- Main Content with Side Ads -->
+        <div class="flex flex-1 justify-center gap-6 md:gap-8 px-4 md:px-6 py-8 md:py-12">
+            <!-- Left Side Ads Column - Desktop only -->
+            <div class="hidden xl:flex flex-col gap-4 w-[160px] flex-shrink-0">
+                <!-- 160x600 Skyscraper -->
+                <div class="relative w-full h-[600px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="left-skyscraper-destroyed">
+                        <!-- 160x600 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '7a9c4ae3ff8b42ccd7f1308efa96161c',
+                                'format' : 'iframe',
+                                'height' : 600,
+                                'width' : 160,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/7a9c4ae3ff8b42ccd7f1308efa96161c/invoke.js"></script>
+                    </div>
+                </div>
+                
+                <!-- 300x250 Rectangle -->
+                <div class="relative w-full max-w-[300px] h-[250px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="left-rectangle-destroyed">
+                        <!-- 300x250 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex flex-col items-center justify-center w-full max-w-[800px]">
+                <!-- Top Banner (468x60) -->
+                <div class="mb-6 w-full max-w-[468px]">
+                    <div class="relative w-full h-[60px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                        <div id="top-banner-destroyed">
+                            <!-- 468x60 Ad -->
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                    'format' : 'iframe',
+                                    'height' : 60,
+                                    'width' : 468,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Square Ad (300x250) - Mobile only -->
+                <div class="xl:hidden mb-6 w-full max-w-[300px]">
+                    <div class="relative w-full h-[250px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                        <div id="mobile-square-destroyed">
+                            <!-- 300x250 Ad -->
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                    'format' : 'iframe',
+                                    'height' : 250,
+                                    'width' : 300,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full bg-white/5 rounded-3xl border border-white/10 shadow-2xl overflow-hidden p-8 md:p-12 text-center">
+                    <span class="material-symbols-outlined text-7xl text-red-500 mb-6 animate-bounce">timer_off</span>
+                    <h1 class="text-3xl md:text-4xl font-black mb-4">Content Destroyed</h1>
+                    <p class="text-gray-400 mb-8 max-w-md mx-auto">Your secure session has timed out. For security reasons, all data has been wiped from this view.</p>
+
+                    <!-- In-content Mobile Ad (320x50) - Mobile only -->
+                    <div class="xl:hidden my-6 w-full max-w-[320px] mx-auto">
+                        <div class="relative w-full h-[50px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                            <div id="incontent-mobile-destroyed">
+                                <!-- 320x50 Ad -->
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : 'dbac2741ab7ffdfd9a56cfe03db8c579',
+                                        'format' : 'iframe',
+                                        'height' : 50,
+                                        'width' : 320,
+                                        'params' : {}
+                                    };
+                                </script>
+                                <script type="text/javascript" src="https://www.highperformanceformat.com/dbac2741ab7ffdfd9a56cfe03db8c579/invoke.js"></script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- In-content Desktop Ad (728x90) - Desktop only -->
+                    <div class="hidden md:block my-6 w-full max-w-[728px] mx-auto">
+                        <div class="relative w-full h-[90px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                            <div id="incontent-desktop-destroyed">
+                                <!-- 728x90 Ad -->
+                                <script type="text/javascript">
+                                    atOptions = {
+                                        'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                        'format' : 'iframe',
+                                        'height' : 90,
+                                        'width' : 728,
+                                        'params' : {}
+                                    };
+                                </script>
+                                <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="window.location.href='secure.html'" 
+                        class="mt-4 bg-[#2513ec] px-8 md:px-10 py-3 md:py-4 rounded-2xl font-bold shadow-xl shadow-[#2513ec]/30 hover:scale-105 transition-all">
+                        Return to SecureShare
+                    </button>
+                </div>
+
+                <!-- Bottom Banner (468x60) -->
+                <div class="mt-6 w-full max-w-[468px]">
+                    <div class="relative w-full h-[60px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                        <div id="bottom-banner-destroyed">
+                            <!-- 468x60 Ad -->
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                    'format' : 'iframe',
+                                    'height' : 60,
+                                    'width' : 468,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional mobile ad (300x250) - Mobile only -->
+                <div class="xl:hidden mt-6 w-full max-w-[300px]">
+                    <div class="relative w-full h-[250px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                        <div id="mobile-bottom-destroyed">
+                            <!-- 300x250 Ad -->
+                            <script type="text/javascript">
+                                atOptions = {
+                                    'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                    'format' : 'iframe',
+                                    'height' : 250,
+                                    'width' : 300,
+                                    'params' : {}
+                                };
+                            </script>
+                            <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Ads Column - Desktop only -->
+            <div class="hidden xl:flex flex-col gap-4 w-[160px] flex-shrink-0">
+                <!-- 160x300 Sidebar -->
+                <div class="relative w-full h-[300px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="right-sidebar-destroyed">
+                        <!-- 160x300 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '65e4ed2bd95a6a2b1a9211a79c81e2c3',
+                                'format' : 'iframe',
+                                'height' : 300,
+                                'width' : 160,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/65e4ed2bd95a6a2b1a9211a79c81e2c3/invoke.js"></script>
+                    </div>
+                </div>
+                
+                <!-- 468x60 Leaderboard -->
+                <div class="relative w-full max-w-[468px] h-[60px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="right-leaderboard-destroyed">
+                        <!-- 468x60 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                'format' : 'iframe',
+                                'height' : 60,
+                                'width' : 468,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                    </div>
+                </div>
+                
+                <!-- 300x250 Rectangle -->
+                <div class="relative w-full max-w-[300px] h-[250px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="right-rectangle-destroyed">
+                        <!-- 300x250 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : '9ad838278dc8e53ec577d59c72133ae2',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/9ad838278dc8e53ec577d59c72133ae2/invoke.js"></script>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Ad Fallback Script -->
+        <!-- Footer Banner (728x90) -->
+        <div class="py-6 md:py-8 px-4 md:px-20 lg:px-40 bg-white/5">
+            <div class="max-w-[728px] mx-auto">
+                <div class="relative w-full h-[90px] bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                    <div id="footer-banner-destroyed">
+                        <!-- 728x90 Ad -->
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key' : 'a7010e8356f3a6c4fc483bcaec8750f8',
+                                'format' : 'iframe',
+                                'height' : 90,
+                                'width' : 728,
+                                'params' : {}
+                            };
+                        </script>
+                        <script type="text/javascript" src="https://www.highperformanceformat.com/a7010e8356f3a6c4fc483bcaec8750f8/invoke.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simple ad fallback check -->
         <script>
             setTimeout(() => {
-                ['ad-top', 'ad-bottom'].forEach(containerId => {
-                    const container = document.getElementById(containerId);
+                const adIds = [
+                    'header-ad-destroyed',
+                    'left-skyscraper-destroyed', 'left-rectangle-destroyed',
+                    'right-sidebar-destroyed', 'right-leaderboard-destroyed', 'right-rectangle-destroyed',
+                    'top-banner-destroyed', 'mobile-square-destroyed', 'incontent-mobile-destroyed',
+                    'incontent-desktop-destroyed', 'bottom-banner-destroyed', 'mobile-bottom-destroyed',
+                    'footer-banner-destroyed'
+                ];
+                
+                adIds.forEach(adId => {
+                    const container = document.getElementById(adId);
                     if (container) {
                         const iframe = container.querySelector('iframe');
-                        if (!iframe || iframe.offsetWidth === 0) {
+                        if (!iframe || iframe.offsetWidth === 0 || iframe.offsetHeight === 0) {
                             const fallback = document.createElement('div');
-                            fallback.className = 'w-full h-full flex items-center justify-center bg-gray-800 rounded-lg';
-                            fallback.innerHTML = '<span class="text-gray-400 text-sm">Advertisement</span>';
+                            fallback.className = 'w-full h-full flex flex-col items-center justify-center bg-gray-800/50 rounded-lg';
+                            fallback.innerHTML = '<span class="material-symbols-outlined text-gray-400 mb-1">ads_click</span><span class="text-gray-400 text-xs">Advertisement</span>';
                             if (iframe) container.replaceChild(fallback, iframe);
                             else container.appendChild(fallback);
                         }
@@ -84,10 +330,9 @@ const startTimer = () => {
             }, 3000);
         </script>
     </div>
-`;
-
-            return;
-        }
+    `;
+    return;
+}
 
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
